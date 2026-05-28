@@ -293,19 +293,33 @@ canvas#avatarCanvas {
 .hero-heading .accent { color: var(--purple); }
 
 .hero-tag {
-  font-size: 22px; font-weight: 500;
-  color: rgba(255,255,255,0.7);
-  font-family: 'Courier New', monospace;
+  align-self: center;
+  width: fit-content;
+  padding: 8px 18px;
+  border: 1px solid rgba(168,85,247,0.18);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(168,85,247,0.13), rgba(255,255,255,0.035), rgba(168,85,247,0.08));
+  color: rgba(255,255,255,0.74);
+  box-shadow: 0 0 34px rgba(168,85,247,0.08);
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+  font-size: clamp(22px, 2vw, 34px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: none;
 }
 .hero-tag .tag-bracket { color: var(--purple); opacity: 0.7; }
 
 .hero-bio {
   font-size: 15px; font-weight: 400; line-height: 1.7;
   color: var(--muted); max-width: 520px;
+  text-align: center;
 }
 
 .hero-actions {
-  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -540,4 +554,61 @@ footer {
   display: flex; align-items: center; justify-content: space-between;
   position: relative; z-index: 10;
   font-size: 13px; color: var(--muted);
+}
+
+/* Lightweight cursor feedback: keeps the native cursor and avoids canvas/trails. */
+.cursor-reactive {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cursor-reactive::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+      rgba(255,255,255,0.12),
+      rgba(0,229,255,0.08) 18%,
+      transparent 46%
+    );
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.cursor-reactive-active::after,
+.cursor-reactive:focus-visible::after {
+  opacity: 1;
+}
+
+.cursor-click-ripple {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(255,255,255,0.58);
+  border-radius: 999px;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.65);
+  animation: cursor-ripple-out 520ms ease-out forwards;
+}
+
+@keyframes cursor-ripple-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4.8);
+  }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-reactive::after,
+  .cursor-click-ripple {
+    display: none;
+  }
 }

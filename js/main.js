@@ -6,6 +6,7 @@ import { initScene2 } from '../scenes/scene2/scene2.js';
 import { initScene3 } from '../scenes/scene3/scene3.js';
 import { initScene4 } from '../scenes/scene4/scene4.js';
 import { initBackground } from './background.js';
+import { initCursorFeedback } from './cursorFeedback.js';
 
 export const SCENE_RANGES = {
   scene1: { start: 0.00, end: 0.12 },
@@ -142,6 +143,7 @@ async function bootstrap() {
   initScene2(SCENE_RANGES.scene2);
   initScene3(SCENE_RANGES.scene3);
   initScene4(SCENE_RANGES.scene4);
+  initCursorFeedback();
   initScroll(TOTAL_SCROLL_HEIGHT);
 
   document.body.classList.remove('is-loading');
