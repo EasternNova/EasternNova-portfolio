@@ -158,89 +158,17 @@
 
 .avatar-360-widget {
   position: fixed;
-  right: clamp(110px, 8vw, 170px);
-  bottom: clamp(18px, 2.4vh, 30px);
+  right: clamp(15px, 10vw, 15px);
+  bottom: clamp(100px, 10vh, 4px);
   overflow: visible;
   z-index: 95;
-
-  width: clamp(220px, 14vw, 300px);
-  height: clamp(520px, 52vh, 620px);
+  
+  width: clamp(290px, 19vw, 390px);
+  height: clamp(700px, 70vh, 820px);
 
   pointer-events: auto;
   opacity: var(--widget-opacity, 1);
-  transform:
-    translate(var(--widget-x, 0),
-    var(--widget-y, 0))
-    scale(var(--widget-scale, 1));
-  transform-origin: center bottom;
-  transition:
-  transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
-  opacity 0.18s ease;
-}
-
-.avatar-360-widget::before {
-  content: "";
-  position: absolute;
-  inset: 8% 12% 4%;
-  z-index: 1;
-  border-radius: 42% 42% 18% 18%;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(168, 85, 247, 0.22), transparent 58%),
-    linear-gradient(180deg, transparent, rgba(168, 85, 247, 0.12));
-  filter: blur(22px);
-  transform: scale(0.96);
-}
-
-.avatar-360-widget::after {
-  content: "DRAG TO ROTATE";
-  position: absolute;
-  left: 50%;
-  bottom: 11%;
-  z-index: 3;
-  padding: 8px 13px;
-  border: 1px solid rgba(168, 85, 247, 0.24);
-  border-radius: 999px;
-  color: rgba(255, 255, 255, 0.62);
-  background: rgba(8, 11, 20, 0.42);
-  box-shadow: 0 0 24px rgba(168, 85, 247, 0.14);
-  backdrop-filter: blur(14px);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  line-height: 1;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, 8px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.avatar-360-widget.is-attention::before {
-  animation: avatarWidgetPulse 1.5s ease-out;
-}
-
-.avatar-360-widget.is-hint-visible::after {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-@keyframes avatarWidgetPulse {
-  0% {
-    opacity: 0;
-    transform: scale(0.94);
-  }
-
-  42% {
-    opacity: 1;
-    transform: scale(1.04);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.12);
-  }
+  transition: opacity 0.12s linear;
 }
 
 #avatar-360-widget-canvas {

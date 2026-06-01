@@ -14,13 +14,11 @@ const widget = document.getElementById('avatar-360-widget');
 const widgetCanvas = document.getElementById('avatar-360-widget-canvas');
 
 const avatarModes = ['video', 'image'];
-const SPIN_ZOOM_MIN = 0.62;
-const SPIN_ZOOM_MAX = 1.18;
 const SPIN_DRAG_PIXELS_PER_FRAME = 8.5;
 const SPIN_AUTO_DURATION = 3400;
-const SPIN_ATTENTION_FRAME_DELTA = 4;
-const SPIN_ATTENTION_DURATION = 1050;
-const ATTENTION_INTERVAL = 28000;
+const IDLE_TURN_FRAME_DELTA = 7;
+const IDLE_TURN_DURATION = 1500;
+const IDLE_TURN_INTERVAL = 6800;
 const frameBoundsCache = new WeakMap();
 
 let currentAvatarMode = 0;
@@ -28,26 +26,20 @@ let currentAvatarMode = 0;
 let spinFrames = [];
 let spinCtx = null;
 let spinFrameIndex = 0;
-
-let spinZoom = 1;
-let targetZoom = 1;
-let animationFrame = null;
+let spinSequenceBounds = null;
 
 let isDraggingSpin = false;
 let dragStartX = 0;
-let dragStartY = 0;
 let dragStartFrame = 0;
-let dragStartZoom = 1;
 
 let autoSpinId = null;
-let attentionTimerId = null;
-let attentionCount = 0;
+let idleTurnTimerId = null;
+let idleTurnAnimationId = null;
+let idleTurnDirection = 1;
 
 export function initScene1(range) {
   initAvatarToggle();
   initSpinWidget();
-
-  widgetCanvas?.addEventListener('mouseleave', resetAvatarWidget);
 
   onScroll(({ progress }) => {
     const local = localProgress(progress, range.start, range.end);
@@ -89,6 +81,7 @@ function initSpinWidget() {
 
   spinFrames = getSequence('idle');
   spinCtx = widgetCanvas.getContext('2d');
+  spinSequenceBounds = getSequenceFrameBounds(spinFrames);
 
   resizeSpinWidget();
   drawSpinFrame(0);
@@ -98,32 +91,16 @@ function initSpinWidget() {
     drawSpinFrame(spinFrameIndex);
   });
 
-  widgetCanvas.addEventListener(
-    'wheel',
-    (event) => {
-      event.preventDefault();
-
-      setSpinZoom(
-        targetZoom + (event.deltaY < 0 ? 0.10 : -0.10)
-      );
-    },
-    { passive: false }
-  );
-
   widgetCanvas.addEventListener('pointerdown', (event) => {
     cancelAutoSpin();
+    cancelIdleTurn();
 
     isDraggingSpin = true;
 
     dragStartX = event.clientX;
-    dragStartY = event.clientY;
-
     dragStartFrame = spinFrameIndex;
-    dragStartZoom = spinZoom;
 
     widgetCanvas.classList.add('is-dragging');
-    widget?.classList.add('is-pulled');
-
     widgetCanvas.setPointerCapture(event.pointerId);
   });
 
@@ -131,18 +108,10 @@ function initSpinWidget() {
     if (!isDraggingSpin || spinFrames.length === 0) return;
 
     const deltaX = event.clientX - dragStartX;
-    const deltaY = event.clientY - dragStartY;
-
-    widget?.style.setProperty('--widget-x', `${deltaX}px`);
-    widget?.style.setProperty('--widget-y', `${deltaY}px`);
 
     drawSpinFrame(
       wrapFrame(dragStartFrame + Math.round(deltaX / SPIN_DRAG_PIXELS_PER_FRAME))
     );
-
-    const zoomDelta = -deltaY * 0.003;
-
-    setSpinZoom(dragStartZoom + zoomDelta);
   });
 
   widgetCanvas.addEventListener('pointerup', endSpinDrag);
@@ -150,7 +119,6 @@ function initSpinWidget() {
   widgetCanvas.addEventListener('lostpointercapture', endSpinDrag);
 
   startAutoSpinOnce();
-  startAttentionNudges();
 }
 
 function startAutoSpinOnce() {
@@ -173,6 +141,7 @@ function startAutoSpinOnce() {
       autoSpinId = requestAnimationFrame(tick);
     } else {
       autoSpinId = null;
+      scheduleIdleTurn();
     }
   }
 
@@ -186,108 +155,64 @@ function cancelAutoSpin() {
   autoSpinId = null;
 }
 
-function startAttentionNudges() {
-  if (!widget || !spinFrames.length || attentionTimerId) return;
+function scheduleIdleTurn() {
+  if (idleTurnTimerId || isDraggingSpin) return;
 
-  attentionTimerId = window.setInterval(() => {
-    if (isDraggingSpin || document.hidden) return;
+  idleTurnTimerId = window.setTimeout(() => {
+    idleTurnTimerId = null;
 
-    attentionCount += 1;
-    playAttentionNudge(attentionCount % 3 === 0);
-  }, ATTENTION_INTERVAL);
-}
-
-function playAttentionNudge(showHint) {
-  if (!widget || spinFrames.length === 0) return;
-
-  widget.classList.remove('is-attention', 'is-hint-visible');
-
-  requestAnimationFrame(() => {
-    widget.classList.add('is-attention');
-
-    if (showHint) {
-      widget.classList.add('is-hint-visible');
+    if (document.hidden || isDraggingSpin) {
+      scheduleIdleTurn();
+      return;
     }
-  });
 
-  animateFrameNudge(SPIN_ATTENTION_FRAME_DELTA, SPIN_ATTENTION_DURATION);
-
-  window.setTimeout(() => {
-    widget?.classList.remove('is-attention');
-  }, 1600);
-
-  if (showHint) {
-    window.setTimeout(() => {
-      widget?.classList.remove('is-hint-visible');
-    }, 2600);
-  }
+    animateIdleTurn(idleTurnDirection);
+    idleTurnDirection *= -1;
+  }, IDLE_TURN_INTERVAL);
 }
 
-function animateFrameNudge(frameDelta, duration) {
+function animateIdleTurn(direction) {
   const start = performance.now();
-  const startFrame = spinFrameIndex;
+  const restingFrame = spinFrameIndex;
 
   function tick(now) {
     if (isDraggingSpin) return;
 
-    const progress = Math.min(1, (now - start) / duration);
-    const eased = easeInOut(progress);
+    const progress = Math.min(1, (now - start) / IDLE_TURN_DURATION);
+    const turnProgress = Math.sin(progress * Math.PI);
 
     drawSpinFrame(
-      startFrame + Math.round(frameDelta * eased)
+      restingFrame + Math.round(IDLE_TURN_FRAME_DELTA * direction * turnProgress)
     );
 
     if (progress < 1) {
-      requestAnimationFrame(tick);
+      idleTurnAnimationId = requestAnimationFrame(tick);
+    } else {
+      idleTurnAnimationId = null;
+      scheduleIdleTurn();
     }
   }
 
-  requestAnimationFrame(tick);
+  idleTurnAnimationId = requestAnimationFrame(tick);
+}
+
+function cancelIdleTurn() {
+  if (idleTurnTimerId) {
+    clearTimeout(idleTurnTimerId);
+    idleTurnTimerId = null;
+  }
+
+  if (idleTurnAnimationId) {
+    cancelAnimationFrame(idleTurnAnimationId);
+    idleTurnAnimationId = null;
+  }
 }
 
 function endSpinDrag() {
   isDraggingSpin = false;
 
   widgetCanvas?.classList.remove('is-dragging');
-  widget?.classList.remove('is-pulled', 'is-attention', 'is-hint-visible');
-
-  widget?.style.setProperty('--widget-x', '0px');
-  widget?.style.setProperty('--widget-y', '0px');
-}
-
-function resetAvatarWidget() {
-  isDraggingSpin = false;
-
-  widgetCanvas?.classList.remove('is-dragging');
-  widget?.classList.remove('is-pulled', 'is-attention', 'is-hint-visible');
-
-  widget?.style.setProperty('--widget-x', '0px');
-  widget?.style.setProperty('--widget-y', '0px');
-
-  targetZoom = 1;
-
-  drawSpinFrame(0);
-}
-
-function setSpinZoom(value) {
-  targetZoom = Math.max(SPIN_ZOOM_MIN, Math.min(SPIN_ZOOM_MAX, value));
-
-  if (!animationFrame) {
-    animateZoom();
-  }
-}
-
-function animateZoom() {
-  spinZoom += (targetZoom - spinZoom) * 0.22;
-
-  drawSpinFrame(spinFrameIndex);
-
-  if (Math.abs(targetZoom - spinZoom) > 0.001) {
-    animationFrame = requestAnimationFrame(animateZoom);
-  } else {
-    spinZoom = targetZoom;
-    animationFrame = null;
-  }
+  scheduleIdleTurn();
 }
 
 function resizeSpinWidget() {
@@ -318,7 +243,7 @@ function drawSpinFrame(index) {
   const canvasWidth = widgetCanvas.clientWidth;
   const canvasHeight = widgetCanvas.clientHeight;
 
-  const source = getVisibleFrameBounds(frame);
+  const source = spinSequenceBounds || getVisibleFrameBounds(frame);
   const frameRatio = source.width / source.height;
 
   const paddingX = Math.max(16, canvasWidth * 0.06);
@@ -328,7 +253,7 @@ function drawSpinFrame(index) {
   const maxWidth = canvasWidth - paddingX * 2;
   const maxDrawableHeight = Math.min(maxHeight, maxWidth / frameRatio);
   const baseHeight = maxDrawableHeight * 0.96;
-  const targetHeight = Math.min(baseHeight * spinZoom, maxDrawableHeight);
+  const targetHeight = Math.min(baseHeight, maxDrawableHeight);
   const targetWidth = targetHeight * frameRatio;
 
   const x = (canvasWidth - targetWidth) / 2;
@@ -409,6 +334,45 @@ function getVisibleFrameBounds(frame) {
   return bounds;
 }
 
+function getSequenceFrameBounds(frames) {
+  if (!frames.length) return null;
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  let frameWidth = 0;
+  let frameHeight = 0;
+
+  frames.forEach((frame) => {
+    const bounds = getVisibleFrameBounds(frame);
+
+    frameWidth = frame.naturalWidth || frameWidth;
+    frameHeight = frame.naturalHeight || frameHeight;
+
+    minX = Math.min(minX, bounds.x);
+    minY = Math.min(minY, bounds.y);
+    maxX = Math.max(maxX, bounds.x + bounds.width);
+    maxY = Math.max(maxY, bounds.y + bounds.height);
+  });
+
+  if (!Number.isFinite(minX) || !Number.isFinite(minY)) {
+    return null;
+  }
+
+  const sourceX = Math.max(0, minX);
+  const sourceY = Math.max(0, minY);
+  const sourceRight = Math.min(frameWidth, maxX);
+  const sourceBottom = Math.min(frameHeight, maxY);
+
+  return {
+    x: sourceX,
+    y: sourceY,
+    width: sourceRight - sourceX,
+    height: sourceBottom - sourceY,
+  };
+}
+
 function wrapFrame(index) {
   if (spinFrames.length === 0) return 0;
 
@@ -452,6 +416,13 @@ function updateScene1(local) {
     );
   }
 
+  if (widget) {
+    widget.style.setProperty(
+      '--widget-opacity',
+      ringOpacity
+    );
+  }
+
   const textProgress = localProgress(local, 0.4, 0.9);
 
   const textOpacity = lerp(
@@ -481,17 +452,4 @@ function updateScene1(local) {
     );
   }
 
-  if (widget) {
-    const widgetProgress = localProgress(local, 0.45, 1);
-
-    widget.style.setProperty(
-      '--widget-opacity',
-      lerp(1, 0, widgetProgress)
-    );
-
-    widget.style.setProperty(
-      '--widget-scale',
-      lerp(1, 0.72, widgetProgress)
-    );
-  }
 }

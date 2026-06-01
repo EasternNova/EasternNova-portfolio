@@ -1,8 +1,8 @@
 export const FRAME_SEQUENCES = {
   idle: {
-    path: 'assets/EXTRA_Assets_Future/9-Avatar-360',
+    path: 'assets/AVATAR_360_FRAME',
     prefix: 'frame_',
-    count: 99,
+    count: 98,
     ext: 'png',
   },
   run: {
