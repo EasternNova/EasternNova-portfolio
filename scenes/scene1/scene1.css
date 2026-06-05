@@ -42,13 +42,49 @@
   margin-left: -8%;
   margin-top: -10%;
   justify-self: start;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   opacity: var(--hero-text-opacity, 1);
   transform: translateY(var(--hero-copy-y, 0));
   transition: 
     opacity 0.12s linear, 
     transform 0.12s linear;
+}
+
+#hero-copy .location-badge,
+#hero-copy .hero-tag,
+#hero-copy .hero-actions,
+#hero-copy .stat-grid {
+  align-self: flex-start;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#hero-copy .hero-tag,
+#hero-copy .hero-bio {
+  text-align: left;
+}
+
+#hero-copy .hero-subheading {
+  max-width: 620px;
+  font-family: var(--font);
+  font-size: clamp(18px, 1.4vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+
+#hero-copy .hero-status-badge {
+  max-width: 620px;
+  white-space: normal;
+}
+
+#hero-copy .hero-actions {
+  justify-content: flex-start;
+}
+
+#hero-copy .stat-grid {
+  width: min(100%, 520px);
 }
 
 #hero-visual {
@@ -326,7 +362,8 @@
   #hero-copy {
     order: 2;
     margin: 0 auto;
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   #hero-visual {
@@ -336,7 +373,7 @@
 
   .location-badge,
   .hero-actions {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
