@@ -6,8 +6,8 @@
    Add real contact links here once the profiles are ready.
 */
 
-import { onScroll, localProgress } from '../../JS/utils/scrollProgress.js';
-import { remap } from '../../JS/utils/lerp.js';
+import { onScroll, localProgress } from '../../js/utils/scrollProgress.js';
+import { remap } from '../../js/utils/lerp.js';
 
 const CONTACT_LINKS = [
   {

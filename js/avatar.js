@@ -1,8 +1,3 @@
-// ============================================
-// AVATAR.JS — EasternNova Custom Avatar
-// Based on real reference photos
-// ============================================
-
 (function () {
 
   const canvas = document.getElementById('avatarCanvas');

@@ -2,11 +2,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Base path for GitHub Pages deployment
-  // Change 'easternnova-portfolio' to your actual repo name
-  base: process.env.NODE_ENV === 'production'
-    ? '/easternnova-portfolio/'
-    : '/',
+  base: '/',
 
   build: {
     outDir: 'dist',

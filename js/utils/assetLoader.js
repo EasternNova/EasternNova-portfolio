@@ -35,12 +35,6 @@ export const FRAME_SEQUENCES = {
     count: 49,
     ext: 'png',
   },
-  shot: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/6-SHOT',
-    prefix: 'frame_',
-    count: 49,
-    ext: 'png',
-  },
   leaving: {
     path: 'assets/EXTRA_Assets_Future/FRAMES/7-LEAVING',
     prefix: 'frame_',

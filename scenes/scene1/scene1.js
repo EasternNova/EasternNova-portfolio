@@ -1,6 +1,6 @@
-import { onScroll, localProgress } from '../../JS/utils/scrollProgress.js';
-import { getSequence } from '../../JS/utils/assetLoader.js';
-import { lerp, easeInOut } from '../../JS/utils/lerp.js';
+import { onScroll, localProgress } from '../../js/utils/scrollProgress.js';
+import { getSequence } from '../../js/utils/assetLoader.js';
+import { lerp, easeInOut } from '../../js/utils/lerp.js';
 
 const ring = document.getElementById('portal-ring');
 const heroCopy = document.getElementById('hero-copy');
