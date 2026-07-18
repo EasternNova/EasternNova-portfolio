@@ -1,80 +1,57 @@
+// JS/utils/assetLoader.js
+
 export const FRAME_SEQUENCES = {
-  idle: {
-    path: 'assets/AVATAR_360_FRAME',
-    prefix: 'frame_',
-    count: 98,
-    ext: 'png',
-  },
-  run: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/1-RUN',
-    prefix: 'frame_',
-    count: 49,
-    ext: 'png',
-  },
-  catch: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/2-CATCH',
-    prefix: 'frame_',
-    count: 49,
-    ext: 'png',
-  },
-  dribble: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/3-DRIBBLE',
-    prefix: 'frame_',
-    count: 49,
-    ext: 'png',
-  },
-  hookshot1: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/4-HOOK SHOT 1',
-    prefix: 'frame_',
-    count: 36,
-    ext: 'png',
-  },
-  hookshot2: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/5-HOOK SHOT 2',
-    prefix: 'frame_',
-    count: 49,
-    ext: 'png',
-  },
-  leaving: {
-    path: 'assets/EXTRA_Assets_Future/FRAMES/7-LEAVING',
-    prefix: 'frame_',
-    count: 49,
-    ext: 'png',
-  },
+  idle: {},
 };
 
 const cache = {};
 
-function frameFilename(prefix, index, ext, padding = 3) {
-  return `${prefix}${String(index).padStart(padding, '0')}.${ext}`;
-}
+// Import every PNG inside AVATAR_360_FRAME
+const frameModules = import.meta.glob(
+  "../../assets/AVATAR_360_FRAME/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 
-export function loadSequence(key) {
-  if (cache[key]) return Promise.resolve(cache[key]);
+// Sort by filename (frame_000 -> frame_001 -> ...)
+const frameUrls = Object.entries(frameModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
 
-  const seq = FRAME_SEQUENCES[key];
-  if (!seq) return Promise.reject(new Error(`Unknown sequence: ${key}`));
-
-  const frames = [];
-  const promises = [];
-
-  for (let i = 0; i < seq.count; i++) {
-    const img = new Image();
-    img.src = `${seq.path}/${frameFilename(seq.prefix, i, seq.ext)}`;
-    frames.push(img);
-    promises.push(new Promise((resolve) => {
-      img.onload = resolve;
-      img.onerror = () => {
-        console.warn(`[assetLoader] Missing frame: ${img.src}`);
-        resolve();
-      };
-    }));
+export async function loadSequence(key) {
+  if (key !== "idle") {
+    console.warn(`[assetLoader] Unknown sequence: ${key}`);
+    return [];
   }
 
-  return Promise.all(promises).then(() => {
-    cache[key] = frames;
-    return frames;
-  });
+  if (cache.idle) return cache.idle;
+
+  const frames = await Promise.all(
+    frameUrls.map((src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+
+        img.onload = () => resolve(img);
+
+        img.onerror = () => {
+          console.warn("[assetLoader] Failed:", src);
+          resolve(img);
+        };
+
+        img.src = src;
+      });
+    })
+  );
+
+  cache.idle = frames;
+
+  console.log(
+    `[assetLoader] Loaded ${frames.length} idle frames`
+  );
+
+  return frames;
 }
 
 export function getSequence(key) {
@@ -82,12 +59,9 @@ export function getSequence(key) {
 }
 
 export async function loadAll(onProgress) {
-  const keys = Object.keys(FRAME_SEQUENCES);
-  let loaded = 0;
+  await loadSequence("idle");
 
-  for (const key of keys) {
-    await loadSequence(key);
-    loaded++;
-    if (onProgress) onProgress(loaded, keys.length);
+  if (onProgress) {
+    onProgress(1, 1);
   }
 }
