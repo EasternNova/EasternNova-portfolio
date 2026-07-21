@@ -1,5 +1,5 @@
-import { initScroll } from './utils/scrollProgress.js';
-import { loadAll } from './utils/assetLoader.js';
+import { initScroll } from '.JS/utils/scrollProgress.js';
+import { loadAll } from '.JS/utils/assetLoader.js';
 
 import { initScene1 } from '../scenes/scene1/scene1.js';
 import { initScene2 } from '../scenes/scene2/scene2.js';

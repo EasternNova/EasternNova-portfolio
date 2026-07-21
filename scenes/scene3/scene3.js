@@ -8,8 +8,8 @@
    No other file needs touching.
    ================================================================ */
 
-import { onScroll, localProgress } from '../../js/utils/scrollProgress.js';
-import { remap, easeOut }          from '../../js/utils/lerp.js';
+import { onScroll, localProgress } from '../../Js/utils/scrollProgress.js';
+import { remap, easeOut }          from '../../Js/utils/lerp.js';
 
 /* ================================================================
    ✏️  EDIT THESE — your skills and projects
