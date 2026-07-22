@@ -19,9 +19,9 @@
    Each beat auto-plays at normal speed when scroll hits its trigger.
    ================================================================ */
 
-import { onScroll, localProgress } from '../../Js/utils/scrollProgress.js';
-import { getSequence }             from '../../Js/utils/assetLoader.js';
-import { remap, easeOut }          from '../../Js/utils/lerp.js';
+import { onScroll, localProgress } from '../../JS/utils/scrollProgress.js';
+import { getSequence }             from '../../JS/utils/assetLoader.js';
+import { remap, easeOut }          from '../../JS/utils/lerp.js';
 import { FramePlayer }             from './canvas.js';
 import { initBallArc, triggerArc, resetArc, triggerFall } from './ballArc.js';
 
