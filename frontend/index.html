@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="EasternNova — personal portfolio, projects, skills, and work."
+    >
+
+    <meta name="theme-color" content="#0b1117">
+
+    <title>EasternNova — Portfolio</title>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="/CSS/tokens.css">
+    <link rel="stylesheet" href="/CSS/base.css">
+    <link rel="stylesheet" href="/CSS/layout.css">
+    <link rel="stylesheet" href="/CSS/components.css">
+</head>
+
+<body>
+
+    <!-- Background Layer -->
+    <div id="background" aria-hidden="true"></div>
+
+
+    <!-- Header / Navigation -->
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+
+            <a
+                class="site-logo"
+                href="#hero"
+                aria-label="EasternNova home"
+            >
+                EasternNova
+            </a>
+
+            <div class="nav-links">
+
+                <a href="#work">Work</a>
+
+                <a href="#about">About</a>
+
+                <a href="#skills">Skills</a>
+
+                <a href="#resume">Resume</a>
+
+                <a href="#contact">Contact</a>
+
+            </div>
+
+            <div class="nav-actions">
+
+                <!-- Theme control will be added later -->
+
+                <!-- Chat control will be added later -->
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- Main Portfolio -->
+    <main id="main-content">
+
+        <!-- Hero -->
+        <section
+            id="hero"
+            class="section section-hero"
+            aria-labelledby="hero-title"
+        >
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        EasternNova
+                    </p>
+
+                    <h1 id="hero-title">
+                        Building things with code,
+                        curiosity, and purpose.
+                    </h1>
+
+                    <p class="hero-description">
+                        A personal portfolio documenting projects,
+                        technical skills, experiments, and the journey
+                        behind them.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+                            class="button button-primary"
+                            href="#work"
+                        >
+                            View Work
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                            href="#resume"
+                        >
+                            Resume
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Work / Projects -->
+        <section
+            id="work"
+            class="section section-work"
+            aria-labelledby="work-title"
+        >
+            <div class="container">
+
+                <header class="section-header">
+
+                    <p class="eyebrow">
+                        Selected Work
+                    </p>
+
+                    <h2 id="work-title">
+                        Projects
+                    </h2>
+
+                    <p>
+                        A collection of projects, experiments,
+                        and things currently being built.
+                    </p>
+
+                </header>
+
+                <div
+                    id="projects-grid"
+                    class="projects-grid"
+                >
+                    <!-- Projects will be generated from data later -->
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- About -->
+        <section
+            id="about"
+            class="section section-about"
+            aria-labelledby="about-title"
+        >
+            <div class="container">
+
+                <header class="section-header">
+
+                    <p class="eyebrow">
+                        About
+                    </p>
+
+                    <h2 id="about-title">
+                        About EasternNova
+                    </h2>
+
+                </header>
+
+                <div class="about-content">
+                    <!-- About content will be added later -->
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Skills -->
+        <section
+            id="skills"
+            class="section section-skills"
+            aria-labelledby="skills-title"
+        >
+            <div class="container">
+
+                <header class="section-header">
+
+                    <p class="eyebrow">
+                        Technical Skills
+                    </p>
+
+                    <h2 id="skills-title">
+                        Skills
+                    </h2>
+
+                </header>
+
+                <div
+                    id="skills-grid"
+                    class="skills-grid"
+                >
+                    <!-- Skills will be generated from data later -->
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Resume -->
+        <section
+            id="resume"
+            class="section section-resume"
+            aria-labelledby="resume-title"
+        >
+            <div class="container">
+
+                <header class="section-header">
+
+                    <p class="eyebrow">
+                        Resume
+                    </p>
+
+                    <h2 id="resume-title">
+                        Experience & Resume
+                    </h2>
+
+                </header>
+
+                <div class="resume-content">
+                    <!-- Real resume link will be connected later -->
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Contact -->
+        <section
+            id="contact"
+            class="section section-contact"
+            aria-labelledby="contact-title"
+        >
+            <div class="container">
+
+                <header class="section-header">
+
+                    <p class="eyebrow">
+                        Contact
+                    </p>
+
+                    <h2 id="contact-title">
+                        Let's connect.
+                    </h2>
+
+                </header>
+
+                <div class="contact-content">
+                    <!-- Contact links / backend form will be added later -->
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                © <span id="current-year"></span>
+                EasternNova
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Application Entry -->
+    <script
+        type="module"
+        src="/JS/main.js"
+    ></script>
+
+</body>
+</html>

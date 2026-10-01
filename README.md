@@ -1,2 +1,0 @@
-# easternnova-portfolio
-My Portfolio

@@ -1,0 +1,245 @@
+/* =========================================================
+   EasternNova Portfolio
+   Layout
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Global Container
+   --------------------------------------------------------- */
+
+.container {
+    width: min(
+        100% - (var(--container-padding) * 2),
+        var(--container-width)
+    );
+
+    margin-inline: auto;
+}
+
+
+/* ---------------------------------------------------------
+   Main Sections
+   --------------------------------------------------------- */
+
+.section {
+    position: relative;
+    width: 100%;
+    padding-block: var(--section-padding);
+}
+
+
+/* ---------------------------------------------------------
+   Header
+   --------------------------------------------------------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+}
+
+.site-nav {
+    width: min(
+        100% - (var(--container-padding) * 2),
+        var(--container-width)
+    );
+
+    min-height: 4.5rem;
+
+    margin-inline: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-6);
+}
+
+
+/* ---------------------------------------------------------
+   Navigation
+   --------------------------------------------------------- */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-6);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-3);
+}
+
+
+/* ---------------------------------------------------------
+   Hero
+   --------------------------------------------------------- */
+
+.section-hero {
+    min-height: calc(100vh - 4.5rem);
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    width: min(100%, 800px);
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: var(--space-3);
+
+    margin-top: var(--space-8);
+}
+
+
+/* ---------------------------------------------------------
+   Section Headers
+   --------------------------------------------------------- */
+
+.section-header {
+    width: min(100%, 720px);
+
+    margin-bottom: var(--space-12);
+}
+
+.section-header > p:not(.eyebrow) {
+    margin-top: var(--space-4);
+}
+
+
+/* ---------------------------------------------------------
+   Work / Projects
+   --------------------------------------------------------- */
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: var(--space-6);
+}
+
+
+/* ---------------------------------------------------------
+   Skills
+   --------------------------------------------------------- */
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: var(--space-6);
+}
+
+
+/* ---------------------------------------------------------
+   About
+   --------------------------------------------------------- */
+
+.about-content {
+    width: min(100%, 800px);
+}
+
+
+/* ---------------------------------------------------------
+   Resume
+   --------------------------------------------------------- */
+
+.resume-content {
+    width: min(100%, 800px);
+}
+
+
+/* ---------------------------------------------------------
+   Contact
+   --------------------------------------------------------- */
+
+.contact-content {
+    width: min(100%, 800px);
+}
+
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+.site-footer {
+    width: 100%;
+    padding-block: var(--space-8);
+}
+
+
+/* ---------------------------------------------------------
+   Tablet
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        gap: var(--space-4);
+    }
+
+    .projects-grid,
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    :root {
+        --container-padding: 1rem;
+    }
+
+    .site-nav {
+        min-height: 4rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .section-hero {
+        min-height: calc(100svh - 4rem);
+    }
+
+    .hero-actions {
+        width: 100%;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   Small Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 420px) {
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+}

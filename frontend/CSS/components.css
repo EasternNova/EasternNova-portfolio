@@ -1,0 +1,189 @@
+/* =========================================================
+   EasternNova Portfolio
+   Components
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Logo
+   --------------------------------------------------------- */
+
+.site-logo {
+    display: inline-flex;
+    align-items: center;
+
+    color: var(--color-text);
+
+    font-size: var(--text-md);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+
+    transition:
+        color var(--duration-fast) var(--ease-standard);
+}
+
+.site-logo:hover {
+    color: var(--color-accent);
+}
+
+
+/* ---------------------------------------------------------
+   Navigation Links
+   --------------------------------------------------------- */
+
+.nav-links a {
+    position: relative;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--text-sm);
+    font-weight: 500;
+
+    transition:
+        color var(--duration-fast) var(--ease-standard);
+}
+
+.nav-links a:hover {
+    color: var(--color-text);
+}
+
+
+/* ---------------------------------------------------------
+   Eyebrow
+   --------------------------------------------------------- */
+
+.eyebrow {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-accent);
+
+    font-size: var(--text-sm);
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   Buttons
+   --------------------------------------------------------- */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.75rem;
+
+    padding-inline: var(--space-5);
+
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-md);
+
+    font-size: var(--text-sm);
+    font-weight: 600;
+
+    transition:
+        background-color var(--duration-normal) var(--ease-standard),
+        border-color var(--duration-normal) var(--ease-standard),
+        color var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* Primary */
+
+.button-primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.button-primary:hover {
+    background: var(--color-accent-hover);
+    color: var(--color-bg);
+}
+
+
+/* Secondary */
+
+.button-secondary {
+    border-color: var(--color-border-strong);
+    background: transparent;
+    color: var(--color-text);
+}
+
+.button-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+
+/* ---------------------------------------------------------
+   Project Card Foundation
+   --------------------------------------------------------- */
+
+.project-card {
+    min-height: 16rem;
+
+    padding: var(--space-6);
+
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+
+    transition:
+        border-color var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard),
+        box-shadow var(--duration-normal) var(--ease-standard);
+}
+
+.project-card:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ---------------------------------------------------------
+   Skill Card Foundation
+   --------------------------------------------------------- */
+
+.skill-card {
+    padding: var(--space-6);
+
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+}
+
+
+/* ---------------------------------------------------------
+   Generic Card
+   --------------------------------------------------------- */
+
+.card {
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+}
+
+
+/* ---------------------------------------------------------
+   Responsive Component Adjustments
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .button {
+        width: 100%;
+    }
+
+}
