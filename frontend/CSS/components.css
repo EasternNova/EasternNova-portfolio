@@ -496,3 +496,13 @@
 
     outline-offset: 4px;
 }
+
+/* Accessibility — Reduced Motion*/
+
+@media (prefers-reduced-motion: reduce) {
+
+    .loader-line::after {
+        animation: none;
+    }
+
+}
