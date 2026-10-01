@@ -1,12 +1,8 @@
-/* =========================================================
-   EasternNova Portfolio
-   Components
-   ========================================================= */
+/* EasternNova Portfolio
+   Components */
 
 
-/* ---------------------------------------------------------
-   Logo
-   --------------------------------------------------------- */
+/* Logo */
 
 .site-logo {
     display: inline-flex;
@@ -14,9 +10,9 @@
 
     color: var(--color-text);
 
-    font-size: var(--text-md);
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
 
     transition:
         color var(--duration-fast) var(--ease-standard);
@@ -27,12 +23,20 @@
 }
 
 
-/* ---------------------------------------------------------
-   Navigation Links
-   --------------------------------------------------------- */
+/* Navigation */
 
-.nav-links a {
+.nav-section-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: var(--space-2);
+}
+
+.nav-section-links a {
     position: relative;
+
+    padding: var(--space-1) 0;
 
     color: var(--color-text-muted);
 
@@ -40,17 +44,34 @@
     font-weight: 500;
 
     transition:
-        color var(--duration-fast) var(--ease-standard);
+        color var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard);
 }
 
-.nav-links a:hover {
+.nav-section-links a:hover {
+    color: var(--color-text);
+
+    transform: translateX(-2px);
+}
+
+
+
+/* Active / current section foundation */
+
+.nav-section-links a[aria-current="true"] {
     color: var(--color-text);
 }
 
+/*  Navigation Divider*/
 
-/* ---------------------------------------------------------
-   Eyebrow
-   --------------------------------------------------------- */
+.nav-divider {
+    width: 2rem;
+    height: 1px;
+
+    background: var(--color-border);
+}
+
+/* Eyebrow */
 
 .eyebrow {
     margin-bottom: var(--space-4);
@@ -60,29 +81,190 @@
     font-size: var(--text-sm);
     font-weight: 600;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
 
-/* ---------------------------------------------------------
-   Buttons
-   --------------------------------------------------------- */
+/* Buttons */
 
 .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    min-height: 2.75rem;
+    min-height: 2.875rem;
 
-    padding-inline: var(--space-5);
+    padding:
+        0
+        var(--space-5);
 
-    border: var(--border-width) solid transparent;
+    border:
+        var(--border-width)
+        solid
+        transparent;
+
     border-radius: var(--radius-md);
 
     font-size: var(--text-sm);
     font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background-color var(--duration-normal) var(--ease-standard),
+        border-color var(--duration-normal) var(--ease-standard),
+        color var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard),
+        box-shadow var(--duration-normal) var(--ease-standard);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------
+   Primary Button
+   --------------------------------------------------------- */
+
+.button-primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+
+    box-shadow:
+        0 4px 12px rgb(0 0 0 / 0.08);
+}
+
+.button-primary:hover {
+    background: var(--color-accent-hover);
+    color: var(--color-bg);
+
+    box-shadow:
+        0 7px 18px rgb(0 0 0 / 0.12);
+}
+
+
+/* ---------------------------------------------------------
+   Secondary Button
+   --------------------------------------------------------- */
+
+.button-secondary {
+    border-color: var(--color-border-strong);
+
+    background: transparent;
+    color: var(--color-text);
+}
+
+.button-secondary:hover {
+    border-color: var(--color-accent);
+
+    background: var(--color-accent-soft);
+    color: var(--color-text);
+}
+
+
+/* Generic Card */
+
+.card {
+    border:
+        var(--border-width)
+        solid
+        var(--color-border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+
+    transition:
+        border-color var(--duration-normal) var(--ease-standard),
+        box-shadow var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard);
+}
+
+.card:hover {
+    border-color: var(--color-border-strong);
+
+    box-shadow: var(--shadow-md);
+
+    transform: translateY(-2px);
+}
+
+
+/* Project Card */
+
+.project-card {
+    min-height: 16rem;
+
+    padding: var(--space-6);
+
+    border:
+        var(--border-width)
+        solid
+        var(--color-border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+
+    transition:
+        border-color var(--duration-normal) var(--ease-standard),
+        box-shadow var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard);
+}
+
+.project-card:hover {
+    border-color: var(--color-border-strong);
+
+    box-shadow: var(--shadow-md);
+
+    transform: translateY(-3px);
+}
+
+
+/* Skill Card */
+
+.skill-card {
+    padding: var(--space-6);
+
+    border:
+        var(--border-width)
+        solid
+        var(--color-border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+}
+
+
+/* Theme Toggle */
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: var(--space-2);
+
+    min-height: 2.5rem;
+
+    padding:
+        0
+        var(--space-3);
+
+    border:
+        var(--border-width)
+        solid
+        var(--color-border);
+
+    border-radius: var(--radius-full);
+
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+
+    font-size: var(--text-sm);
+    font-weight: 500;
 
     transition:
         background-color var(--duration-normal) var(--ease-standard),
@@ -91,94 +273,126 @@
         transform var(--duration-normal) var(--ease-standard);
 }
 
-.button:hover {
+.theme-toggle:hover {
+    border-color: var(--color-border-strong);
+
+    color: var(--color-text);
+
     transform: translateY(-1px);
 }
 
-
-/* Primary */
-
-.button-primary {
-    background: var(--color-accent);
-    color: var(--color-bg);
+.theme-toggle:active {
+    transform: translateY(0);
 }
 
-.button-primary:hover {
-    background: var(--color-accent-hover);
-    color: var(--color-bg);
+.theme-toggle-icon {
+    display: inline-flex;
+
+    font-size: var(--text-md);
+    line-height: 1;
+}
+
+.theme-toggle-label {
+    white-space: nowrap;
 }
 
 
-/* Secondary */
+/* Application Loader */
 
-.button-secondary {
-    border-color: var(--color-border-strong);
-    background: transparent;
+.app-loader {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--color-bg);
     color: var(--color-text);
-}
 
-.button-secondary:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-}
-
-
-/* ---------------------------------------------------------
-   Project Card Foundation
-   --------------------------------------------------------- */
-
-.project-card {
-    min-height: 16rem;
-
-    padding: var(--space-6);
-
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-lg);
-
-    background: var(--color-surface);
+    opacity: 1;
+    visibility: visible;
 
     transition:
-        border-color var(--duration-normal) var(--ease-standard),
-        transform var(--duration-normal) var(--ease-standard),
-        box-shadow var(--duration-normal) var(--ease-standard);
+        opacity var(--duration-slow) var(--ease-standard),
+        visibility var(--duration-slow) var(--ease-standard);
 }
 
-.project-card:hover {
-    border-color: var(--color-border-strong);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+.app-loader.is-hidden {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: var(--space-3);
+}
+
+.loader-mark {
+    color: var(--color-text);
+
+    font-size: var(--text-lg);
+    font-weight: 600;
+
+    letter-spacing: -0.02em;
+}
+
+.loader-line {
+    width: 6rem;
+    height: 1px;
+
+    overflow: hidden;
+
+    background: var(--color-border);
+}
+
+.loader-line::after {
+    content: "";
+
+    display: block;
+
+    width: 40%;
+    height: 100%;
+
+    background: var(--color-accent);
+
+    animation:
+        loader-progress
+        900ms
+        var(--ease-standard)
+        infinite;
+}
+
+@keyframes loader-progress {
+
+    from {
+        transform: translateX(-250%);
+    }
+
+    to {
+        transform: translateX(350%);
+    }
+
 }
 
 
-/* ---------------------------------------------------------
-   Skill Card Foundation
-   --------------------------------------------------------- */
+/* Footer */
 
-.skill-card {
-    padding: var(--space-6);
+.site-footer p {
+    color: var(--color-text-subtle);
 
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-lg);
-
-    background: var(--color-surface);
+    font-size: var(--text-sm);
 }
 
 
-/* ---------------------------------------------------------
-   Generic Card
-   --------------------------------------------------------- */
-
-.card {
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-lg);
-
-    background: var(--color-surface);
-}
-
-
-/* ---------------------------------------------------------
-   Responsive Component Adjustments
-   --------------------------------------------------------- */
+/* Mobile Components */
 
 @media (max-width: 700px) {
 
@@ -186,4 +400,99 @@
         width: 100%;
     }
 
+    .theme-toggle-label {
+        display: none;
+    }
+
+}
+
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .button,
+    .card,
+    .project-card,
+    .theme-toggle,
+    .nav-section-links a {
+        transition: none;
+    }
+
+    .button:hover,
+    .card:hover,
+    .project-card:hover,
+    .theme-toggle:hover,
+    .nav-section-links a:hover {
+        transform: none;
+    }
+
+}
+
+/* Responsive Navigation */
+
+@media (max-width: 700px) {
+
+    .portfolio-nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-section-links {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        gap: 1rem;
+
+        width: auto;
+    }
+
+    .nav-section-links a {
+        padding: 0.25rem 0;
+
+        font-size: var(--text-xs);
+
+        white-space: nowrap;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .portfolio-nav {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+    .portfolio-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-section-links {
+        justify-content: flex-start;
+
+        width: max-content;
+
+        flex-shrink: 0;
+    }
+
+}
+
+/* Accessibility — Interactive Focus */
+
+.button:focus-visible,
+.theme-toggle:focus-visible,
+.nav-section-links a:focus-visible,
+.site-logo:focus-visible {
+    outline:
+        2px solid
+        var(--color-accent);
+
+    outline-offset: 4px;
 }

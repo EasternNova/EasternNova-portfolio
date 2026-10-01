@@ -1,13 +1,10 @@
-/* =========================================================
-   EasternNova Portfolio
-   Design Tokens
-   ========================================================= */
+/* EasternNova Portfolio
+   Design Tokens */
+
+
+/* Core Colors — Light */
 
 :root {
-
-    /* -----------------------------------------------------
-       Colors — Core
-       ----------------------------------------------------- */
 
     --color-bg: #f7f7f5;
     --color-surface: #ffffff;
@@ -25,9 +22,9 @@
     --color-accent-soft: #e5eeee;
 
 
-    /* -----------------------------------------------------
-       Dark Theme
-       ----------------------------------------------------- */
+    /* =====================================================
+       Dark Theme — Night Ocean
+       ===================================================== */
 
     --dark-bg: #071117;
     --dark-surface: #0c181f;
@@ -45,9 +42,7 @@
     --dark-accent-soft: #122c31;
 
 
-    /* -----------------------------------------------------
-       Typography
-       ----------------------------------------------------- */
+    /*Typography*/
 
     --font-sans:
         Inter,
@@ -65,8 +60,6 @@
         monospace;
 
 
-    /* Font Sizes */
-
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
     --text-md: 1rem;
@@ -74,21 +67,25 @@
     --text-xl: 1.25rem;
     --text-2xl: 1.5rem;
     --text-3xl: 2rem;
-    --text-4xl: 2.75rem;
-    --text-5xl: 4rem;
+    --text-4xl: 3rem;
+    --text-5xl: 4.5rem;
 
 
-    /* Line Heights */
+    /* Heights*/
 
-    --leading-tight: 1.1;
-    --leading-snug: 1.3;
-    --leading-normal: 1.6;
-    --leading-relaxed: 1.8;
+    --leading-tight: 1.01;
+    --leading-snug: 1.2;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.7;
 
+   /* Letter spacing */
 
-    /* -----------------------------------------------------
-       Spacing
-       ----------------------------------------------------- */
+    --tracking-tight: -0.035em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.04em;
+    --tracking-wider: 0.1em;
+
+    /*Spacing Scale */
 
     --space-1: 0.25rem;
     --space-2: 0.5rem;
@@ -105,9 +102,9 @@
     --space-32: 8rem;
 
 
-    /* -----------------------------------------------------
+    /* =====================================================
        Layout
-       ----------------------------------------------------- */
+       ===================================================== */
 
     --container-width: 1200px;
     --container-padding: 1.5rem;
@@ -119,9 +116,9 @@
     );
 
 
-    /* -----------------------------------------------------
-       Borders & Radius
-       ----------------------------------------------------- */
+    /* =====================================================
+       Borders
+       ===================================================== */
 
     --border-width: 1px;
 
@@ -132,9 +129,9 @@
     --radius-full: 9999px;
 
 
-    /* -----------------------------------------------------
+    /* =====================================================
        Shadows
-       ----------------------------------------------------- */
+       ===================================================== */
 
     --shadow-sm:
         0 1px 2px rgb(0 0 0 / 0.04);
@@ -143,12 +140,12 @@
         0 8px 24px rgb(0 0 0 / 0.07);
 
     --shadow-lg:
-        0 20px 50px rgb(0 0 0 / 0.1);
+        0 20px 50px rgb(0 0 0 / 0.10);
 
 
-    /* -----------------------------------------------------
+    /* =====================================================
        Motion
-       ----------------------------------------------------- */
+       ===================================================== */
 
     --duration-fast: 150ms;
     --duration-normal: 250ms;
@@ -158,9 +155,9 @@
         cubic-bezier(0.2, 0.8, 0.2, 1);
 
 
-    /* -----------------------------------------------------
-       Responsive Breakpoints
-       ----------------------------------------------------- */
+    /* =====================================================
+       Breakpoints
+       ===================================================== */
 
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
@@ -170,13 +167,13 @@
 }
 
 
-/* =========================================================
-   System Dark Mode
-   ========================================================= */
+/* System Dark Preference */
 
 @media (prefers-color-scheme: dark) {
 
     :root {
+        color-scheme: dark;
+
         --color-bg: var(--dark-bg);
         --color-surface: var(--dark-surface);
         --color-surface-soft: var(--dark-surface-soft);
@@ -193,4 +190,50 @@
         --color-accent-soft: var(--dark-accent-soft);
     }
 
+}
+
+
+/* Explicit Light Theme */
+
+[data-theme="light"] {
+
+    color-scheme: light;
+
+    --color-bg: #f7f7f5;
+    --color-surface: #ffffff;
+    --color-surface-soft: #f1f2ef;
+
+    --color-text: #171a1c;
+    --color-text-muted: #62686d;
+    --color-text-subtle: #858b90;
+
+    --color-border: #dedfdb;
+    --color-border-strong: #c9cbc6;
+
+    --color-accent: #315f63;
+    --color-accent-hover: #264c50;
+    --color-accent-soft: #e5eeee;
+}
+
+
+/* Explicit Dark Theme */
+
+[data-theme="dark"] {
+
+    color-scheme: dark;
+
+    --color-bg: var(--dark-bg);
+    --color-surface: var(--dark-surface);
+    --color-surface-soft: var(--dark-surface-soft);
+
+    --color-text: var(--dark-text);
+    --color-text-muted: var(--dark-text-muted);
+    --color-text-subtle: var(--dark-text-subtle);
+
+    --color-border: var(--dark-border);
+    --color-border-strong: var(--dark-border-strong);
+
+    --color-accent: var(--dark-accent);
+    --color-accent-hover: var(--dark-accent-hover);
+    --color-accent-soft: var(--dark-accent-soft);
 }

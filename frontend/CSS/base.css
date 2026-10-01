@@ -1,12 +1,8 @@
-/* =========================================================
-   EasternNova Portfolio
-   Base Styles
-   ========================================================= */
+/* EasternNova Portfolio
+   Base Styles */
 
 
-/* ---------------------------------------------------------
-   Box Sizing
-   --------------------------------------------------------- */
+/* Box Sizing */
 
 *,
 *::before,
@@ -15,18 +11,21 @@
 }
 
 
-/* ---------------------------------------------------------
-   Document
-   --------------------------------------------------------- */
+/* Document */
 
 html {
     font-size: 16px;
+
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: var(--space-8);
+
+    background: var(--color-bg);
 }
 
 body {
+    min-width: 320px;
     min-height: 100vh;
+
     margin: 0;
 
     background: var(--color-bg);
@@ -37,23 +36,25 @@ body {
     line-height: var(--leading-normal);
 
     text-rendering: optimizeLegibility;
+
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 
-/* ---------------------------------------------------------
-   Typography
-   --------------------------------------------------------- */
+/* Typography */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    margin: 0;
+body {
+    font-family: var(--font-sans);
+
+    font-size: var(--text-md);
+    font-weight: 400;
+
+    line-height: var(--leading-normal);
+
+    letter-spacing: var(--tracking-normal);
 }
+
 
 h1,
 h2,
@@ -61,39 +62,67 @@ h3,
 h4,
 h5,
 h6 {
+    margin: 0;
+
     color: var(--color-text);
-    line-height: var(--leading-tight);
+
     font-weight: 600;
+
+    letter-spacing: var(--tracking-tight);
+
+    line-height: var(--leading-tight);
 }
 
+
 h1 {
+    max-width: 22ch;
+
     font-size: clamp(
-        2.75rem,
-        7vw,
+        3rem,
+        6vw,
         var(--text-5xl)
     );
 }
 
+
 h2 {
     font-size: clamp(
         2rem,
-        5vw,
+        4vw,
         var(--text-4xl)
     );
 }
 
+
 h3 {
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
+
+    line-height: var(--leading-snug);
 }
+
 
 p {
     color: var(--color-text-muted);
+
+    font-size: var(--text-md);
+
+    line-height: var(--leading-relaxed);
 }
 
 
-/* ---------------------------------------------------------
-   Links
-   --------------------------------------------------------- */
+a {
+    text-decoration: none;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Links */
 
 a {
     color: inherit;
@@ -105,19 +134,20 @@ a:hover {
 }
 
 
-/* ---------------------------------------------------------
-   Buttons & Form Controls
-   --------------------------------------------------------- */
+/* Buttons & Form Controls*/
 
 button,
 input,
 textarea,
 select {
+    margin: 0;
+
     font: inherit;
 }
 
 button {
     border: 0;
+
     cursor: pointer;
 }
 
@@ -126,9 +156,7 @@ button:disabled {
 }
 
 
-/* ---------------------------------------------------------
-   Images & Media
-   --------------------------------------------------------- */
+/* Media */
 
 img,
 picture,
@@ -136,6 +164,7 @@ video,
 canvas,
 svg {
     display: block;
+
     max-width: 100%;
 }
 
@@ -144,21 +173,18 @@ img {
 }
 
 
-/* ---------------------------------------------------------
-   Lists
-   --------------------------------------------------------- */
+/* Lists */
 
 ul,
 ol {
     margin: 0;
     padding: 0;
+
     list-style: none;
 }
 
 
-/* ---------------------------------------------------------
-   Selection
-   --------------------------------------------------------- */
+/* Selection */
 
 ::selection {
     background: var(--color-accent);
@@ -166,19 +192,36 @@ ol {
 }
 
 
-/* ---------------------------------------------------------
-   Focus
-   --------------------------------------------------------- */
+/* Focus */
+
+:focus {
+    outline: none;
+}
 
 :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline:
+        2px solid
+        var(--color-accent);
+
     outline-offset: 4px;
 }
 
 
-/* ---------------------------------------------------------
-   Reduced Motion
-   --------------------------------------------------------- */
+/* Spatial Scroll Foundation */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+
+/* Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -191,7 +234,9 @@ ol {
     *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+
         transition-duration: 0.01ms !important;
+
         scroll-behavior: auto !important;
     }
 

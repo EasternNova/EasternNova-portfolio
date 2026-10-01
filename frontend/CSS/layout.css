@@ -1,16 +1,20 @@
-/* =========================================================
-   EasternNova Portfolio
-   Layout
-   ========================================================= */
+/*EasternNova
+   Layout*/
 
 
-/* ---------------------------------------------------------
-   Global Container
-   --------------------------------------------------------- */
+/*Page*/
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+
+/*Container*/
 
 .container {
     width: min(
-        100% - (var(--container-padding) * 2),
+        calc(100% - 3rem),
         var(--container-width)
     );
 
@@ -18,110 +22,113 @@
 }
 
 
-/* ---------------------------------------------------------
-   Main Sections
-   --------------------------------------------------------- */
+/*Header*/
+
+.portfolio-header {
+    position: fixed;
+
+    top: 2rem;
+    left: 2rem;
+
+    z-index: 1000;
+}
+
+
+/*Right Navigation*/
+
+.portfolio-nav {
+    position: fixed;
+
+    top: 50%;
+    right: 2rem;
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 1.25rem;
+
+    transform: translateY(-50%);
+}
+
+
+/*Navigation Links*/
+
+.nav-section-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 0.75rem;
+}
+
+
+/*Sections*/
 
 .section {
     position: relative;
-    width: 100%;
-    padding-block: var(--section-padding);
-}
-
-
-/* ---------------------------------------------------------
-   Header
-   --------------------------------------------------------- */
-
-.site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
 
     width: 100%;
-}
-
-.site-nav {
-    width: min(
-        100% - (var(--container-padding) * 2),
-        var(--container-width)
-    );
-
-    min-height: 4.5rem;
-
-    margin-inline: auto;
+    min-height: 100svh;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    gap: var(--space-6);
+    padding-block: 8rem;
+
+    scroll-margin-top: 2rem;
 }
 
 
-/* ---------------------------------------------------------
-   Navigation
-   --------------------------------------------------------- */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-
-    gap: var(--space-6);
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-
-    gap: var(--space-3);
-}
-
-
-/* ---------------------------------------------------------
-   Hero
-   --------------------------------------------------------- */
+/* Hero Section*/
 
 .section-hero {
-    min-height: calc(100vh - 4.5rem);
+    min-height: 100svh;
 
     display: flex;
     align-items: center;
 }
 
 .hero-content {
-    width: min(100%, 800px);
+    width: min(100%, 900px);
+}
+
+.hero-description {
+    width: min(100%, 680px);
+
+    margin-top: var(--space-6);
+
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
 }
 
 .hero-actions {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
 
     gap: var(--space-3);
 
     margin-top: var(--space-8);
 }
 
-
-/* ---------------------------------------------------------
-   Section Headers
-   --------------------------------------------------------- */
+/*Section Header*/
 
 .section-header {
-    width: min(100%, 720px);
+    width: min(100%, 760px);
 
-    margin-bottom: var(--space-12);
+    margin-bottom: 3rem;
 }
 
-.section-header > p:not(.eyebrow) {
-    margin-top: var(--space-4);
+.section-header > p:last-child {
+    max-width: 60ch;
+
+    margin-top: 1rem;
 }
 
 
-/* ---------------------------------------------------------
-   Work / Projects
-   --------------------------------------------------------- */
+/*Projects*/
 
 .projects-grid {
     display: grid;
@@ -129,13 +136,11 @@
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-    gap: var(--space-6);
+    gap: 1.5rem;
 }
 
 
-/* ---------------------------------------------------------
-   Skills
-   --------------------------------------------------------- */
+/*Skills*/
 
 .skills-grid {
     display: grid;
@@ -143,55 +148,46 @@
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-    gap: var(--space-6);
+    gap: 1.5rem;
 }
 
 
-/* ---------------------------------------------------------
-   About
-   --------------------------------------------------------- */
+/*Content Widths*/
 
-.about-content {
-    width: min(100%, 800px);
-}
-
-
-/* ---------------------------------------------------------
-   Resume
-   --------------------------------------------------------- */
-
-.resume-content {
-    width: min(100%, 800px);
-}
-
-
-/* ---------------------------------------------------------
-   Contact
-   --------------------------------------------------------- */
-
+.about-content,
+.resume-content,
 .contact-content {
-    width: min(100%, 800px);
+    width: min(100%, 760px);
 }
 
 
-/* ---------------------------------------------------------
-   Footer
-   --------------------------------------------------------- */
+/*Footer*/
 
 .site-footer {
-    width: 100%;
-    padding-block: var(--space-8);
+    position: relative;
+    z-index: 1;
+
+    padding:
+        3rem 0 2rem;
 }
 
+/* Responsive Layout */
 
-/* ---------------------------------------------------------
-   Tablet
-   --------------------------------------------------------- */
+/*  Tablet / Small Desktop */
 
 @media (max-width: 900px) {
 
-    .nav-links {
-        gap: var(--space-4);
+    .portfolio-header {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+
+    .portfolio-nav {
+        right: 1.5rem;
+    }
+
+    .section {
+        padding-block: 7rem;
     }
 
     .projects-grid,
@@ -202,40 +198,146 @@
 }
 
 
-/* ---------------------------------------------------------
-   Mobile
-   --------------------------------------------------------- */
+/*  Mobile */
 
 @media (max-width: 700px) {
 
-    :root {
-        --container-padding: 1rem;
+    /* Bottom navigation */
+
+    .portfolio-nav {
+        position: fixed;
+
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0.75rem 1rem;
+
+        border:
+            var(--border-width)
+            solid
+            var(--color-border);
+
+        border-bottom: 0;
+
+        background: var(--color-bg);
+
+        box-shadow: none;
+
+        transform: none;
     }
 
-    .site-nav {
-        min-height: 4rem;
+
+    /* Horizontal links */
+
+    .nav-section-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        width: auto;
+
+        gap: 1rem;
     }
 
-    .nav-links {
+
+    .nav-section-links a {
+        display: inline-flex;
+
+        padding: 0.25rem 0;
+
+        font-size: var(--text-xs);
+
+        white-space: nowrap;
+    }
+
+
+    /* Divider */
+
+    .nav-divider {
         display: none;
     }
 
-    .section-hero {
-        min-height: calc(100svh - 4rem);
+
+    /* Theme */
+
+    .theme-toggle {
+        flex-shrink: 0;
+
+        border: 0;
+
+        padding: 0.35rem;
+
+        margin-left: 0.5rem;
     }
 
+    .theme-toggle-label {
+        display: none;
+    }
+
+
+    /* Sections */
+
+    .section {
+        min-height: auto;
+
+        padding-block: 6rem;
+        padding-bottom: 8rem;
+    }
+
+    .section-hero {
+        min-height: 100svh;
+    }
+
+
+    /* Hero buttons */
+
     .hero-actions {
-        width: 100%;
+        flex-wrap: wrap;
     }
 
 }
 
 
-/* ---------------------------------------------------------
-   Small Mobile
-   --------------------------------------------------------- */
+/*  Small Mobile */
 
-@media (max-width: 420px) {
+@media (max-width: 520px) {
+
+    .portfolio-nav {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+    .portfolio-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .nav-section-links {
+        justify-content: flex-start;
+
+        width: max-content;
+
+        flex-shrink: 0;
+    }
+
+
+    .nav-section-links a {
+        font-size: 0.75rem;
+    }
+
 
     .hero-actions {
         flex-direction: column;
