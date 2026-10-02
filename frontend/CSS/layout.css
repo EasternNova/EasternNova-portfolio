@@ -498,7 +498,6 @@ main {
 
     /* Project / skill grids */
 
-    .projects-grid,
     .skills-grid {
         grid-template-columns: 1fr;
     }
