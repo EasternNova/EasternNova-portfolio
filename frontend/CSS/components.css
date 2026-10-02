@@ -1,8 +1,9 @@
 /* EasternNova Portfolio
-   Components */
+   Components
+*/
 
 
-/* Logo */
+/*Logo */
 
 .site-logo {
     display: inline-flex;
@@ -23,7 +24,7 @@
 }
 
 
-/* Navigation */
+/*Navigation */
 
 .nav-section-links {
     display: flex;
@@ -55,14 +56,14 @@
 }
 
 
-
 /* Active / current section foundation */
 
 .nav-section-links a[aria-current="true"] {
     color: var(--color-text);
 }
 
-/*  Navigation Divider*/
+
+/* Navigation Divider */
 
 .nav-divider {
     width: 2rem;
@@ -71,7 +72,42 @@
     background: var(--color-border);
 }
 
-/* Eyebrow */
+
+/*Navigation Actions */
+
+.nav-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    height: auto;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+
+    font: inherit;
+    font-size: var(--text-md);
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        color var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard);
+}
+
+.nav-action:hover {
+    color: var(--color-text);
+
+    transform: translateX(-2px);
+}
+
+
+/*Eyebrow */
 
 .eyebrow {
     margin-bottom: var(--space-4);
@@ -86,7 +122,7 @@
 }
 
 
-/* Buttons */
+/*Buttons */
 
 .button {
     display: inline-flex;
@@ -124,9 +160,7 @@
 }
 
 
-/* ---------------------------------------------------------
-   Primary Button
-   --------------------------------------------------------- */
+/* Primary Button */
 
 .button-primary {
     background: var(--color-accent);
@@ -145,9 +179,7 @@
 }
 
 
-/* ---------------------------------------------------------
-   Secondary Button
-   --------------------------------------------------------- */
+/* Secondary Button */
 
 .button-secondary {
     border-color: var(--color-border-strong);
@@ -164,7 +196,7 @@
 }
 
 
-/* Generic Card */
+/*Generic Card */
 
 .card {
     border:
@@ -191,7 +223,7 @@
 }
 
 
-/* Project Card */
+/*Project Card */
 
 .project-card {
     min-height: 16rem;
@@ -222,7 +254,7 @@
 }
 
 
-/* Skill Card */
+/*Skill Card */
 
 .skill-card {
     padding: var(--space-6);
@@ -237,7 +269,6 @@
     background: var(--color-surface);
 }
 
-
 /* Theme Toggle */
 
 .theme-toggle {
@@ -245,40 +276,47 @@
     align-items: center;
     justify-content: center;
 
-    gap: var(--space-2);
+    width: 2.25rem;
+    height: 2.25rem;
 
-    min-height: 2.5rem;
-
-    padding:
-        0
-        var(--space-3);
+    padding: 0;
 
     border:
         var(--border-width)
         solid
         var(--color-border);
 
-    border-radius: var(--radius-full);
+    border-radius: 50%;
 
     background: var(--color-surface);
-    color: var(--color-text-muted);
+    color: var(--color-text);
 
-    font-size: var(--text-sm);
-    font-weight: 500;
+    font: inherit;
+    font-size: var(--text-md);
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow-sm);
 
     transition:
-        background-color var(--duration-normal) var(--ease-standard),
-        border-color var(--duration-normal) var(--ease-standard),
         color var(--duration-normal) var(--ease-standard),
-        transform var(--duration-normal) var(--ease-standard);
+        border-color var(--duration-normal) var(--ease-standard),
+        background-color var(--duration-normal) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-standard),
+        box-shadow var(--duration-normal) var(--ease-standard);
 }
 
 .theme-toggle:hover {
-    border-color: var(--color-border-strong);
-
     color: var(--color-text);
 
+    border-color: var(--color-border-strong);
+
+    background: var(--color-surface);
+
     transform: translateY(-1px);
+
+    box-shadow: var(--shadow-md);
 }
 
 .theme-toggle:active {
@@ -286,18 +324,20 @@
 }
 
 .theme-toggle-icon {
-    display: inline-flex;
+    display: inline-block;
 
     font-size: var(--text-md);
     line-height: 1;
 }
 
 .theme-toggle-label {
+    display: none;
+
     white-space: nowrap;
 }
 
 
-/* Application Loader */
+/*Application Loader */
 
 .app-loader {
     position: fixed;
@@ -383,7 +423,7 @@
 }
 
 
-/* Footer */
+/*Footer */
 
 .site-footer p {
     color: var(--color-text-subtle);
@@ -392,7 +432,7 @@
 }
 
 
-/* Mobile Components */
+/*Mobile Components */
 
 @media (max-width: 700px) {
 
@@ -407,29 +447,7 @@
 }
 
 
-/* Reduced Motion */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .button,
-    .card,
-    .project-card,
-    .theme-toggle,
-    .nav-section-links a {
-        transition: none;
-    }
-
-    .button:hover,
-    .card:hover,
-    .project-card:hover,
-    .theme-toggle:hover,
-    .nav-section-links a:hover {
-        transform: none;
-    }
-
-}
-
-/* Responsive Navigation */
+/*Responsive Navigation */
 
 @media (max-width: 700px) {
 
@@ -484,10 +502,12 @@
 
 }
 
-/* Accessibility — Interactive Focus */
+
+/*Accessibility — Interactive Focus */
 
 .button:focus-visible,
 .theme-toggle:focus-visible,
+.nav-action:focus-visible,
 .nav-section-links a:focus-visible,
 .site-logo:focus-visible {
     outline:
@@ -497,9 +517,28 @@
     outline-offset: 4px;
 }
 
-/* Accessibility — Reduced Motion*/
+
+/*Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
+
+    .button,
+    .card,
+    .project-card,
+    .theme-toggle,
+    .nav-action,
+    .nav-section-links a {
+        transition: none;
+    }
+
+    .button:hover,
+    .card:hover,
+    .project-card:hover,
+    .theme-toggle:hover,
+    .nav-action:hover,
+    .nav-section-links a:hover {
+        transform: none;
+    }
 
     .loader-line::after {
         animation: none;

@@ -68,7 +68,7 @@ function applyTheme(theme) {
 
     if (icon) {
         icon.textContent =
-            isDark ? "☼" : "◐";
+            isDark ? "🌚" : "🌞";
     }
 }
 

@@ -1,53 +1,81 @@
-/* EasternNova Portfolio
-   Design Tokens */
+/* =========================================================
+   EasternNova Portfolio
+   Design Tokens
+   2B.4.2B — Typography + Visual Foundation
+   ========================================================= */
 
 
-/* Core Colors — Light */
+/* =========================================================
+   FONT
+   ========================================================= */
+
+@import url(
+    "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+);
+
+
+/* =========================================================
+   LIGHT THEME
+   Pearl + Ocean Mist
+   ========================================================= */
 
 :root {
 
-    --color-bg: #f7f7f5;
+    /* Background */
+
+    --color-bg: #f6f7f5;
     --color-surface: #ffffff;
-    --color-surface-soft: #f1f2ef;
+    --color-surface-soft: #eef2f1;
 
-    --color-text: #171a1c;
-    --color-text-muted: #62686d;
-    --color-text-subtle: #858b90;
 
-    --color-border: #dedfdb;
-    --color-border-strong: #c9cbc6;
+    /* Text hierarchy */
 
-    --color-accent: #315f63;
-    --color-accent-hover: #264c50;
-    --color-accent-soft: #e5eeee;
+    --color-text: #172024;
+    --color-text-muted: #647176;
+    --color-text-subtle: #8b9699;
+
+
+    /* Borders */
+
+    --color-border: #dce2e1;
+    --color-border-strong: #c8d0cf;
+
+
+    /* Accent */
+
+    --color-accent: #38666a;
+    --color-accent-hover: #2d5559;
+    --color-accent-soft: #e3eceb;
 
 
     /* =====================================================
-       Dark Theme — Night Ocean
+       DARK THEME
+       Night Ocean + Galaxy
        ===================================================== */
 
-    --dark-bg: #071117;
-    --dark-surface: #0c181f;
-    --dark-surface-soft: #102129;
+    --dark-bg: #060f14;
+    --dark-surface: #0b171d;
+    --dark-surface-soft: #101e25;
 
-    --dark-text: #edf3f3;
-    --dark-text-muted: #a6b3b6;
-    --dark-text-subtle: #77868a;
+    --dark-text: #edf4f4;
+    --dark-text-muted: #a6b5b8;
+    --dark-text-subtle: #728286;
 
-    --dark-border: #20343b;
-    --dark-border-strong: #2d454d;
+    --dark-border: #1d3037;
+    --dark-border-strong: #2a4149;
 
-    --dark-accent: #79aeb0;
-    --dark-accent-hover: #91c1c2;
-    --dark-accent-soft: #122c31;
+    --dark-accent: #82afb1;
+    --dark-accent-hover: #9bc5c6;
+    --dark-accent-soft: #12272c;
 
 
-    /*Typography*/
+    /* =====================================================
+       TYPOGRAPHY
+       ===================================================== */
 
     --font-sans:
-        Inter,
+        "Manrope",
         ui-sans-serif,
-        system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
@@ -60,6 +88,8 @@
         monospace;
 
 
+    /* Body scale */
+
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
     --text-md: 1rem;
@@ -71,53 +101,71 @@
     --text-5xl: 4.5rem;
 
 
-    /* Heights*/
+    /* Line heights */
 
-    --leading-tight: 1.01;
+    --leading-tight: 1.05;
     --leading-snug: 1.2;
     --leading-normal: 1.5;
     --leading-relaxed: 1.7;
 
-   /* Letter spacing */
+
+    /* Letter spacing */
 
     --tracking-tight: -0.035em;
     --tracking-normal: 0;
     --tracking-wide: 0.04em;
     --tracking-wider: 0.1em;
 
-    /*Spacing Scale */
 
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.25rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-10: 2.5rem;
-    --space-12: 3rem;
-    --space-16: 4rem;
-    --space-20: 5rem;
-    --space-24: 6rem;
-    --space-32: 8rem;
+    /* =====================================================
+       HERO TYPOGRAPHY
+       ===================================================== */
+
+    --hero-name-size:
+        clamp(1.45rem, 1.8vw, 1.8rem);
+
+    --hero-name-weight: 500;
+
+    --hero-role-size:
+        0.78rem;
+
+    --hero-role-weight: 400;
+
+    --hero-brand-size:
+        clamp(5rem, 14vw, 13rem);
+
+    --hero-brand-weight: 700;
+
+    --hero-brand-opacity: 0.045;
+
+    --hero-statement-size:
+        clamp(1.5rem, 2.25vw, 2.25rem);
+
+    --hero-statement-weight: 500;
+
+    --hero-support-size:
+        0.95rem;
+
+    --hero-support-weight: 400;
 
 
     /* =====================================================
-       Layout
+       LAYOUT
        ===================================================== */
 
     --container-width: 1200px;
     --container-padding: 1.5rem;
 
-    --section-padding: clamp(
-        5rem,
-        10vw,
-        9rem
-    );
+    --section-padding:
+        clamp(
+            5rem,
+            10vw,
+            9rem
+        );
 
 
     /* =====================================================
-       Borders
+       BORDERS
        ===================================================== */
 
     --border-width: 1px;
@@ -130,7 +178,7 @@
 
 
     /* =====================================================
-       Shadows
+       SHADOWS
        ===================================================== */
 
     --shadow-sm:
@@ -144,7 +192,7 @@
 
 
     /* =====================================================
-       Motion
+       MOTION
        ===================================================== */
 
     --duration-fast: 150ms;
@@ -156,7 +204,7 @@
 
 
     /* =====================================================
-       Breakpoints
+       BREAKPOINTS
        ===================================================== */
 
     --breakpoint-sm: 640px;
@@ -167,11 +215,14 @@
 }
 
 
-/* System Dark Preference */
+/* =========================================================
+   SYSTEM DARK PREFERENCE
+   ========================================================= */
 
 @media (prefers-color-scheme: dark) {
 
     :root {
+
         color-scheme: dark;
 
         --color-bg: var(--dark-bg);
@@ -188,35 +239,41 @@
         --color-accent: var(--dark-accent);
         --color-accent-hover: var(--dark-accent-hover);
         --color-accent-soft: var(--dark-accent-soft);
+
     }
 
 }
 
 
-/* Explicit Light Theme */
+/* =========================================================
+   EXPLICIT LIGHT THEME
+   ========================================================= */
 
 [data-theme="light"] {
 
     color-scheme: light;
 
-    --color-bg: #f7f7f5;
+    --color-bg: #f6f7f5;
     --color-surface: #ffffff;
-    --color-surface-soft: #f1f2ef;
+    --color-surface-soft: #eef2f1;
 
-    --color-text: #171a1c;
-    --color-text-muted: #62686d;
-    --color-text-subtle: #858b90;
+    --color-text: #172024;
+    --color-text-muted: #647176;
+    --color-text-subtle: #8b9699;
 
-    --color-border: #dedfdb;
-    --color-border-strong: #c9cbc6;
+    --color-border: #dce2e1;
+    --color-border-strong: #c8d0cf;
 
-    --color-accent: #315f63;
-    --color-accent-hover: #264c50;
-    --color-accent-soft: #e5eeee;
+    --color-accent: #38666a;
+    --color-accent-hover: #2d5559;
+    --color-accent-soft: #e3eceb;
+
 }
 
 
-/* Explicit Dark Theme */
+/* =========================================================
+   EXPLICIT DARK THEME
+   ========================================================= */
 
 [data-theme="dark"] {
 
@@ -236,4 +293,5 @@
     --color-accent: var(--dark-accent);
     --color-accent-hover: var(--dark-accent-hover);
     --color-accent-soft: var(--dark-accent-soft);
+
 }
