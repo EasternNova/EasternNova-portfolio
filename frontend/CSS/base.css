@@ -241,3 +241,24 @@ body {
     }
 
 }
+
+/* =========================================================
+   GLOBAL — HIDDEN SCROLLBAR
+   Scrolling remains fully functional.
+   ========================================================= */
+
+html {
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}

@@ -110,11 +110,7 @@ main {
 
     overflow: hidden;
 
-    /*
-       Reserve visual space for the right-side navigation.
-       The hero itself still uses the full viewport.
-    */
-    padding-right: 10rem;
+    isolation: isolate;
 }
 
 
@@ -126,14 +122,10 @@ main {
 .hero-brand {
     position: absolute;
 
-    /*
-       Slightly above true center so the wordmark
-       sits between the identity and lower statement.
-    */
-    top: 48%;
-    left: 52%;
+    top: 50%;
+    left: 50%;
 
-    z-index: 0;
+    z-index: 1;
 
     width: max-content;
 
@@ -141,27 +133,15 @@ main {
 
     color: var(--color-text);
 
-    /*
-       Large, but controlled.
-       It should read as atmosphere rather than a heading.
-    */
-    font-size: clamp(
-        6rem,
-        14vw,
-        13rem
-    );
-
+    font-size: clamp(5rem, 15vw, 14rem);
     font-weight: 600;
 
-    letter-spacing: -0.085em;
-    line-height: 0.82;
+    letter-spacing: -0.075em;
+    line-height: 0.85;
 
     white-space: nowrap;
 
-    /*
-       Very subtle in both themes.
-    */
-    opacity: 0.045;
+    opacity: 0.065;
 
     pointer-events: none;
     user-select: none;
@@ -264,7 +244,7 @@ main {
     top: 48%;
     left: 61%;
 
-    z-index: 2;
+    z-index: 3;
 
     width: min(
         44vw,
@@ -368,16 +348,61 @@ main {
    PROJECTS
    ========================================================= */
 
-.projects-grid {
-    display: grid;
+/* =========================================================
+   WORK — HORIZONTAL PROJECT SECTION
+   ========================================================= */
 
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0, 1fr)
-        );
+.projects-grid {
+    display: flex;
+
+    flex-direction: row;
+    align-items: stretch;
 
     gap: 1.5rem;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding-bottom: 1rem;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: thin;
+
+    overscroll-behavior-x: contain;
+}
+
+/* Each project becomes a horizontal panel */
+
+.projects-grid > .project-card {
+    flex: 0 0 min(34rem, 78vw);
+
+    min-height: 20rem;
+
+    scroll-snap-align: start;
+}
+
+/* Keep the horizontal section clean */
+
+.projects-grid::-webkit-scrollbar {
+    height: 5px;
+}
+
+.projects-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.projects-grid::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: var(--radius-full);
+}
+
+/* Desktop hover remains subtle */
+
+.projects-grid > .project-card:hover {
+    transform: translateY(-3px);
 }
 
 
@@ -913,4 +938,71 @@ main {
         align-items: stretch;
     }
 
+}
+/* =========================================================
+   2.4.4.3 — HERO ATMOSPHERIC DETAIL
+   Visual atmosphere only — no layout changes
+   ========================================================= */
+
+.section-hero::before,
+.section-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---------------------------------------------------------
+   Light — Pearl + Ocean Mist
+   --------------------------------------------------------- */
+
+.section-hero::before {
+    background:
+        radial-gradient(
+            circle at 72% 42%,
+            rgb(49 95 99 / 0.055),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 28% 78%,
+            rgb(190 211 208 / 0.08),
+            transparent 38%
+        );
+}
+
+.section-hero::after {
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 45%,
+            rgb(255 255 255 / 0.16) 100%
+        );
+}
+
+/* ---------------------------------------------------------
+   Dark — Night Ocean + Galaxy
+   --------------------------------------------------------- */
+
+[data-theme="dark"] .section-hero::before {
+    background:
+        radial-gradient(
+            circle at 72% 42%,
+            rgb(70 125 135 / 0.09),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 30% 76%,
+            rgb(45 82 96 / 0.08),
+            transparent 38%
+        );
+}
+
+[data-theme="dark"] .section-hero::after {
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 42%,
+            rgb(0 0 0 / 0.16) 100%
+        );
 }

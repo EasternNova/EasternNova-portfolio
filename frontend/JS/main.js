@@ -3,6 +3,7 @@
 
 import { initializeBackground } from "./background.js";
 import { initializeCursor } from "./cursor.js";
+import { initializeProjects } from "./projects.js";
 
 
 /* Theme */
@@ -150,6 +151,137 @@ function initializeCurrentYear() {
         new Date().getFullYear();
 }
 
+function initializeResumePanel() {
+    const resumeButton =
+        document.querySelector("#resume-button");
+
+    const resumePanel =
+        document.querySelector("#resume-panel");
+
+    const resumeWindow =
+        document.querySelector(".resume-window");
+
+    const resumeLinks =
+        document.querySelectorAll(".resume-nav-link");
+
+    if (!resumeButton || !resumePanel || !resumeWindow) {
+        return;
+    }
+
+
+    function openResume() {
+        resumePanel.classList.add("is-open");
+
+        resumePanel.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+    }
+
+
+    function closeResume() {
+        resumePanel.classList.remove("is-open");
+
+        resumePanel.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+
+
+    resumeButton.addEventListener(
+        "click",
+        openResume
+    );
+
+
+    /* Click outside resume window */
+
+    resumePanel.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                !resumeWindow.contains(
+                    event.target
+                )
+            ) {
+                closeResume();
+            }
+
+        }
+    );
+
+
+    /* Escape */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                event.key === "Escape" &&
+                resumePanel.classList.contains(
+                    "is-open"
+                )
+            ) {
+                closeResume();
+            }
+
+        }
+    );
+
+
+    /* Resume navigation */
+
+    const resumeTheme =
+    document.querySelector("#resume-theme");
+
+    if (resumeTheme) {
+        resumeTheme.addEventListener("click", () => {
+            const current =
+                document.documentElement.dataset.theme;
+
+            const next =
+                current === "dark"
+                    ? "light"
+                    : "dark";
+
+            document.documentElement.dataset.theme = next;
+
+            localStorage.setItem(
+                THEME_STORAGE_KEY,
+                next
+            );
+        });
+    }
+
+    const contentFrame =
+        resumePanel.querySelector(".resume-content-frame");
+
+    resumeLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const target =
+                link.dataset.resumeView;
+
+            const targetView =
+                resumePanel.querySelector(
+                    `[data-resume-section="${target}"]`
+                );
+
+            if (!targetView || !contentFrame) {
+                return;
+            }
+
+            targetView.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+    });
+}
 
 /* Application */
 
@@ -164,6 +296,10 @@ function initializeApp() {
     initializeCurrentYear();
 
     initializeLoader();
+
+    initializeProjects();
+
+    initializeResumePanel()
 }
 
 
