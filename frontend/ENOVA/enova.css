@@ -1,0 +1,600 @@
+.enova {
+    --enova-cream: #fbf4d8;
+    --enova-cream-dark: #e8dcb9;
+    --enova-ink: #292820;
+    --enova-muted-light: #8a7b64;
+    --enova-dark: #1d1f1f;
+    --enova-darkest: #151717;
+    --enova-text: #e5e0d3;
+    --enova-muted: #888b84;
+    --enova-border: #373a38;
+    --enova-teal: #20d7c5;
+    --enova-red: #e64b3c;
+    --enova-yellow: #e9b32e;
+    --enova-green: #35c759;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    color: var(--enova-text);
+    font-family: "General Sans", sans-serif;
+    pointer-events: none;
+}
+
+.enova-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 16, 17, 0.48);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+.enova-window {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(1050px, calc(100vw - 64px));
+    height: min(680px, calc(100vh - 90px));
+    overflow: hidden;
+    border: 1px solid #454743;
+    border-radius: 7px;
+    background: var(--enova-dark);
+    box-shadow: 0 35px 100px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transform: translateY(12px) scale(.99);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.enova.is-open {
+    pointer-events: auto;
+}
+
+.enova.is-open .enova-backdrop {
+    opacity: 1;
+}
+
+.enova.is-open .enova-window {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.enova-topbar {
+    min-height: 34px;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0 10px;
+    background: var(--enova-cream-dark);
+    color: var(--enova-ink);
+    border-bottom: 1px solid #c8bd9f;
+}
+
+.enova-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.enova-control {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.enova-control-red {
+    background: var(--enova-red);
+}
+
+.enova-control-yellow {
+    background: var(--enova-yellow);
+}
+
+.enova-control-green {
+    background: var(--enova-green);
+}
+
+.enova-tabs {
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.enova-tab {
+    flex: 0 0 auto;
+    padding: 0 12px;
+    border: 0;
+    border-right: 1px solid rgba(50, 45, 35, .08);
+    background: transparent;
+    color: #6c6250;
+    font-family: monospace;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.enova-tab.is-active {
+    background: var(--enova-cream);
+    color: var(--enova-ink);
+    font-weight: 700;
+}
+
+.enova-topbar-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+    white-space: nowrap;
+    color: #6c6250;
+    font-family: monospace;
+    font-size: 9px;
+}
+
+.enova-topbar-title span {
+    color: #b4a486;
+}
+
+.enova-workspace {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(260px, 42%) minmax(0, 1fr);
+}
+
+.enova-light-pane {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--enova-cream);
+    color: var(--enova-ink);
+    border-right: 1px solid #bfb393;
+}
+
+.enova-pane-heading {
+    padding: 15px 18px 12px;
+    border-bottom: 1px solid #e5d9b8;
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+.enova-editor {
+    padding: 18px 0;
+    overflow: auto;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.95;
+    white-space: nowrap;
+}
+
+.enova-editor > div {
+    padding-right: 12px;
+}
+
+.enova-line-number {
+    display: inline-block;
+    width: 35px;
+    padding-right: 10px;
+    color: #b2a78c;
+    text-align: right;
+    user-select: none;
+}
+
+.enova-code-comment {
+    color: #8c7c65;
+}
+
+.enova-code-keyword {
+    color: #d52c20;
+}
+
+.enova-code-string {
+    color: #278c72;
+}
+
+.enova-code-gap {
+    height: 15px;
+}
+
+.enova-pane-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding: 8px 12px;
+    border-top: 1px solid #e5d9b8;
+    color: #7e735e;
+    font-family: monospace;
+    font-size: 8px;
+}
+
+.enova-dark-pane {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    background: var(--enova-dark);
+}
+
+.enova-terminal-heading {
+    padding: 19px 20px 14px;
+}
+
+.enova-terminal-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--enova-teal);
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.enova-terminal-brand > span:first-child {
+    color: #8d918b;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.enova-online-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--enova-teal);
+    box-shadow: 0 0 7px rgba(32, 215, 197, .45);
+}
+
+.enova-terminal-hint {
+    margin-top: 8px;
+    color: #92948e;
+    font-family: monospace;
+    font-size: 10px;
+}
+
+.enova-terminal-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 20px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #454844 transparent;
+}
+
+.enova-view[hidden] {
+    display: none;
+}
+
+.enova-comment {
+    margin: 4px 0 17px;
+    color: #72766f;
+    font-family: monospace;
+    font-size: 10px;
+}
+
+.enova-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.enova-suggestion {
+    padding: 7px 9px;
+    border: 1px solid #343735;
+    border-radius: 3px;
+    background: #202222;
+    color: #c0c0b9;
+    font-family: monospace;
+    font-size: 9px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 150ms ease, color 150ms ease;
+}
+
+.enova-suggestion:hover {
+    border-color: var(--enova-teal);
+    color: var(--enova-teal);
+}
+
+.enova-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    margin-top: 22px;
+}
+
+.enova-message {
+    max-width: 95%;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.enova-message-user {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.enova-message-prefix {
+    margin-bottom: 4px;
+    color: var(--enova-teal);
+    font-size: 9px;
+}
+
+.enova-message-user .enova-message-prefix {
+    color: #92948e;
+}
+
+.enova-message-content {
+    color: #d5d3ca;
+    white-space: pre-wrap;
+}
+
+.enova-typing {
+    margin-top: 15px;
+    color: #999b94;
+    font-family: monospace;
+    font-size: 10px;
+}
+
+.enova-placeholder {
+    color: #a3a59d;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.enova-command-area {
+    padding: 12px 20px 10px;
+    border-top: 1px solid #303331;
+}
+
+.enova-command-line {
+    display: flex;
+    align-items: flex-end;
+    gap: 9px;
+}
+
+.enova-shell-prompt {
+    padding: 6px 0;
+    color: var(--enova-teal);
+    font-family: monospace;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.enova-input {
+    flex: 1;
+    min-width: 0;
+    min-height: 28px;
+    max-height: 100px;
+    padding: 6px 0;
+    resize: none;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #e2e0d6;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.enova-input::placeholder {
+    color: #777a74;
+}
+
+.enova-send {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #3a3e3a;
+    border-radius: 3px;
+    background: #232625;
+    color: var(--enova-teal);
+    cursor: pointer;
+}
+
+.enova-send:hover {
+    border-color: var(--enova-teal);
+}
+
+.enova-send:disabled,
+.enova-input:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.enova-input-help {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 8px;
+    color: #6d716a;
+    font-family: monospace;
+    font-size: 8px;
+}
+
+.enova-statusbar {
+    min-height: 23px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 0 10px;
+    background: var(--enova-cream-dark);
+    color: #635a49;
+    font-family: monospace;
+    font-size: 9px;
+}
+
+.enova-mode {
+    color: #342f25;
+    font-weight: 700;
+}
+
+.enova-status-spacer {
+    flex: 1;
+}
+
+.enova-status-live {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #3b695d;
+}
+
+.enova-status-live i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #299d7f;
+}
+
+.enova-minimized {
+    position: absolute;
+    right: 22px;
+    bottom: 18px;
+    display: none;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 13px;
+    border: 1px solid #444844;
+    border-radius: 4px;
+    background: var(--enova-dark);
+    color: var(--enova-teal);
+    font-family: monospace;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.enova-minimized > span:last-child {
+    color: #8c9088;
+}
+
+.enova-mini-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.enova-mini-dots i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--enova-red);
+}
+
+.enova-mini-dots i:nth-child(2) {
+    background: var(--enova-yellow);
+}
+
+.enova-mini-dots i:nth-child(3) {
+    background: var(--enova-green);
+}
+
+.enova.is-minimized {
+    pointer-events: none;
+}
+
+.enova.is-minimized .enova-window,
+.enova.is-minimized .enova-backdrop {
+    display: none;
+}
+
+.enova.is-minimized .enova-minimized {
+    display: flex;
+    pointer-events: auto;
+}
+
+.enova.is-expanded .enova-window {
+    width: calc(100vw - 24px);
+    height: calc(100vh - 24px);
+}
+
+body.enova-open {
+    overflow: hidden;
+}
+
+@media (max-width: 760px) {
+    .enova-window {
+        width: calc(100vw - 24px);
+        height: calc(100vh - 48px);
+    }
+
+    .enova-workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .enova-light-pane {
+        display: none;
+    }
+
+    .enova-topbar {
+        gap: 8px;
+        padding: 0 7px;
+    }
+
+    .enova-tab {
+        padding: 0 8px;
+        font-size: 9px;
+    }
+
+    .enova-topbar-title {
+        font-size: 8px;
+    }
+
+    .enova-terminal-heading {
+        padding: 16px 14px 12px;
+    }
+
+    .enova-terminal-content {
+        padding: 0 14px 15px;
+    }
+
+    .enova-command-area {
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 430px) {
+    .enova-window {
+        width: calc(100vw - 12px);
+        height: calc(100vh - 24px);
+    }
+
+    .enova-topbar-title {
+        display: none;
+    }
+
+    .enova-tabs {
+        flex: 1;
+    }
+
+    .enova-tab {
+        padding: 0 7px;
+        font-size: 8px;
+    }
+
+    .enova-input-help span {
+        display: none;
+    }
+
+    .enova-statusbar {
+        gap: 8px;
+        font-size: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .enova *,
+    .enova *::before,
+    .enova *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

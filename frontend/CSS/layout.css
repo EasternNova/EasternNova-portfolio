@@ -1,1008 +1,433 @@
-/* =========================================================
-   EasternNova Portfolio
-   Layout
-   2B.4.2 — Composition
-   ========================================================= */
-
-
-/* =========================================================
-   PAGE
-   ========================================================= */
-
 main {
     position: relative;
-    z-index: 1;
 }
 
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
-
 .container {
-    width: min(
-        calc(100% - 3rem),
-        var(--container-width)
-    );
-
+    width: min(calc(100% - 3rem), var(--container-width));
     margin-inline: auto;
 }
 
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
 .portfolio-header {
     position: fixed;
-
     top: 2rem;
     left: 2rem;
-
     z-index: 1000;
 }
-
-
-/* =========================================================
-   DESKTOP RIGHT NAVIGATION
-   ========================================================= */
 
 .portfolio-nav {
     position: fixed;
-
     top: 50%;
     right: 2rem;
-
     z-index: 1000;
-
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-
     gap: 1.25rem;
-
     transform: translateY(-50%);
 }
-
-
-/* =========================================================
-   NAVIGATION LINKS
-   ========================================================= */
 
 .nav-section-links {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-
     gap: 0.75rem;
 }
 
-
-/* =========================================================
-   SECTIONS
-   ========================================================= */
-
 .section {
     position: relative;
-
     width: 100%;
     min-height: 100svh;
-
     display: flex;
     align-items: center;
-
     padding-block: 8rem;
-
     scroll-margin-top: 2rem;
 }
 
-
-/* =========================================================
-   HERO / HOME
-   ========================================================= */
-
 .section-hero {
     position: relative;
-
     min-height: 100svh;
-
     display: block;
-
     overflow: hidden;
-
     isolation: isolate;
 }
 
-
-/* =========================================================
-   EASTERNNOVA
-   Background Identity
-   ========================================================= */
-
 .hero-brand {
     position: absolute;
-
     top: 50%;
     left: 50%;
-
     z-index: 1;
-
     width: max-content;
-
     transform: translate(-50%, -50%);
-
     color: var(--color-text);
-
     font-size: clamp(5rem, 15vw, 14rem);
     font-weight: 600;
-
     letter-spacing: -0.075em;
     line-height: 0.85;
-
     white-space: nowrap;
-
     opacity: 0.065;
-
     pointer-events: none;
     user-select: none;
 }
 
-
-/* =========================================================
-   PRACHI
-   Upper-left Identity
-   ========================================================= */
-
 .hero-identity {
     position: absolute;
-
-    /*
-       Keep Prachi clearly away from the browser edge
-       and independent from the navigation.
-    */
     top: 2.5rem;
     left: 2.5rem;
-
     z-index: 3;
-
-    /*
-       Prevent the identity from becoming too wide.
-    */
     width: max-content;
 }
 
-
-/* Prachi name */
-
 .hero-identity h1 {
     margin: 0;
-
     color: var(--color-text);
-
-    /*
-       Deliberately smaller than the previous version.
-       The name is identity, not the hero headline.
-    */
-    font-size: clamp(
-        1.45rem,
-        1.6vw,
-        1.75rem
-    );
-
+    font-size: clamp(1.45rem, 1.6vw, 1.75rem);
     font-weight: 500;
-
     letter-spacing: -0.04em;
     line-height: 1;
 }
 
-
-/* Roles */
-
 .hero-roles {
     display: flex;
     flex-wrap: wrap;
-
     gap: 0.45rem;
-
     margin-top: 0.7rem;
-
     color: var(--color-text-muted);
-
     font-size: 0.8rem;
     font-weight: 400;
-
     line-height: 1.4;
-
     letter-spacing: 0.01em;
 }
 
-
-/* Role separators */
-
 .hero-roles span:not(:last-child)::after {
     content: "•";
-
     margin-left: 0.45rem;
-
     color: var(--color-text-subtle);
 }
 
-
-/* =========================================================
-   AVATAR STAGE
-   Future Phase 4
-   ========================================================= */
-
 .hero-avatar-space {
     position: absolute;
-
-    /*
-       Central-right visual stage.
-       Empty for now.
-       Phase 4 will place the avatar here.
-    */
     top: 48%;
     left: 61%;
-
     z-index: 3;
-
-    width: min(
-        44vw,
-        42rem
-    );
-
-    height: min(
-        64vh,
-        42rem
-    );
-
+    width: min(44vw, 42rem);
+    height: min(64vh, 42rem);
     transform: translate(-50%, -50%);
-
     pointer-events: none;
 }
 
-
-/* =========================================================
-   LOWER-LEFT STATEMENT
-   ========================================================= */
-
 .hero-introduction {
     position: absolute;
-
     left: 2.5rem;
     bottom: 5rem;
-
     z-index: 3;
-
-    /*
-       Keep the statement visually compact.
-    */
-    width: min(
-        calc(100% - 5rem),
-        42rem
-    );
+    width: min(calc(100% - 5rem), 42rem);
 }
-
-
-/* Main statement */
 
 .hero-introduction h2 {
     margin: 0;
-
     color: var(--color-text);
-
-    font-size: clamp(
-        1.55rem,
-        2.35vw,
-        2.3rem
-    );
-
+    font-size: clamp(1.55rem, 2.35vw, 2.3rem);
     font-weight: 500;
-
     letter-spacing: -0.04em;
-
     line-height: 1.12;
 }
 
-
-/* Supporting paragraph */
-
 .hero-introduction p {
-    width: min(
-        100%,
-        38rem
-    );
-
+    width: min(100%, 38rem);
     margin-top: 1rem;
-
     color: var(--color-text-muted);
-
     font-size: var(--text-md);
-
     line-height: var(--leading-relaxed);
 }
 
-
-/* =========================================================
-   SECTION HEADER
-   ========================================================= */
-
 .section-header {
-    width: min(
-        100%,
-        760px
-    );
-
+    width: min(100%, 760px);
     margin-bottom: 3rem;
 }
 
-
 .section-header > p:last-child {
     max-width: 60ch;
-
     margin-top: 1rem;
 }
 
-
-/* =========================================================
-   PROJECTS
-   ========================================================= */
-
-/* =========================================================
-   WORK — HORIZONTAL PROJECT SECTION
-   ========================================================= */
-
-.projects-grid {
-    display: flex;
-
-    flex-direction: row;
-    align-items: stretch;
-
-    gap: 1.5rem;
-
-    width: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    padding-bottom: 1rem;
-
-    scroll-snap-type: x mandatory;
-
-    scrollbar-width: thin;
-
-    overscroll-behavior-x: contain;
-}
-
-/* Each project becomes a horizontal panel */
-
-.projects-grid > .project-card {
-    flex: 0 0 min(34rem, 78vw);
-
-    min-height: 20rem;
-
-    scroll-snap-align: start;
-}
-
-/* Keep the horizontal section clean */
-
-.projects-grid::-webkit-scrollbar {
-    height: 5px;
-}
-
-.projects-grid::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.projects-grid::-webkit-scrollbar-thumb {
-    background: var(--color-border-strong);
-    border-radius: var(--radius-full);
-}
-
-/* Desktop hover remains subtle */
-
-.projects-grid > .project-card:hover {
-    transform: translateY(-3px);
-}
-
-
-/* =========================================================
-   SKILLS
-   ========================================================= */
-
+.projects-grid,
 .skills-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0, 1fr)
-        );
-
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
 }
-
-
-/* =========================================================
-   CONTENT WIDTHS
-   ========================================================= */
 
 .about-content,
 .resume-content,
 .contact-content {
-    width: min(
-        100%,
-        760px
-    );
+    width: min(100%, 760px);
 }
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
 
 .site-footer {
     position: relative;
-
     z-index: 1;
-
-    padding:
-        3rem
-        0
-        2rem;
+    padding: 3rem 0 2rem;
 }
 
-
-/* =========================================================
-   TABLET / SMALL DESKTOP
-   901px → 1200px
-   ========================================================= */
-
 @media (max-width: 1200px) {
-
     .section-hero {
         padding-right: 9rem;
     }
 
-
     .hero-brand {
         left: 53%;
-
-        font-size: clamp(
-            5rem,
-            14vw,
-            11rem
-        );
+        font-size: clamp(5rem, 14vw, 11rem);
     }
-
 
     .hero-avatar-space {
         left: 60%;
-
-        width: min(
-            45vw,
-            34rem
-        );
-
-        height: min(
-            58vh,
-            34rem
-        );
+        width: min(45vw, 34rem);
+        height: min(58vh, 34rem);
     }
-
 }
 
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
 @media (max-width: 900px) {
-
-    /* Header */
-
     .portfolio-header {
         top: 1.75rem;
         left: 1.75rem;
     }
 
-
-    /* Navigation */
-
     .portfolio-nav {
         right: 1.5rem;
     }
-
-
-    /* General sections */
 
     .section {
         padding-block: 7rem;
     }
 
-
-    /* Project / skill grids */
-
+    .projects-grid,
     .skills-grid {
         grid-template-columns: 1fr;
     }
 
-
-    /* Hero */
-
     .section-hero {
         padding-right: 8rem;
     }
-
-
-    /* Prachi */
 
     .hero-identity {
         top: 2rem;
         left: 2rem;
     }
 
-
     .hero-identity h1 {
         font-size: 1.6rem;
     }
 
-
-    /* EasternNova */
-
     .hero-brand {
         top: 47%;
         left: 52%;
-
-        font-size: clamp(
-            5rem,
-            15vw,
-            10rem
-        );
+        font-size: clamp(5rem, 15vw, 10rem);
     }
-
-
-    /* Avatar stage */
 
     .hero-avatar-space {
         top: 47%;
         left: 59%;
-
-        width: min(
-            52vw,
-            32rem
-        );
-
-        height: min(
-            55vh,
-            32rem
-        );
+        width: min(52vw, 32rem);
+        height: min(55vh, 32rem);
     }
-
-
-    /* Lower statement */
 
     .hero-introduction {
         left: 2rem;
         bottom: 4.5rem;
-
-        width: min(
-            calc(100% - 4rem),
-            38rem
-        );
+        width: min(calc(100% - 4rem), 38rem);
     }
-
 
     .hero-introduction h2 {
-        font-size: clamp(
-            1.45rem,
-            2.8vw,
-            2rem
-        );
+        font-size: clamp(1.45rem, 2.8vw, 2rem);
     }
-
 }
 
-
-/* =========================================================
-   MOBILE
-   <= 700px
-   ========================================================= */
-
 @media (max-width: 700px) {
-
-    /* MOBILE NAVIGATION*/
-
     .portfolio-nav {
         position: fixed;
-
         top: auto;
         right: 0;
         bottom: 0;
         left: 0;
-
         width: 100%;
-
         display: flex;
         flex-direction: row;
-
         align-items: center;
         justify-content: center;
-
-        padding:
-            0.7rem
-            1rem;
-
-        border:
-            var(--border-width)
-            solid
-            var(--color-border);
-
+        padding: 0.7rem 1rem;
+        border: var(--border-width) solid var(--color-border);
         border-bottom: 0;
-
         background: var(--color-bg);
-
         box-shadow: none;
-
         transform: none;
     }
 
-
-    /* Mobile horizontal links */
-
     .nav-section-links {
         display: flex;
-
         flex-direction: row;
-
         align-items: center;
         justify-content: center;
-
         width: auto;
-
         gap: 1rem;
     }
 
-
     .nav-section-links a {
         display: inline-flex;
-
-        padding:
-            0.25rem
-            0;
-
+        padding: 0.25rem 0;
         font-size: var(--text-xs);
-
         white-space: nowrap;
     }
-
-
-    /* Divider */
 
     .nav-divider {
         display: none;
     }
 
-
-    /* Theme */
-
     .theme-toggle {
         flex-shrink: 0;
-
         margin-left: 0.5rem;
     }
-
 
     .theme-toggle-label {
         display: none;
     }
 
-
-    /* MOBILE SECTIONS*/
-
     .section {
         min-height: auto;
-
         padding-block: 6rem;
-
         padding-bottom: 8rem;
     }
 
-
-    /* MOBILE HERO*/
-
     .section-hero {
         min-height: 100svh;
-
         padding-right: 0;
     }
-
-
-    /* PRACHI*/
 
     .hero-identity {
         top: 1.75rem;
         left: 1.25rem;
-
         width: auto;
     }
 
-
     .hero-identity h1 {
         font-size: 1.45rem;
-
         letter-spacing: -0.035em;
     }
 
-
     .hero-roles {
         max-width: 19rem;
-
         margin-top: 0.55rem;
-
         font-size: 0.72rem;
     }
-
-
-    /* EASTERNNOVA*/
 
     .hero-brand {
         top: 43%;
         left: 50%;
-
-        font-size: clamp(
-            3.2rem,
-            17vw,
-            6.5rem
-        );
-
+        font-size: clamp(3.2rem, 17vw, 6.5rem);
         letter-spacing: -0.08em;
-
         opacity: 0.045;
     }
-
-
-    /* AVATAR STAGE*/
 
     .hero-avatar-space {
         top: 43%;
         left: 50%;
-
         width: 76vw;
         height: 46vh;
     }
 
-
-    /* LOWER-LEFT STATEMENT*/
-
     .hero-introduction {
         left: 1.25rem;
         right: 1.25rem;
-
         bottom: 5.5rem;
-
         width: auto;
     }
 
-
     .hero-introduction h2 {
         max-width: 27rem;
-
         font-size: 1.35rem;
-
         letter-spacing: -0.035em;
-
         line-height: 1.15;
     }
 
-
     .hero-introduction p {
-        width: min(
-            100%,
-            32rem
-        );
-
+        width: min(100%, 32rem);
         margin-top: 0.75rem;
-
         font-size: 0.88rem;
-
         line-height: 1.65;
     }
-
-
-    /* Hero actions */
 
     .hero-actions {
         flex-wrap: wrap;
     }
-
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-   <= 520px
-   ========================================================= */
-
 @media (max-width: 520px) {
-
-    /* NAVIGATION*/
-
     .portfolio-nav {
         justify-content: flex-start;
-
         overflow-x: auto;
-
         scrollbar-width: none;
     }
-
 
     .portfolio-nav::-webkit-scrollbar {
         display: none;
     }
 
-
     .nav-section-links {
         justify-content: flex-start;
-
         width: max-content;
-
         flex-shrink: 0;
-
         gap: 0.9rem;
     }
-
 
     .nav-section-links a {
         font-size: 0.72rem;
     }
-
-
-    /* PRACHI*/
 
     .hero-identity {
         top: 1.4rem;
         left: 1.1rem;
     }
 
-
     .hero-identity h1 {
         font-size: 1.35rem;
     }
 
-
     .hero-roles {
         max-width: 16rem;
-
         font-size: 0.68rem;
     }
 
-
-    /* EASTERNNOVA*/
-
     .hero-brand {
         top: 42%;
-
-        font-size: clamp(
-            2.8rem,
-            17vw,
-            5.5rem
-        );
+        font-size: clamp(2.8rem, 17vw, 5.5rem);
     }
-
-
-    /* AVATAR*/
 
     .hero-avatar-space {
         top: 42%;
-
         width: 82vw;
         height: 40vh;
     }
 
-
-    /* LOWER STATEMENT*/
-
     .hero-introduction {
         left: 1.1rem;
         right: 1.1rem;
-
         bottom: 5rem;
     }
 
-
     .hero-introduction h2 {
         max-width: 23rem;
-
         font-size: 1.2rem;
-
         line-height: 1.16;
     }
 
-
     .hero-introduction p {
         max-width: 23rem;
-
         margin-top: 0.7rem;
-
         font-size: 0.82rem;
-
         line-height: 1.6;
     }
-
-
-    /* Hero actions */
 
     .hero-actions {
         flex-direction: column;
         align-items: stretch;
     }
-
-}
-/* =========================================================
-   2.4.4.3 — HERO ATMOSPHERIC DETAIL
-   Visual atmosphere only — no layout changes
-   ========================================================= */
-
-.section-hero::before,
-.section-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ---------------------------------------------------------
-   Light — Pearl + Ocean Mist
-   --------------------------------------------------------- */
-
-.section-hero::before {
-    background:
-        radial-gradient(
-            circle at 72% 42%,
-            rgb(49 95 99 / 0.055),
-            transparent 34%
-        ),
-        radial-gradient(
-            circle at 28% 78%,
-            rgb(190 211 208 / 0.08),
-            transparent 38%
-        );
-}
-
-.section-hero::after {
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 45%,
-            rgb(255 255 255 / 0.16) 100%
-        );
-}
-
-/* ---------------------------------------------------------
-   Dark — Night Ocean + Galaxy
-   --------------------------------------------------------- */
-
-[data-theme="dark"] .section-hero::before {
-    background:
-        radial-gradient(
-            circle at 72% 42%,
-            rgb(70 125 135 / 0.09),
-            transparent 34%
-        ),
-        radial-gradient(
-            circle at 30% 76%,
-            rgb(45 82 96 / 0.08),
-            transparent 38%
-        );
-}
-
-[data-theme="dark"] .section-hero::after {
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 42%,
-            rgb(0 0 0 / 0.16) 100%
-        );
 }

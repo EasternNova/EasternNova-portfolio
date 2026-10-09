@@ -1,15 +1,18 @@
-/* EasternNova Portfolio
-   Application Entry Point */
-
 import { initializeBackground } from "./background.js";
 import { initializeCursor } from "./cursor.js";
-import { initializeProjects } from "./projects.js";
 
+import { initializeWork } from "../work/work.jsx";
+import {
+    initializeWorkInteractions,
+    initializeWorkScroll
+} from "../work/workInteraction.jsx";
 
-/* Theme */
+import { initializeProjectPage } from "../work/projectPage.js";
+
+import "../ENOVA/enova.js";
+import "../ENOVA/enova.css";
 
 const THEME_STORAGE_KEY = "easternnova-theme";
-
 
 function getSystemTheme() {
     return window.matchMedia(
@@ -19,10 +22,11 @@ function getSystemTheme() {
         : "light";
 }
 
-
 function getInitialTheme() {
     const savedTheme =
-        localStorage.getItem(THEME_STORAGE_KEY);
+        localStorage.getItem(
+            THEME_STORAGE_KEY
+        );
 
     if (
         savedTheme === "light" ||
@@ -34,14 +38,14 @@ function getInitialTheme() {
     return getSystemTheme();
 }
 
-
 function applyTheme(theme) {
-
     document.documentElement.dataset.theme =
         theme;
 
     const toggle =
-        document.querySelector("#theme-toggle");
+        document.querySelector(
+            "#theme-toggle"
+        );
 
     if (!toggle) {
         return;
@@ -69,20 +73,21 @@ function applyTheme(theme) {
 
     if (icon) {
         icon.textContent =
-            isDark ? "🌚" : "🌞";
+            isDark
+                ? "🌚"
+                : "🌞";
     }
 }
 
-
 function initializeTheme() {
-
-    const initialTheme =
-        getInitialTheme();
-
-    applyTheme(initialTheme);
+    applyTheme(
+        getInitialTheme()
+    );
 
     const toggle =
-        document.querySelector("#theme-toggle");
+        document.querySelector(
+            "#theme-toggle"
+        );
 
     if (!toggle) {
         return;
@@ -91,7 +96,6 @@ function initializeTheme() {
     toggle.addEventListener(
         "click",
         () => {
-
             const currentTheme =
                 document.documentElement
                     .dataset
@@ -102,7 +106,9 @@ function initializeTheme() {
                     ? "light"
                     : "dark";
 
-            applyTheme(nextTheme);
+            applyTheme(
+                nextTheme
+            );
 
             localStorage.setItem(
                 THEME_STORAGE_KEY,
@@ -112,32 +118,26 @@ function initializeTheme() {
     );
 }
 
-
-/* Loader */
-
 function initializeLoader() {
-
     const loader =
-        document.querySelector("#app-loader");
+        document.querySelector(
+            "#app-loader"
+        );
 
     if (!loader) {
         return;
     }
 
-    requestAnimationFrame(() => {
-
-        loader.classList.add(
-            "is-hidden"
-        );
-
-    });
+    requestAnimationFrame(
+        () => {
+            loader.classList.add(
+                "is-hidden"
+            );
+        }
+    );
 }
 
-
-/* Current Year */
-
 function initializeCurrentYear() {
-
     const yearElement =
         document.querySelector(
             "#current-year"
@@ -151,159 +151,22 @@ function initializeCurrentYear() {
         new Date().getFullYear();
 }
 
-function initializeResumePanel() {
-    const resumeButton =
-        document.querySelector("#resume-button");
+function initializeApp() {
+    initializeTheme();
 
-    const resumePanel =
-        document.querySelector("#resume-panel");
-
-    const resumeWindow =
-        document.querySelector(".resume-window");
-
-    const resumeLinks =
-        document.querySelectorAll(".resume-nav-link");
-
-    if (!resumeButton || !resumePanel || !resumeWindow) {
+    if (initializeProjectPage()) {
         return;
     }
 
-
-    function openResume() {
-        resumePanel.classList.add("is-open");
-
-        resumePanel.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-    }
-
-
-    function closeResume() {
-        resumePanel.classList.remove("is-open");
-
-        resumePanel.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-    }
-
-
-    resumeButton.addEventListener(
-        "click",
-        openResume
-    );
-
-
-    /* Click outside resume window */
-
-    resumePanel.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                !resumeWindow.contains(
-                    event.target
-                )
-            ) {
-                closeResume();
-            }
-
-        }
-    );
-
-
-    /* Escape */
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Escape" &&
-                resumePanel.classList.contains(
-                    "is-open"
-                )
-            ) {
-                closeResume();
-            }
-
-        }
-    );
-
-
-    /* Resume navigation */
-
-    const resumeTheme =
-    document.querySelector("#resume-theme");
-
-    if (resumeTheme) {
-        resumeTheme.addEventListener("click", () => {
-            const current =
-                document.documentElement.dataset.theme;
-
-            const next =
-                current === "dark"
-                    ? "light"
-                    : "dark";
-
-            document.documentElement.dataset.theme = next;
-
-            localStorage.setItem(
-                THEME_STORAGE_KEY,
-                next
-            );
-        });
-    }
-
-    const contentFrame =
-        resumePanel.querySelector(".resume-content-frame");
-
-    resumeLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            const target =
-                link.dataset.resumeView;
-
-            const targetView =
-                resumePanel.querySelector(
-                    `[data-resume-section="${target}"]`
-                );
-
-            if (!targetView || !contentFrame) {
-                return;
-            }
-
-            targetView.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        });
-    });
-}
-
-/* Application */
-
-function initializeApp() {
-
-    initializeTheme();
-
     initializeBackground();
-
     initializeCursor();
-
     initializeCurrentYear();
-
     initializeLoader();
 
-    initializeProjects();
-
-    initializeResumePanel()
+    initializeWork();
+    initializeWorkInteractions();
+    initializeWorkScroll();
 }
-
-
-/* Start */
 
 document.addEventListener(
     "DOMContentLoaded",

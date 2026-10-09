@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -15,89 +16,85 @@
         rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="/CSS/tokens.css" />
-    <link rel="stylesheet" href="/CSS/base.css" />
-    <link rel="stylesheet" href="/CSS/layout.css" />
-    <link rel="stylesheet" href="/CSS/components.css" />
+    <link
+        rel="stylesheet"
+        href="/CSS/tokens.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="/CSS/base.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="/CSS/layout.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="/CSS/components.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="/work/work.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="./Rtheme.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="./resume.css"
+    />
 </head>
 
-
 <body>
-
-
-    <!--Background-->
 
     <div
         id="background"
         aria-hidden="true"
     ></div>
 
-
-    <!--Navigation-->
-
     <nav
         class="portfolio-nav"
         aria-label="Portfolio navigation"
     >
-        <!-- Chat -->
+
         <button
             class="nav-action"
+            id="enova-nav-button"
             type="button"
-            aria-label="Open EasternNova chat"
-            title="Chat"
+            aria-label="Open ENOVA"
+            title="ENOVA"
         >
-
-            <span aria-hidden="true">
-                💬
-            </span>
-
+            <span aria-hidden="true">&gt;_</span>
         </button>
 
-
-        <!-- Resume -->
-
         <button
             class="nav-action"
-            type="button"
             id="resume-button"
+            type="button"
             aria-label="Open resume"
             title="Resume"
         >
-
             <span aria-hidden="true">
                 🗎
             </span>
-
         </button>
-
-
-        <!-- Section Navigation -->
 
         <div
             class="nav-section-links"
             aria-label="Portfolio sections"
         >
-
-            <a href="#hero">
-                Home
-            </a>
-
-            <a href="#work">
-                Work
-            </a>
-
-            <a href="#about">
-                About
-            </a>
-
-            <a href="#contact">
-                Contact
-            </a>
-
+            <a href="#hero">Home</a>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
-
-
-        <!-- Theme -->
 
         <button
             class="theme-toggle"
@@ -106,65 +103,66 @@
             aria-label="Switch to dark theme"
             aria-pressed="false"
         >
-
             <span
                 class="theme-toggle-icon"
                 aria-hidden="true"
             >
-                >🌞
+                🌞
             </span>
-
         </button>
 
-
     </nav>
-    <!--Main Portfolio-->
 
     <main id="main-content">
 
+        <section
+            id="hero"
+            class="section section-hero"
+            aria-labelledby="hero-title"
+        >
 
-        <!--Hero / Home-->
-
-        <section id="hero" 
-        class="section section-hero" aria-labelledby="hero-title">
-
-            <!-- Large EasternNova identity layer.
-                The future avatar will sit visually in front of this. -->
-            <div class="hero-brand" aria-hidden="true">
+            <div
+                class="hero-brand"
+                aria-hidden="true"
+            >
                 EasternNova
             </div>
 
-            <!-- Identity -->
             <div class="hero-identity">
-                <h1 id="hero-title">Prachi</h1>
+
+                <h1 id="hero-title">
+                    Prachi
+                </h1>
 
                 <p class="hero-roles">
                     <span>Student</span>
                     <span>Full-stack Developer</span>
                     <span>AI/ML</span>
                 </p>
+
             </div>
 
-            <!-- Reserved visual space for the future avatar -->
-            <div class="hero-avatar-space" aria-hidden="true"></div>
+            <div
+                class="hero-avatar-space"
+                aria-hidden="true"
+            ></div>
 
-            <!-- Hero statement -->
             <div class="hero-introduction">
+
                 <h2>
-                    Building things with code, curiosity, and purpose.
+                    Building things with code,
+                    curiosity, and purpose.
                 </h2>
 
                 <p>
-                    A personal portfolio documenting projects, technical skills,
+                    A personal portfolio documenting
+                    projects, technical skills,
                     experiments, and the journey behind them.
                 </p>
+
             </div>
 
         </section>
-
-
-
-        <!--Work / Projects-->
 
         <section
             id="work"
@@ -172,244 +170,36 @@
             aria-labelledby="work-title"
         >
 
-            <div class="container">
+            <div class="work-pin">
 
-
-                <header class="section-header">
-
-
-                    <p class="eyebrow">
-                        Selected Work
-                    </p>
-
+                <header class="work-heading">
 
                     <h2 id="work-title">
                         Projects
                     </h2>
 
-
                     <p>
-
                         A collection of projects, experiments,
                         and things currently being built.
-
                     </p>
-
 
                 </header>
 
+                <div
+                    class="work-viewport"
+                    aria-label="Selected projects"
+                >
 
-                <div class="projects-grid" aria-label="Selected projects">
-
-                    <!-- PROJECT 01 -->
-                    <article
-                        class="project-card"
-                        tabindex="0"
-                        data-project-url="#"
-                    >
-                        <div class="project-card-top">
-                            <span class="project-number">01</span>
-                            <span class="project-action">DOUBLE CLICK ↗</span>
-                        </div>
-
-                        <div class="project-preview">
-                            <span>LIVE INTERFACE</span>
-                        </div>
-
-                        <div class="project-card-content">
-                            <p class="project-label">PROJECT 01</p>
-
-                            <h3>Project Name</h3>
-
-                            <p class="project-description">
-                                Project description will be added here.
-                            </p>
-
-                            <div class="project-skills">
-                                <span>Skill</span>
-                                <span>Skill</span>
-                                <span>Skill</span>
-                            </div>
-                        </div>
-                    </article>
-
-
-                    <!-- PROJECT 02 -->
-                    <article
-                        class="project-card"
-                        tabindex="0"
-                        data-project-url="#"
-                    >
-                        <div class="project-card-top">
-                            <span class="project-number">02</span>
-                            <span class="project-action">DOUBLE CLICK ↗</span>
-                        </div>
-
-                        <div class="project-preview">
-                            <span>LIVE INTERFACE</span>
-                        </div>
-
-                        <div class="project-card-content">
-                            <p class="project-label">PROJECT 02</p>
-
-                            <h3>Project Name</h3>
-
-                            <p class="project-description">
-                                Project description will be added here.
-                            </p>
-
-                            <div class="project-skills">
-                                <span>Skill</span>
-                                <span>Skill</span>
-                                <span>Skill</span>
-                            </div>
-                        </div>
-                    </article>
-
-
-                    <!-- PROJECT 03 -->
-                    <article
-                        class="project-card"
-                        tabindex="0"
-                        data-project-url="#"
-                    >
-                        <div class="project-card-top">
-                            <span class="project-number">03</span>
-                            <span class="project-action">DOUBLE CLICK ↗</span>
-                        </div>
-
-                        <div class="project-preview">
-                            <span>LIVE INTERFACE</span>
-                        </div>
-
-                        <div class="project-card-content">
-                            <p class="project-label">PROJECT 03</p>
-
-                            <h3>Project Name</h3>
-
-                            <p class="project-description">
-                                Project description will be added here.
-                            </p>
-
-                            <div class="project-skills">
-                                <span>Skill</span>
-                                <span>Skill</span>
-                                <span>Skill</span>
-                            </div>
-                        </div>
-                    </article>
-
-
-                    <!-- PROJECT 04 -->
-                    <article
-                        class="project-card"
-                        tabindex="0"
-                        data-project-url="#"
-                    >
-                        <div class="project-card-top">
-                            <span class="project-number">04</span>
-                            <span class="project-action">DOUBLE CLICK ↗</span>
-                        </div>
-
-                        <div class="project-preview">
-                            <span>LIVE INTERFACE</span>
-                        </div>
-
-                        <div class="project-card-content">
-                            <p class="project-label">PROJECT 04</p>
-
-                            <h3>Project Name</h3>
-
-                            <p class="project-description">
-                                Project description will be added here.
-                            </p>
-
-                            <div class="project-skills">
-                                <span>Skill</span>
-                                <span>Skill</span>
-                                <span>Skill</span>
-                            </div>
-                        </div>
-                    </article>
-
-
-                    <!-- PROJECT 05 -->
-                    <article
-                        class="project-card"
-                        tabindex="0"
-                        data-project-url="#"
-                    >
-                        <div class="project-card-top">
-                            <span class="project-number">05</span>
-                            <span class="project-action">DOUBLE CLICK ↗</span>
-                        </div>
-
-                        <div class="project-preview">
-                            <span>LIVE INTERFACE</span>
-                        </div>
-
-                        <div class="project-card-content">
-                            <p class="project-label">PROJECT 05</p>
-
-                            <h3>Project Name</h3>
-
-                            <p class="project-description">
-                                Project description will be added here.
-                            </p>
-
-                            <div class="project-skills">
-                                <span>Skill</span>
-                                <span>Skill</span>
-                                <span>Skill</span>
-                            </div>
-                        </div>
-                    </article>
-
-
-                    <!-- PROJECT 06 -->
-                    <article
-                        class="project-card"
-                        tabindex="0"
-                        data-project-url="#"
-                    >
-                        <div class="project-card-top">
-                            <span class="project-number">06</span>
-                            <span class="project-action">DOUBLE CLICK ↗</span>
-                        </div>
-
-                        <div class="project-preview">
-                            <span>LIVE INTERFACE</span>
-                        </div>
-
-                        <div class="project-card-content">
-                            <p class="project-label">PROJECT 06</p>
-
-                            <h3>Project Name</h3>
-
-                            <p class="project-description">
-                                Project description will be added here.
-                            </p>
-
-                            <div class="project-skills">
-                                <span>Skill</span>
-                                <span>Skill</span>
-                                <span>Skill</span>
-                            </div>
-                        </div>
-                    </article>
+                    <div
+                        id="work-project-rail"
+                        class="work-project-rail"
+                    ></div>
 
                 </div>
-
-                </div>
-
 
             </div>
 
         </section>
-
-
-
-        <!--About-->
 
         <section
             id="about"
@@ -419,37 +209,25 @@
 
             <div class="container">
 
-
                 <header class="section-header">
-
 
                     <p class="eyebrow">
                         About
                     </p>
 
-
                     <h2 id="about-title">
                         About EasternNova
                     </h2>
 
-
                 </header>
 
-
                 <div class="about-content">
-
                     <!-- About content will be added later -->
-
                 </div>
-
 
             </div>
 
         </section>
-
-
-
-        <!--Skills-->
 
         <section
             id="skills"
@@ -459,80 +237,28 @@
 
             <div class="container">
 
-
                 <header class="section-header">
-
 
                     <p class="eyebrow">
                         Technical Skills
                     </p>
 
-
                     <h2 id="skills-title">
                         Skills
                     </h2>
 
-
                 </header>
-
 
                 <div
                     id="skills-grid"
                     class="skills-grid"
                 >
-
                     <!-- Skills will be generated from data later -->
-
                 </div>
-
 
             </div>
 
         </section>
-
-
-
-        <!--Resume-->
-
-        <section
-            id="resume"
-            class="section section-resume"
-            aria-labelledby="resume-title"
-        >
-
-            <div class="container">
-
-
-                <header class="section-header">
-
-
-                    <p class="eyebrow">
-                        Resume
-                    </p>
-
-
-                    <h2 id="resume-title">
-                        Experience & Resume
-                    </h2>
-
-
-                </header>
-
-
-                <div class="resume-content">
-
-                    <!-- Real resume link will be connected later -->
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!--Contact-->
 
         <section
             id="contact"
@@ -542,421 +268,53 @@
 
             <div class="container">
 
-
                 <header class="section-header">
-
 
                     <p class="eyebrow">
                         Contact
                     </p>
 
-
                     <h2 id="contact-title">
                         Let's connect.
                     </h2>
 
-
                 </header>
 
-
                 <div class="contact-content">
-
                     <!-- Contact links / backend form will be added later -->
-
                 </div>
-
 
             </div>
 
         </section>
 
-
     </main>
-
-
-
-    <!--Footer-->
 
     <footer class="site-footer">
 
         <div class="container">
 
             <p>
-
                 ©
                 <span id="current-year"></span>
                 EasternNova
-
             </p>
 
         </div>
 
     </footer>
 
-
-
-    <!--Application Entry-->
-
     <script
         type="module"
         src="/JS/main.js"
     ></script>
 
-   <!-- =========================================================
-     RESUME — FULL EXPERIENCE
-     ========================================================= -->
+    <script
+        type="module"
+        src="/JS/resumeBridge.js"
+    ></script>
 
-    <aside
-        id="resume-panel"
-        class="resume-overlay"
-        aria-hidden="true"
-        aria-labelledby="resume-title"
-    >
 
-        <div class="resume-window">
-
-            <!-- Resume Navigation -->
-
-            <header class="resume-navigation">
-
-                <a
-                    href="#resume-home"
-                    class="resume-nav-link is-active"
-                    data-resume-view="home"
-                >
-                    Home
-                </a>
-
-                <a
-                    href="#resume-about"
-                    class="resume-nav-link"
-                    data-resume-view="about"
-                >
-                    About
-                </a>
-
-                <a
-                    href="#resume-experience"
-                    class="resume-nav-link"
-                    data-resume-view="experience"
-                >
-                    Experience
-                </a>
-
-                <a
-                    href="#resume-capabilities"
-                    class="resume-nav-link"
-                    data-resume-view="capabilities"
-                >
-                    Capabilities
-                </a>
-
-                <a
-                    href="#resume-impact"
-                    class="resume-nav-link"
-                    data-resume-view="impact"
-                >
-                    Impact
-                </a>
-
-                <div class="resume-status">
-                    <span class="resume-status-name">
-                        Prachi
-                    </span>
-
-                    <span>Live Resume</span>
-
-                    <span>'26</span>
-
-                    <span class="resume-status-open">
-                        <i></i>
-                        Open to Work
-                    </span>
-                </div>
-
-                <div class="resume-navigation-spacer"></div>
-
-
-                <!-- Resume Theme -->
-
-                <button
-                    type="button"
-                    class="resume-theme"
-                    id="resume-theme"
-                    aria-label="Change resume theme"
-                >
-                    ◐
-                </button>
-
-
-                <!-- Download -->
-
-                <a
-                    href="#"
-                    class="resume-download"
-                    id="resume-download"
-                >
-                    <span>Download CV</span>
-                    <span aria-hidden="true">↓</span>
-                </a>
-
-            </header>
-
-
-            <!-- Resume Content -->
-
-            <div class="resume-content-frame">
-
-                <!-- HOME -->
-
-                <section
-                    class="resume-view is-active"
-                    data-resume-section="home"
-                >
-
-                    <p class="resume-side-label">
-                        EASTERNNOVA · RESUME
-                    </p>
-
-                    <div class="resume-home-content">
-
-                        <p class="resume-eyebrow">
-                            STUDENT · FULL-STACK DEVELOPER · AI/ML
-                        </p>
-
-                        <h1 class="resume-name" id="resume-name">
-                            <span class="resume-name-line">
-                                <span>P</span>
-                                <span>r</span>
-                                <span>a</span>
-                                <span>c</span>
-                                <span>h</span>
-                                <span>i</span>
-                            </span>
-
-                            <span class="resume-name-line">
-                                <span>S</span>
-                                <span>h</span>
-                                <span>a</span>
-                                <span>w</span>
-                            </span>
-                        </h1>
-
-                        <p class="resume-home-role">
-                            Building things with code,
-                            curiosity, and purpose.
-                        </p>
-
-                        <p class="resume-home-description">
-                            A technical portfolio of projects,
-                            experiments, skills, and the journey
-                            behind them.
-                        </p>
-
-                    </div>
-
-                    <span class="resume-page-number">
-                        01
-                    </span>
-
-                </section>
-
-
-                <!-- ABOUT -->
-
-                <section
-                    class="resume-view"
-                    data-resume-section="about"
-                >
-
-                    <p class="resume-side-label">
-                        ABOUT
-                    </p>
-
-                    <div class="resume-page-content">
-
-                        <p class="resume-eyebrow">
-                            PROFILE
-                        </p>
-
-                        <h2>
-                            About me.
-                        </h2>
-
-                        <p>
-                            Student · Full-stack Developer · AI/ML
-                        </p>
-
-                        <p>
-                            I build digital experiences through code,
-                            explore artificial intelligence and machine
-                            learning, and document the projects and
-                            experiments behind my work.
-                        </p>
-
-                    </div>
-
-                    <span class="resume-page-number">
-                        02
-                    </span>
-
-                </section>
-
-
-                <!-- EXPERIENCE -->
-
-                <section
-                    class="resume-view"
-                    data-resume-section="experience"
-                >
-
-                    <p class="resume-side-label">
-                        EXPERIENCE
-                    </p>
-
-                    <div class="resume-page-content">
-
-                        <p class="resume-eyebrow">
-                            EXPERIENCE
-                        </p>
-
-                        <h2>
-                            Experience.
-                        </h2>
-
-                        <div class="resume-empty-state">
-                            Experience details will be added here.
-                        </div>
-
-                    </div>
-
-                    <span class="resume-page-number">
-                        03
-                    </span>
-
-                </section>
-
-
-                <!-- CAPABILITIES -->
-
-                <section
-                    class="resume-view"
-                    data-resume-section="capabilities"
-                >
-
-                    <p class="resume-side-label">
-                        CAPABILITIES
-                    </p>
-
-                    <div class="resume-page-content">
-
-                        <p class="resume-eyebrow">
-                            TECHNICAL STACK
-                        </p>
-
-                        <h2>
-                            Capabilities.
-                        </h2>
-
-                        <div class="resume-capability-grid">
-
-                            <div>
-                                <span>01</span>
-                                <strong>Development</strong>
-                                <p>
-                                    JavaScript · React · HTML · CSS
-                                </p>
-                            </div>
-
-                            <div>
-                                <span>02</span>
-                                <strong>AI / ML</strong>
-                                <p>
-                                    Python · PyTorch · Machine Learning
-                                </p>
-                            </div>
-
-                            <div>
-                                <span>03</span>
-                                <strong>Tools</strong>
-                                <p>
-                                    Git · GitHub · Vite · VS Code
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="resume-page-number">
-                        04
-                    </span>
-
-                </section>
-
-
-                <!-- IMPACT -->
-
-                <section
-                    class="resume-view"
-                    data-resume-section="impact"
-                >
-
-                    <p class="resume-side-label">
-                        IMPACT
-                    </p>
-
-                    <div class="resume-page-content">
-
-                        <p class="resume-eyebrow">
-                            SELECTED WORK
-                        </p>
-
-                        <h2>
-                            Impact.
-                        </h2>
-
-                        <div class="resume-impact-list">
-
-                            <div>
-                                <span>01</span>
-                                <strong>HandLex</strong>
-                                <p>
-                                    Sign Language → Text
-                                </p>
-                            </div>
-
-                            <div>
-                                <span>02</span>
-                                <strong>EasternNova</strong>
-                                <p>
-                                    Personal portfolio experience
-                                </p>
-                            </div>
-
-                            <div>
-                                <span>03</span>
-                                <strong>More projects</strong>
-                                <p>
-                                    Currently being built.
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <span class="resume-page-number">
-                        05
-                    </span>
-
-                </section>
-
-            </div>
-
-        </div>
-
-    </aside>
 
 </body>
 

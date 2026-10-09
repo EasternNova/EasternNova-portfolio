@@ -1,60 +1,41 @@
-/* EasternNova Portfolio
-   Base Styles */
-
-
-/* Box Sizing */
-
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-
-/* Document */
-
 html {
     font-size: 16px;
-
     scroll-behavior: smooth;
     scroll-padding-top: var(--space-8);
-
     background: var(--color-bg);
+    scrollbar-width: none;
 }
 
 body {
+    width: 100%;
     min-width: 320px;
     min-height: 100vh;
-
     margin: 0;
-
+    overflow-x: auto;
+    overflow-y: auto;
+    scrollbar-width: none;
     background: var(--color-bg);
     color: var(--color-text);
-
     font-family: var(--font-sans);
     font-size: var(--text-md);
+    font-weight: 400;
     line-height: var(--leading-normal);
-
+    letter-spacing: var(--tracking-normal);
     text-rendering: optimizeLegibility;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* Typography */
-
-body {
-    font-family: var(--font-sans);
-
-    font-size: var(--text-md);
-    font-weight: 400;
-
-    line-height: var(--leading-normal);
-
-    letter-spacing: var(--tracking-normal);
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
 }
-
 
 h1,
 h2,
@@ -63,66 +44,31 @@ h4,
 h5,
 h6 {
     margin: 0;
-
     color: var(--color-text);
-
     font-weight: 600;
-
     letter-spacing: var(--tracking-tight);
-
     line-height: var(--leading-tight);
 }
 
-
 h1 {
     max-width: 22ch;
-
-    font-size: clamp(
-        3rem,
-        6vw,
-        var(--text-5xl)
-    );
+    font-size: clamp(3rem, 6vw, var(--text-5xl));
 }
-
 
 h2 {
-    font-size: clamp(
-        2rem,
-        4vw,
-        var(--text-4xl)
-    );
+    font-size: clamp(2rem, 4vw, var(--text-4xl));
 }
-
 
 h3 {
     font-size: var(--text-xl);
-
     line-height: var(--leading-snug);
 }
 
-
 p {
     color: var(--color-text-muted);
-
     font-size: var(--text-md);
-
     line-height: var(--leading-relaxed);
 }
-
-
-a {
-    text-decoration: none;
-}
-
-
-button,
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-/* Links */
 
 a {
     color: inherit;
@@ -133,21 +79,16 @@ a:hover {
     color: var(--color-accent);
 }
 
-
-/* Buttons & Form Controls*/
-
 button,
 input,
 textarea,
 select {
     margin: 0;
-
     font: inherit;
 }
 
 button {
     border: 0;
-
     cursor: pointer;
 }
 
@@ -155,16 +96,12 @@ button:disabled {
     cursor: not-allowed;
 }
 
-
-/* Media */
-
 img,
 picture,
 video,
 canvas,
 svg {
     display: block;
-
     max-width: 100%;
 }
 
@@ -172,59 +109,28 @@ img {
     height: auto;
 }
 
-
-/* Lists */
-
 ul,
 ol {
     margin: 0;
     padding: 0;
-
     list-style: none;
 }
-
-
-/* Selection */
 
 ::selection {
     background: var(--color-accent);
     color: var(--color-bg);
 }
 
-
-/* Focus */
-
 :focus {
     outline: none;
 }
 
 :focus-visible {
-    outline:
-        2px solid
-        var(--color-accent);
-
+    outline: 2px solid var(--color-accent);
     outline-offset: 4px;
 }
 
-
-/* Spatial Scroll Foundation */
-
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
-    overflow-x: auto;
-    overflow-y: auto;
-}
-
-
-/* Reduced Motion */
-
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
@@ -234,31 +140,7 @@ body {
     *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-
         transition-duration: 0.01ms !important;
-
         scroll-behavior: auto !important;
     }
-
-}
-
-/* =========================================================
-   GLOBAL — HIDDEN SCROLLBAR
-   Scrolling remains fully functional.
-   ========================================================= */
-
-html {
-    scrollbar-width: none;
-}
-
-html::-webkit-scrollbar {
-    display: none;
-}
-
-body {
-    scrollbar-width: none;
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }
