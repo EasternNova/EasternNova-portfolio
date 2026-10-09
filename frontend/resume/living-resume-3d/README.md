@@ -1,45 +1,55 @@
-# EasternNova — Living Resume floral feature (fixed)
+# EasternNova Living Resume — Integration Folder
 
-## Why this version is corrected
+This ZIP contains the folder `living-resume-3d/`, designed to sit beside your current `resume.html`.
 
-- Uses the actual theme attribute in the supplied resume: `data-resume-theme`.
-- Finds the existing hero using `#resume-home.resume-home` or `.resume-home`.
-- Loads and pre-checks the CSS and image URLs, then logs success or a useful error in DevTools Console.
-- Keeps the flowers decorative and behind the existing hero text.
-- Keeps the feature isolated in this folder; no existing resume files are replaced.
+## Exact destination for your project
 
-## Install
+Your resume is at:
 
-1. Keep this folder named `living-resume-3d` beside the existing `resume.html`.
-2. The expected structure is:
+`G:\EasternNova\EasternNova-portfolio\frontend\resume\resume.html`
 
-   resume-folder/
-   - resume.html
-   - resume.css
-   - resume.js
-   - living-resume-3d/
-     - living-resume-3d.js
-     - living-resume-3d.css
-     - assets/
-       - floral-dark.png
-       - floral-light.png
+Extract this ZIP so the files land here:
 
-3. In `resume.html`, keep one feature script immediately before `</body>`:
+```text
+G:\EasternNova\EasternNova-portfolio\frontend\resume\
+├── resume.html
+└── living-resume-3d\
+    ├── living-resume-3d.js
+    ├── living-resume-3d.css
+    ├── README.md
+    └── assets\
+        ├── floral-dark.png
+        └── floral-light.png
+```
 
-   ```html
-   <script type="module" src="./living-resume-3d/living-resume-3d.js"></script>
-   ```
+If you already deleted the old `living-resume-3d` folder, that is fine. Extract this ZIP into `frontend\resume\`. If Windows asks to merge/replace, only replace the old feature folder.
 
-4. Save and hard-refresh the resume (`Ctrl + Shift + R`).
+## One line to add to `resume.html`
 
-## Verify
+Add this immediately before the closing `</body>` tag:
 
-Open DevTools → Console. A successful load prints:
+```html
+<script type="module" src="./living-resume-3d/living-resume-3d.js"></script>
+```
 
-`[Living Resume] Floral feature loaded.`
+Do not add another copy if this exact script line already exists.
 
-If the feature still fails, the Console will identify the missing hero, CSS, or image URL. Check DevTools → Network for 404 errors on files under `living-resume-3d`.
+## Important notes
 
-## Rollback
+- The script expects the resume's existing theme switch to set `data-resume-theme="dark"` or `"light"` on the `<html>` element, matching the code you shared.
+- It tries to attach the original flower artwork to `.resume-home` / `#resume-home`, and detects common resume section IDs for gentle section reveals.
+- Three.js loads from jsDelivr, so internet access is required for the 3D scene. If it cannot load, the original floral layer still works.
+- This is an additive feature. It does not rewrite your resume HTML content, navigation, or layout. Its 3D scene is an atmospheric overlay; the lotus silhouette appears late in the scroll as a concept.
+- Please test with a local server and verify your existing theme button and mobile layout before committing.
 
-Remove only the single `living-resume-3d.js` script line from `resume.html`. The original resume files are untouched.
+## Preview
+
+From `G:\EasternNova\EasternNova-portfolio\frontend\resume`, run:
+
+```powershell
+python -m http.server 8080
+```
+
+Then open `http://localhost:8080/resume.html`.
+
+If port 8080 is already serving another folder, stop that server with `Ctrl+C` first.

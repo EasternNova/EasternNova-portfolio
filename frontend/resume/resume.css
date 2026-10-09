@@ -511,7 +511,7 @@ button {
 .resume-scroll-cue {
     position: absolute;
     left: 50%;
-    bottom: 2rem;
+    bottom: -5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
