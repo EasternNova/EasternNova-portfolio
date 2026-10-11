@@ -378,3 +378,23 @@
         display: none;
     }
 }
+@media (max-width: 700px) {
+    .resume-navigation {
+        animation: none;
+        transform: none;
+    }
+
+    .resume-page.resume-ready .resume-navigation {
+        animation: none;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .resume-page.resume-ready .resume-scroll-cue {
+        animation: none;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%);
+    }
+}

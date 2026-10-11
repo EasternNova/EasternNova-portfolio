@@ -1,0 +1,213 @@
+{
+  "source": "generated asset atlas",
+  "assets": [
+    {
+      "file": "bloom-dark.png",
+      "size": [
+        398,
+        253
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "bloom-light.png",
+      "size": [
+        370,
+        253
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "lotus-dark.png",
+      "size": [
+        365,
+        258
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "lotus-light.png",
+      "size": [
+        385,
+        258
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "petal-01.png",
+      "size": [
+        135,
+        225
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "petal-02.png",
+      "size": [
+        120,
+        225
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "petal-03.png",
+      "size": [
+        120,
+        225
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "petal-04.png",
+      "size": [
+        120,
+        225
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "petal-05.png",
+      "size": [
+        115,
+        225
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "lily-pad-large.png",
+      "size": [
+        345,
+        230
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "lily-pad-small.png",
+      "size": [
+        230,
+        230
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "stem.png",
+      "size": [
+        120,
+        235
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "root-cluster.png",
+      "size": [
+        215,
+        235
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "water-surface-dark.png",
+      "size": [
+        488,
+        135
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "water-surface-light.png",
+      "size": [
+        480,
+        135
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "light-rays-dark.png",
+      "size": [
+        165,
+        170
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "light-rays-light.png",
+      "size": [
+        180,
+        170
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "bubbles.png",
+      "size": [
+        210,
+        175
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "particles-mixed.png",
+      "size": [
+        233,
+        220
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "underwater-bg-dark.png",
+      "size": [
+        440,
+        220
+      ],
+      "processing": "opaque background plate; atlas crop"
+    },
+    {
+      "file": "underwater-bg-light.png",
+      "size": [
+        430,
+        220
+      ],
+      "processing": "opaque background plate; atlas crop"
+    },
+    {
+      "file": "particles-pink.png",
+      "size": [
+        205,
+        220
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "particles-blue.png",
+      "size": [
+        210,
+        220
+      ],
+      "processing": "approximate alpha extracted from atlas"
+    },
+    {
+      "file": "bloom-glow.png",
+      "size": [
+        512,
+        512
+      ],
+      "processing": "procedural transparent glow"
+    },
+    {
+      "file": "soft-light.png",
+      "size": [
+        512,
+        512
+      ],
+      "processing": "procedural transparent glow"
+    },
+    {
+      "file": "sparkles.png",
+      "size": [
+        512,
+        512
+      ],
+      "processing": "procedural transparent glow"
+    }
+  ]
+}

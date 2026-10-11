@@ -260,7 +260,7 @@ button {
 
 .resume-status-rail {
     position: absolute;
-    top: 4.5rem;
+    top: 4rem;
     bottom: 0;
     left: 3rem;
     z-index: 40;
@@ -273,7 +273,8 @@ button {
 
 .resume-status-viewport {
     width: 100%;
-    height: 28rem;
+    height: min(32rem, 75vh);
+    min-height: 12rem;
     overflow: hidden;
 }
 
@@ -288,19 +289,26 @@ button {
     width: 100%;
     height: 50%;
     display: flex;
+    box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    padding: 0 0.25rem;
+    padding: 0.5rem 0.2rem;
+    
     color: var(--resume-accent-dark);
     font-family: var(--resume-mono);
-    font-size: 0.85rem;
+    font-size: clamp(0.82rem, 0.90vw, 1rem);
     font-weight: 550;
-    letter-spacing: 0.09em;
-    line-height: 1.7;
+    letter-spacing: clamp(0.02em, 0.04vw, 0.04em);
+    line-height: 1.5;
+   
     writing-mode: vertical-rl;
     text-orientation: mixed;
     transform: rotate(180deg);
+    
     white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-align: center;
 }
 
 .resume-status-state:last-child {
@@ -310,7 +318,6 @@ button {
 .resume-status-rail.is-open .resume-status-track {
     transform: translateY(-50%);
 }
-
 
 .resume-rail-external {
     position: absolute;
@@ -340,6 +347,7 @@ button {
     border-color: #E7A0B7;
     background: #191115;
 }
+
 .resume-content-frame {
     position: absolute;
     inset: 4.5rem 0 0;
@@ -356,19 +364,17 @@ button {
 
 .resume-section {
     position: relative;
-    width: 100%;
     min-height: calc(100vh - 4.5rem);
-    padding: 5.5rem 7rem 6rem 8.5rem;
-    border-bottom: 1px solid var(--resume-border);
+    padding: 6rem 2rem 10rem;
 }
 
-.resume-section:last-child {
-    border-bottom: 0;
+.resume-section + .resume-section {
+    padding-top: 9rem;
 }
 
 .resume-page-content {
     width: 100%;
-    max-width: 68rem;
+    max-width: 54rem;
     margin: 0 auto;
 }
 
@@ -385,17 +391,6 @@ button {
     line-height: 0.88;
 }
 
-.resume-page-content > h2::after {
-    content: "";
-    display: block;
-    width: 4rem;
-    height: 2px;
-    margin-top: 1rem;
-    background: var(--resume-accent);
-    transform: scaleX(0);
-    transform-origin: left;
-}
-
 .resume-eyebrow {
     margin: 0 0 1.5rem;
     color: var(--resume-accent-dark);
@@ -409,7 +404,11 @@ button {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 5.5rem 7rem 6rem 8.5rem;
+    padding: 6rem 5rem 3rem 15rem;
+}
+
+.resume-section + .resume-section {
+    padding-top: 9rem;
 }
 
 .resume-home-content {
@@ -511,11 +510,11 @@ button {
 .resume-scroll-cue {
     position: absolute;
     left: 50%;
-    bottom: -5rem;
+    bottom: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.8rem;
     margin: 0;
     color: var(--resume-subtle);
     font-family: var(--resume-mono);
@@ -569,12 +568,6 @@ button {
 .resume-content-block {
     padding: 1.3rem 0 2.5rem;
     margin-bottom: 0;
-    border-top: 1px solid var(--resume-border);
-}
-
-.resume-content-block:first-child {
-    padding-top: 0;
-    border-top: 0;
 }
 
 .resume-content-block p,
@@ -601,13 +594,8 @@ button {
     text-transform: uppercase;
 }
 
-.resume-about-side {
-    border-top: 1px solid var(--resume-border);
-}
-
 .resume-side-block {
     padding: 2rem 0;
-    border-bottom: 1px solid var(--resume-border);
 }
 
 .resume-side-block h4 {
@@ -629,14 +617,16 @@ button {
 }
 
 .resume-skill-summary {
-    color: var(--resume-text) !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    color: var(--resume-text);
     font-family: var(--resume-mono);
-    font-size: 0.75rem !important;
-    line-height: 2 !important;
+    font-size: 0.82rem;
+    line-height: 1.6;
 }
-
-.resume-experience-list {
-    border-top: 1px solid var(--resume-border);
+.resume-skill-summary span {
+    display: inline-block;
 }
 
 .resume-experience-item {
@@ -644,7 +634,6 @@ button {
     grid-template-columns: 4rem minmax(0, 1fr);
     gap: 2rem;
     padding: 2rem 0;
-    border-bottom: 1px solid var(--resume-border);
 }
 
 .resume-item-index {
@@ -683,11 +672,6 @@ button {
     grid-template-columns: 4rem minmax(0, 1fr);
     gap: 2rem;
     padding: 2.5rem 0;
-    border-top: 1px solid var(--resume-border);
-}
-
-.resume-project-item:last-child {
-    border-bottom: 1px solid var(--resume-border);
 }
 
 .resume-project-index {
@@ -728,7 +712,6 @@ button {
     gap: 2rem;
     margin-top: 2rem;
     padding-top: 1.4rem;
-    border-top: 1px solid var(--resume-border);
 }
 
 .resume-project-detail span {
@@ -752,18 +735,11 @@ button {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
     margin-top: 1rem;
-    border-top: 1px solid var(--resume-border);
 }
 
 .resume-capability-grid article {
     min-height: 15rem;
     padding: 1.5rem 1.5rem 2rem 0;
-    border-bottom: 1px solid var(--resume-border);
-    border-right: 1px solid var(--resume-border);
-}
-
-.resume-capability-grid article:nth-child(3n) {
-    border-right: 0;
 }
 
 .resume-capability-grid article:nth-child(3n + 2) {
@@ -796,7 +772,6 @@ button {
 
 .resume-education-list {
     margin-top: 0;
-    border-top: 1px solid var(--resume-border);
 }
 
 .resume-education-item {
@@ -804,7 +779,6 @@ button {
     grid-template-columns: 3.5rem minmax(0, 1fr);
     gap: 1.5rem;
     padding: 2.5rem 0;
-    border-bottom: 1px solid var(--resume-border);
 }
 
 .resume-education-item h3 {
@@ -834,18 +808,15 @@ button {
 .resume-skills-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid var(--resume-border);
 }
 
 .resume-skill-group {
     min-height: 9rem;
     padding: 1.5rem 2rem 1.5rem 0;
-    border-bottom: 1px solid var(--resume-border);
 }
 
 .resume-skill-group:nth-child(even) {
     padding-left: 2rem;
-    border-left: 1px solid var(--resume-border);
 }
 
 .resume-skill-group span {
@@ -855,6 +826,7 @@ button {
     font-family: var(--resume-mono);
     font-size: 0.6rem;
     letter-spacing: 0.13em;
+    display: inline-block;
 }
 
 .resume-skill-group p {
@@ -874,22 +846,15 @@ button {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: 0;
-    border-top: 1px solid var(--resume-border);
 }
 
 .resume-achievement-grid article {
     min-height: 15rem;
     padding: 1.5rem 1.5rem 2rem 0;
-    border-bottom: 1px solid var(--resume-border);
-    border-right: 1px solid var(--resume-border);
 }
 
 .resume-achievement-grid article + article {
     padding-left: 1.5rem;
-}
-
-.resume-achievement-grid article:last-child {
-    border-right: 0;
 }
 
 .resume-achievement-grid span {
@@ -922,23 +887,16 @@ button {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
     margin-top: 0;
-    border-top: 1px solid var(--resume-border);
 }
 
 .resume-impact-list > div {
     min-height: 15rem;
     padding: 1.5rem 1.5rem 2rem 0;
-    border-right: 1px solid var(--resume-border);
-    border-bottom: 1px solid var(--resume-border);
 }
 
 .resume-impact-list > div:nth-child(2),
 .resume-impact-list > div:nth-child(3) {
     padding-left: 1.5rem;
-}
-
-.resume-impact-list > div:last-child {
-    border-right: 0;
 }
 
 .resume-impact-list span {
@@ -984,17 +942,12 @@ button {
     line-height: 1.8;
 }
 
-.resume-contact-links {
-    border-top: 1px solid var(--resume-border);
-}
-
 .resume-contact-links a {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
     padding: 1.1rem 0;
-    border-bottom: 1px solid var(--resume-border);
     color: var(--resume-text);
     text-decoration: none;
 }
@@ -1046,7 +999,6 @@ button {
 
 .resume-contact-download:hover {
     background: var(--resume-text);
-    border-color: var(--resume-text);
     color: var(--resume-bg);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(23, 16, 20, 0.12);
@@ -1064,4 +1016,11 @@ button {
     font-family: var(--resume-mono);
     font-size: 0.55rem;
     letter-spacing: 0.12em;
+}
+.resume-navigation {
+    will-change: transform;
+}
+
+.resume-live-rail {
+    will-change: transform;
 }

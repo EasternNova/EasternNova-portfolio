@@ -1,3 +1,54 @@
+:root {
+    --resume-heading-size: 4rem;
+    --resume-heading-weight: 600;
+    --resume-heading-letter-spacing: -0.025em;
+    --resume-heading-underline: var(--resume-accent);
+}
+
+/* Shared heading typography */
+.resume-page-content > h2,
+.resume-about-column-title,
+.resume-subheading,
+.resume-projects > h3,
+.resume-achievements > h3,
+.resume-impact-block > h3,
+.resume-contact-section h2 {
+    position: relative;
+    display: table;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.45rem;
+    font-family: var(--resume-sans);
+    font-size: var(--resume-heading-size);
+    font-weight: var(--resume-heading-weight);
+    letter-spacing: var(--resume-heading-letter-spacing);
+    line-height: 1.3;
+    text-transform: lowercase;
+    border: 0;
+    opacity: 1;
+}
+
+/* Heading underline */
+.resume-page-content > h2::after,
+.resume-about-column-title::after,
+.resume-projects > h3::after,
+.resume-achievements > h3::after,
+.resume-impact-block > h3::after,
+.resume-contact-section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    background: var(--resume-heading-underline);
+    transform: none;
+    animation: none;
+}
+
+/* Navigation and interaction transitions */
 .resume-nav-link::after {
     transition: transform 180ms cubic-bezier(.16, 1, .3, 1);
 }
@@ -8,18 +59,13 @@
 }
 
 .resume-theme {
-    transition:
-        transform 220ms ease,
-        opacity 220ms ease;
+    transition: transform 220ms ease, opacity 220ms ease;
 }
 
 .resume-download,
 .resume-contact-links a,
 .resume-final-download {
-    transition:
-        color 220ms ease,
-        background-color 220ms ease,
-        border-color 220ms ease;
+    transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease;
 }
 
 .resume-page,
@@ -28,99 +74,26 @@
 .resume-section,
 .resume-page-content,
 .resume-final-download {
-    transition:
-        background-color 420ms ease,
-        color 420ms ease,
-        border-color 420ms ease;
+    transition: background-color 420ms ease, color 420ms ease, border-color 420ms ease;
 }
 
-.resume-page-content > h2::after {
-    animation: resumeHeadingLine linear both;
-}
-
-.resume-subheading::after {
-    animation: resumeSubheadingLine linear both;
-}
-
+/* Scroll cue */
 .resume-scroll-cue i {
     animation: resumeCue 1500ms ease-in-out infinite;
 }
 
-.resume-page.resume-ready .resume-name-line > span {
-    animation-name: resumeLetterUp;
-    animation-duration: 650ms;
-    animation-timing-function: cubic-bezier(.16, 1, .3, 1);
-    animation-fill-mode: forwards;
+/* Home name: reveal one letter at a time */
+.resume-name-line > span:not(.resume-name-exclamation) {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(115%);
 }
 
-.resume-section:not(.resume-home) .resume-page-content {
-    animation: resumeSectionFloat linear both;
-}
-
-.resume-content-block,
-.resume-side-block,
-.resume-experience-item,
-.resume-project-item,
-.resume-capability-grid article,
-.resume-education-item,
-.resume-skill-group,
-.resume-achievement-grid article,
-.resume-impact-list > div,
-.resume-contact-layout {
-    animation: resumeItemFloat linear both;
-}
-
-@supports (animation-timeline: view()) {
-    .resume-section:not(.resume-home) .resume-page-content {
-        animation-timeline: view();
-        animation-range: entry 8% cover 30%;
-    }
-
-    .resume-page-content > h2::after {
-        animation-timeline: view();
-        animation-range: entry 10% cover 28%;
-    }
-
-    .resume-subheading::after {
-        animation-timeline: view();
-        animation-range: entry 10% cover 25%;
-    }
-
-    .resume-content-block,
-    .resume-side-block,
-    .resume-experience-item,
-    .resume-project-item,
-    .resume-capability-grid article,
-    .resume-education-item,
-    .resume-skill-group,
-    .resume-achievement-grid article,
-    .resume-impact-list > div,
-    .resume-contact-layout {
-        animation-timeline: view();
-        animation-range: entry 5% cover 28%;
-    }
-
-    .resume-content-block:nth-child(2),
-    .resume-side-block:nth-child(2),
-    .resume-experience-item:nth-child(2),
-    .resume-project-item:nth-child(2),
-    .resume-capability-grid article:nth-child(2),
-    .resume-skill-group:nth-child(2),
-    .resume-achievement-grid article:nth-child(2),
-    .resume-impact-list > div:nth-child(2) {
-        animation-range: entry 10% cover 32%;
-    }
-
-    .resume-content-block:nth-child(3),
-    .resume-side-block:nth-child(3),
-    .resume-experience-item:nth-child(3),
-    .resume-project-item:nth-child(3),
-    .resume-capability-grid article:nth-child(3),
-    .resume-skill-group:nth-child(3),
-    .resume-achievement-grid article:nth-child(3),
-    .resume-impact-list > div:nth-child(3) {
-        animation-range: entry 15% cover 36%;
-    }
+.resume-page.resume-ready
+.resume-name-line > span:not(.resume-name-exclamation) {
+    animation: resumeLetterUp 1000ms
+        cubic-bezier(.16, 1.5, .4, 2) both;
+    animation-delay: calc(var(--name-char-index, 0) * 90ms);
 }
 
 @keyframes resumeLetterUp {
@@ -135,35 +108,10 @@
     }
 }
 
-@keyframes resumeSectionFloat {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes resumeItemFloat {
-    from {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 @keyframes resumeHeadingLine {
     from {
         transform: scaleX(0);
     }
-
     to {
         transform: scaleX(1);
     }
@@ -173,25 +121,201 @@
     from {
         transform: scaleX(0);
     }
-
     to {
         transform: scaleX(1);
     }
 }
 
 @keyframes resumeCue {
-    0%,
-    100% {
+    0%, 100% {
         transform: scaleX(0.35);
         opacity: 0.45;
     }
-
     50% {
         transform: scaleX(1);
         opacity: 1;
     }
 }
 
+/* Stage 6: content reveals as the user scrolls */
+.resume-scroll-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 650ms cubic-bezier(.16, 1, .3, 1), transform 650ms cubic-bezier(.16, 1, .3, 1);
+    will-change: opacity, transform;
+}
+
+.resume-scroll-reveal.is-scroll-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Keep the original section content visible unless it is being revealed */
+.resume-section:not(.resume-home) .resume-page-content {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    clip-path: none;
+    animation: none;
+}
+
+/* Home entrance: exclamation mark */
+.resume-name-line > .resume-name-exclamation {
+    opacity: 0;
+    transform: translateY(-110%);
+}
+
+.resume-page.resume-ready .resume-name-line > .resume-name-exclamation {
+    animation: resumeExclamationDrop 1100ms cubic-bezier(.16, 1, .3, 1) 1450ms both;
+}
+
+@keyframes resumeExclamationDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-110%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Live Resume rail */
+.resume-live-rail {
+    transform: translateX(-100%);
+}
+
+.resume-page.resume-ready .resume-live-rail {
+    animation: resumeRailEnter 1200ms cubic-bezier(.16, 1, .3, 1) 1300ms both;
+}
+
+@keyframes resumeRailEnter {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Navigation entrance */
+.resume-page.resume-ready .resume-navigation {
+    animation: resumeNavigationDrop 650ms cubic-bezier(.16, 1, .3, 1) 1250ms both;
+}
+
+@keyframes resumeNavigationDrop {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Status ticker character entrance */
+.resume-status-state > span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-0.65em);
+}
+
+.resume-page.resume-ready .resume-status-state > span {
+    animation: resumeStatusCharacter 350ms cubic-bezier(.16, 1, .3, 1) both;
+    animation-delay: calc(1300ms + var(--char-index, 0) * 28ms);
+}
+
+@keyframes resumeStatusCharacter {
+    from {
+        opacity: 0;
+        transform: translateY(-0.65em);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Home tagline: phrase-by-phrase entrance */
+.resume-home-role {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 1.1rem;
+    margin: 2rem 0 0;
+    color: var(--resume-muted);
+    font-family: var(--resume-sans);
+    font-size: clamp(0.85rem, 1.15vw, 1rem);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.resume-home-role > span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.45em);
+}
+
+.resume-page.resume-ready .resume-home-role > span {
+    animation: resumeTaglineCharacter 450ms cubic-bezier(.16, 1, .3, 1) both;
+    animation-delay: calc(1900ms + var(--role-index, 0) * 180ms);
+}
+
+.resume-home-role > span:not(:last-child)::after {
+    content: "----";
+    display: inline-block;
+    margin-left: 1.1rem;
+    color: var(--resume-accent);
+    letter-spacing: 0.04em;
+}
+
+@keyframes resumeTaglineCharacter {
+    from {
+        opacity: 0;
+        transform: translateY(0.45em);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile: animate phrases without separators */
+@media (max-width: 700px) {
+    .resume-home-role {
+        gap: 0.35rem 0.75rem;
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .resume-home-role > span:not(:last-child)::after {
+        content: none;
+    }
+}
+
+/* Scroll cue entrance */
+.resume-scroll-cue {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.resume-page.resume-ready .resume-scroll-cue {
+    animation: resumeScrollCueEnter 500ms ease 4000ms both;
+}
+
+@keyframes resumeScrollCueEnter {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .resume-page,
     .resume-header,
@@ -206,26 +330,39 @@
         transition: none;
     }
 
+    .resume-scroll-reveal,
+    .resume-scroll-reveal.is-scroll-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
+
     .resume-name-line > span,
-    .resume-section:not(.resume-home) .resume-page-content,
-    .resume-content-block,
-    .resume-side-block,
-    .resume-experience-item,
-    .resume-project-item,
-    .resume-capability-grid article,
-    .resume-education-item,
-    .resume-skill-group,
-    .resume-achievement-grid article,
-    .resume-impact-list > div,
-    .resume-contact-layout,
-    .resume-page-content > h2::after,
-    .resume-subheading::after {
+    .resume-page.resume-ready .resume-name-exclamation,
+    .resume-page.resume-ready .resume-live-rail,
+    .resume-page.resume-ready .resume-navigation,
+    .resume-page.resume-ready .resume-status-state > span,
+    .resume-page.resume-ready .resume-home-role > span,
+    .resume-scroll-cue i {
         animation: none;
+    }
+
+    .resume-live-rail,
+    .resume-navigation,
+    .resume-status-state > span,
+    .resume-home-role > span {
         opacity: 1;
         transform: none;
     }
 
-    .resume-scroll-cue i {
+    .resume-scroll-cue {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .resume-page-content > h2::after,
+    .resume-subheading::after {
         animation: none;
     }
 }
