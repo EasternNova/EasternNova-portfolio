@@ -37,7 +37,7 @@
     overflow: hidden;
     border: 1px solid rgb(0 0 0 / 0.14);
     border-radius: 1rem;
-    background: #ffffff;
+    background: var(--resume-surface);
     box-shadow: 0 30px 90px rgb(0 0 0 / 0.24);
     transform: translateY(1rem) scale(0.985);
     transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -79,8 +79,8 @@
     height: 2rem;
     flex: 0 0 2rem;
     border-radius: 0.45rem;
-    background: #e7f2ee;
-    color: #16856b;
+    background: var(--resume-accent-soft);
+    color: var(--resume-accent-dark);
     font-size: 1rem;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .resume-mobile-panel-identity strong {
-    color: #171014;
+    color: var(--resume-text);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
@@ -126,7 +126,7 @@
     border: 1px solid #e4dfe2;
     border-radius: 0.55rem;
     background: transparent;
-    color: #171014;
+    color: var(--resume-text);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
     line-height: 1;
@@ -136,7 +136,7 @@
 
 .resume-mobile-panel-actions a:focus-visible,
 .resume-mobile-panel-actions button:focus-visible {
-    outline: 2px solid #B85F7D;
+    outline: 2px solid var(--resume-accent-dark);
     outline-offset: 2px;
 }
 
@@ -147,13 +147,22 @@ body[data-resume-open="true"] > .portfolio-nav {
 
 @media (max-width: 800px) {
     .resume-overlay {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
         padding: 0;
-        background: #ffffff;
+        overflow: hidden;
+        overscroll-behavior: none;
+        background: var(--resume-surface);
     }
 
     .resume-window {
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+        overflow: hidden;
         border: 0;
         border-radius: 0;
         box-shadow: none;
@@ -173,14 +182,15 @@ body[data-resume-open="true"] > .portfolio-nav {
         min-height: 4.25rem;
         padding: 0 0.8rem;
         box-sizing: border-box;
-        border-bottom: 1px solid #e5dfe2;
-        background: #ffffff;
+        border-bottom: 1px solid var(--resume-border);
+        background: var(--resume-surface);
     }
 
     #resume-frame {
         width: 100%;
         min-height: 0;
         flex: 1 1 auto;
+        overscroll-behavior: contain;
     }
 
     .resume-mobile-panel-footer {
@@ -193,8 +203,8 @@ body[data-resume-open="true"] > .portfolio-nav {
         min-height: 2.5rem;
         padding: 0 0.35rem;
         box-sizing: border-box;
-        border-top: 1px solid #B85F7D;
-        background: #080608;
+        border-top: 1px solid var(--resume-border-strong);
+        background: var(--resume-rail);
         overflow: hidden;
     }
 
@@ -207,8 +217,8 @@ body[data-resume-open="true"] > .portfolio-nav {
 
     .resume-mobile-footer-symbols img {
         display: block;
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 1.4rem;
+        height: 1.4rem;
         object-fit: contain;
     }
 
@@ -217,9 +227,9 @@ body[data-resume-open="true"] > .portfolio-nav {
         align-items: center;
         gap: 0.35rem;
         min-width: 0;
-        color: #E7A0B7;
+        color: var(--resume-rail-text);
         font-family: "Courier New", Courier, monospace;
-        font-size: 0.48rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.02em;
         white-space: nowrap;
@@ -242,28 +252,4 @@ body[data-resume-open="true"] > .portfolio-nav {
 body[data-resume-open="true"] {
     overflow: hidden !important;
     overscroll-behavior: none;
-}
-
-@media (max-width: 800px) {
-    .resume-overlay {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        height: 100dvh;
-        padding: 0;
-        overflow: hidden;
-        overscroll-behavior: none;
-    }
-
-    .resume-window {
-        width: 100%;
-        height: 100%;
-        height: 100dvh;
-        overflow: hidden;
-    }
-
-    #resume-frame {
-        overscroll-behavior: contain;
-    }
 }

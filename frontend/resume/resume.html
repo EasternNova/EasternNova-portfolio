@@ -7,6 +7,7 @@
     <meta name="description" content="Prachi Shaw — Live Resume">
     <title>Prachi Shaw — Live Resume</title>
 
+    <link rel="stylesheet" href="./resume-theme.css">
     <link rel="stylesheet" href="./resume.css">
     <link rel="stylesheet" href="./resume-animation.css">
     <link rel="stylesheet" href="./resume-responsive.css">
@@ -66,7 +67,7 @@
                     <span>Download CV</span>
                     <span aria-hidden="true">⭳</span>
                 </a>
-                            
+
                 <button
                     class="resume-mobile-menu"
                     id="resume-mobile-menu"
@@ -175,8 +176,8 @@
                         <span class="resume-name-exclamation">!</span>
                     </span>
                 </h1>
-                <p s
-                    class="resume-home-role" 
+                <p
+                    class="resume-home-role"
                     aria-label="Student, Learning, Building, Exploring">
                     <span>Student</span>
                     <span>Learning</span>
@@ -192,57 +193,51 @@
             </div>
 
         </section>
-        
-        <!-- About -->  
-        <section 
-        id="resume-about" class="resume-section" aria-labelledby="resume-about-title">
+
+        <!-- About -->
+        <section id="resume-about" class="resume-section" aria-labelledby="resume-about-title">
             <div class="resume-page-content">
                 <div class="resume-about-layout">
                     <div class="resume-about-main">
                         <article class="resume-content-block">
-                            <h1 id="resume-about-title" class="resume-about-column-title">About</h1>
-                            <p>I am a student and developer exploring software engineering, AI/ML, and interactive digital experiences.</p>
-                        </article>
-                        <article class="resume-content-block">
-                            <p>From developing EasternNova as my personal digital identity to exploring sign-language recognition through HandLex, I use project-based learning to strengthen my technical foundations and investigate ideas beyond the classroom.</p>
-                        </article>
-                        <article class="resume-content-block">
-                            <p>I am strengthening my foundations in programming, data structures, software development, and machine learning while expanding my ability to design and build complete digital experiences.
-                            I am also exploring internship and freelance opportunities while preparing for future postgraduate study.</p>
+                            <h2 id="resume-about-title" class="resume-about-column-title">About</h2>
+                            <p>
+                                I am a student, a developer who enjoys turning ideas into practical digital experiences. I continuously strengthen my skills through hands-on projects, experimentation, and problem-solving.
+                            </p>
+                            <p>
+                                My work focuses on building thoughtful solutions, exploring new technologies, and transforming complex ideas into intuitive, useful experiences.
+                            </p>
+                            <p>
+                                I’m open to opportunities where I can contribute, take ownership, and grow alongside experienced teams while creating work that makes a meaningful impact.
+                            </p>
                         </article>
                     </div>
-                    <aside class="resume-about-side">
-                        <article class="resume-side-block">
-                            <h1 class="resume-about-column-title">Education</h1>
+                    <aside class="resume-about-side" aria-label="Education and skills">
+                        <article class="resume-side-block resume-education-block">
+                            <h2 class="resume-about-column-title">Education</h2>
                             <p class="resume-item-meta">2024 — 2028</p>
                             <h3>Bachelor of Computer Applications</h3>
-                            <p>2024 — 2026</p>
-                            <p>Building foundations across programming, data structures, web development, software development, and AI/ML.</p>
-                            <p>2026 — 2027</p>
-                            <p>Learning while building projects and strengthening practical development skills.</p>
+                            <p>Building foundations in programming, data structures, software development, web technologies, and AI/ML through coursework and independent projects.</p>
                         </article>
-                        <article class="resume-side-block">
-                            <h1 class="resume-about-column-title">Skills</h1>
-                            <div class="resume-skill-summary">
-                                <div class="resume-skill-summary">
-                                <span>Frontend Architecture</span>
-                                <span>Component-Based Development</span>
-                                <span>Responsive Interface Engineering</span>
-                                <span>API Integration</span>
-                                <span>Debugging & Troubleshooting</span>
-                                <span>Computer Vision</span>
-                                <span>Sequence Modeling</span>
-                                <span>Deep Learning</span>
-                                <span>Dataset Pipelines</span>
-                                <span>Model Experimentation</span>
-                                <span>Creative Coding</span>
-                                <span>3D Web Experiences</span>
-                                <span>Animation Systems</span>
-                                <span>Interactive UI Engineering</span>
-                                <span>Modular Code Design</span>
-                                <span>Version Control</span>
-                                <span>Technical Documentation</span>
-                                <span>Iterative Development</span>
+                        <article class="resume-side-block resume-about-skills">
+                            <h2 class="resume-about-column-title">Skills</h2>
+                            <div class="resume-about-skill-groups">
+                                <div class="resume-about-skill-group">
+                                    <h3>Development</h3>
+                                    <p>HTML, CSS, JavaScript, React, responsive interfaces, APIs, Git and GitHub.</p>
+                                </div>
+                                <div class="resume-about-skill-group">
+                                    <h3>AI &amp; Machine Learning</h3>
+                                    <p>Python, PyTorch, computer vision, keypoint processing, sequence modeling and model experimentation.</p>
+                                </div>
+                                <div class="resume-about-skill-group">
+                                    <h3>Creative Technology</h3>
+                                    <p>Interactive UI, animation systems, creative coding and 3D web experiences.</p>
+                                </div>
+                                <div class="resume-about-skill-group">
+                                    <h3>Engineering Practice</h3>
+                                    <p>Modular code, debugging, documentation, version control and iterative development.</p>
+                                </div>
                             </div>
                         </article>
                     </aside>
@@ -250,240 +245,465 @@
             </div>
         </section>
 
-        <!--Experience-->
-        <section 
-        id="resume-experience" class="resume-section" aria-labelledby="resume-experience-title">
+        <!-- Experience -->
+        <section
+            class="resume-section"
+            id="resume-experience"
+            aria-labelledby="resume-experience-title"
+        >
             <div class="resume-page-content">
                 <h2 id="resume-experience-title">Experience</h2>
-                <div class="resume-experience-list">
-                    <article class="resume-experience-item">
-                        <div>
-                            <h3>Student Developer</h3>
-                            <p class="resume-item-meta">BCA · 2024 — Present</p>
-                            <p>Developing practical programming and software engineering skills through independent projects, frontend development, interactive applications, and experiments with AI/ML systems. Applying classroom concepts through implementation, debugging, and iterative problem-solving.</p>
-                        </div>
-                    </article>
-                    <article class="resume-experience-item">
-                        <div>
-                            <h3>Freelance / Independent Developer</h3>
-                            <p class="resume-item-meta">Independent · Ongoing</p>
-                            <p>Exploring independent development through personal products, web experiences, and technical prototypes. Focused on translating ideas into clear requirements, maintainable implementations, and usable interfaces while building practical experience.</p>
-                        </div>
-                    </article>
-                    <article class="resume-experience-item">
-                        <div>
-                            <h3>AI/ML Project Work</h3>
-                            <p class="resume-item-meta">HandLex · Research & Development</p>
-                            <p>Exploring sign-language recognition and translation using structured visual keypoints. Current technical work includes dataset pipelines, keypoint processing, vocabulary preparation, sequence-recognition experiments, and investigation of CTC, LSTM attention, and Transformer approaches.</p>
-                        </div>
-                    </article>
-                    <article class="resume-experience-item">
-                        <div>
-                            <h3>Teaching / Academic Work</h3>
-                            <p class="resume-item-meta">Independent · Ongoing</p>
-                            <p>Supporting learning through teaching and practical problem-solving. Strengthening the ability to explain concepts clearly, communicate technical ideas, and approach problems systematically.</p>
-                        </div>
-                    </article>
-                </div>
-                <div class="resume-projects">
-                    <h3 class="resume-subheading">Selected Projects</h3>
-                    <article class="resume-project-item">
-                        
-                        <div class="resume-project-content">
-                            <h4>HandLex</h4>
-                            <p class="resume-project-subtitle">Sign Language Recognition & Translation</p>
-                            <p>An AI/ML project exploring sign-language recognition and translation from visual keypoints. It investigates how structured movement data can support sequence recognition and language generation.</p>
-                            <div class="resume-project-detail">
-                                <div>
-                                    <span>BUILT</span>
-                                    <p>Modular dataset loading, keypoint processing, vocabulary preparation, sequence-recognition experiments, and translation model development.</p>
-                                </div>
-                                <div>
-                                    <span>TECHNOLOGY</span>
-                                    <p>Python · PyTorch · OpenPose Keypoints · CTC · LSTM Attention · Transformer Models</p>
-                                </div>
+
+                <div class="resume-experience">
+                    <div class="resume-experience-list">
+
+                        <a class="resume-experience-item"
+                        href="/projects/handlex"
+                        aria-label="View HandLex project">
+                            <div class="resume-experience-info">
+                                <h3>HandLex</h3>
+                                <p class="resume-experience-meta">2026 · Research build</p>
+                                <span class="resume-experience-link">Click here to view ↗</span>
                             </div>
-                        </div>
-                    </article>
-                    <article class="resume-project-item">
-                        
-                        <div class="resume-project-content">
-                            <h4>EasternNova</h4>
-                            <p class="resume-project-subtitle">Personal Portfolio & Digital Identity</p>
-                            <p>My personal portfolio and digital identity, bringing together software projects, technical experiments, and creative technology through a distinctive web experience.</p>
-                            <div class="resume-project-detail">
-                                <div>
-                                    <span>BUILT</span>
-                                    <p>Portfolio architecture, responsive interfaces, project presentation, theme integration, animation, and an interactive Resume experience.</p>
-                                </div>
-                                <div>
-                                    <span>TECHNOLOGY</span>
-                                    <p>HTML · CSS · JavaScript · React · Vite · Git · GitHub</p>
-                                </div>
+                            <div class="resume-experience-details">
+                                <h4>AI / Machine Learning Developer</h4>
+                                <p>PyTorch, CTC, LSTM with Attention, Transformer Models, Keypoint-Based Recognition, Sequence Modeling, Sign Language Translation</p>
                             </div>
-                        </div>
-                    </article>
-                    <article class="resume-project-item">
-                        
-                        <div class="resume-project-content">
-                            <h4>MiniArcade</h4>
-                            <p class="resume-project-subtitle">Interactive Game Platform</p>
-                            <p>A browser-based arcade concept bringing multiple games into a single interface. The project explores game logic, reusable components, responsive layouts, and interaction design.</p>
-                            <div class="resume-project-detail">
-                                <div>
-                                    <span>FOCUS</span>
-                                    <p>Game logic · Modular frontend architecture · Responsive UI · Interaction design · Animation</p>
-                                </div>
+                        </a>
+
+                        <a class="resume-experience-item"
+                        href="/projects/easternnova-portfolio"
+                        aria-label="View EasternNova portfolio project">
+                            <div class="resume-experience-info">
+                                <h3>EasternNova</h3>
+                                <p class="resume-experience-meta">2026 · In development</p>
+                                <span class="resume-experience-link">Click here to view ↗</span>
                             </div>
-                        </div>
-                    </article>
-                    <article class="resume-project-item">
-                        
-                        <div class="resume-project-content">
-                            <h4>CubeLab</h4>
-                            <p class="resume-project-subtitle">Experimental 3D / Interactive Web Experience</p>
-                            <p>An experimental 3D web experience exploring spatial interfaces, interactive visuals, and motion in the browser. The project investigates how depth and interaction can shape a digital experience beyond a conventional page layout.</p>
-                            <div class="resume-project-detail">
-                                <div>
-                                    <span>FOCUS</span>
-                                    <p>3D interaction · Creative coding · Web graphics · Motion design · Interactive interfaces</p>
-                                </div>
-                                <div>
-                                    <span>STATUS</span>
-                                    <p>In development</p>
-                                </div>
+                            <div class="resume-experience-details">
+                                <h4>Frontend Developer</h4>
+                                <p>Vanilla JavaScript, React, Modular CSS Architecture, Scroll-Driven Interfaces, Interactive Animation, Responsive UI, Theme Systems, Web Performance</p>
                             </div>
-                        </div>
-                    </article>
+                        </a>
+
+                        <a class="resume-experience-item"
+                        href="/projects/enova"
+                        aria-label="View ENOVA project">
+                            <div class="resume-experience-info">
+                                <h3>ENOVA</h3>
+                                <p class="resume-experience-meta">2026 · In development</p>
+                                <span class="resume-experience-link">Click here to view ↗</span>
+                            </div>
+                            <div class="resume-experience-details">
+                                <h4>AI Application Developer</h4>
+                                <p>Python, FastAPI, REST API Design, LLM Integration, Conversation Context, Retrieval-Augmented Generation (RAG), Frontend–Backend Integration</p>
+                            </div>
+                        </a>
+
+                        <a class="resume-experience-item"
+                        href="/projects/miniarcade"
+                        aria-label="View MiniArcade project">
+                            <div class="resume-experience-info">
+                                <h3>MiniArcade</h3>
+                                <p class="resume-experience-meta">2026 · Platform concept</p>
+                                <span class="resume-experience-link">Click here to view ↗</span>
+                            </div>
+                            <div class="resume-experience-details">
+                                <h4>Frontend &amp; Game Developer</h4>
+                                <p>Browser Game Development, Reusable Game Components, Event-Driven Programming, Game-State Logic, Keyboard Input, Responsive Game Interfaces</p>
+                            </div>
+                        </a>
+
+                        <a class="resume-experience-item"
+                        href="/projects/cubelab"
+                        aria-label="View CubeLab project">
+                            <div class="resume-experience-info">
+                                <h3>CubeLab</h3>
+                                <p class="resume-experience-meta">2026 · Experimental concept</p>
+                                <span class="resume-experience-link">Click here to view ↗</span>
+                            </div>
+                            <div class="resume-experience-details">
+                                <h4>Creative Frontend Developer</h4>
+                                <p>CSS 3D Transforms, Spatial Layouts, Interactive Motion, Perspective and Depth, Pointer-Driven Interactions, Web Graphics Fundamentals</p>
+                            </div>
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section 
-        id="resume-capabilities" class="resume-section" aria-labelledby="resume-capabilities-title">
+        <!--Capablities-->
+        <section
+            id="resume-capabilities"
+            class="resume-section resume-capabilities-section"
+            aria-labelledby="resume-capabilities-title"
+        >
             <div class="resume-page-content">
-                <h2 id="resume-capabilities-title">Capabilities</h2>
-                <div class="resume-capability-grid">
-                    <article>
-                        <h3>Frontend & Experience</h3>
-                        <p>HTML, CSS, JavaScript, React, and Vite. Responsive layouts, component organization, semantic HTML, visual hierarchy, navigation, and interactive interfaces.</p>
-                    </article>
-                    <article>
-                        <h3>AI & Intelligent Systems</h3>
-                        <p>Python and PyTorch, with project-based exploration of computer vision, visual keypoints, sequence recognition, CTC, LSTM attention, and Transformer architectures.</p>
-                    </article>
-                    <article>
-                        <h3>Programming & DSA</h3>
-                        <p>C, Python, and JavaScript. Programming fundamentals, data structures, algorithms, object-oriented programming concepts, debugging, and problem-solving practice.</p>
-                    </article>
-                    <article>
-                        <h3>Design & Interaction</h3>
-                        <p>Typography, visual hierarchy, layout systems, responsive design, interface behaviour, theme systems, animation concepts, and creative coding.</p>
-                    </article>
-                    <article>
-                        <h3>Software Engineering</h3>
-                        <p>Breaking ideas into manageable components, organizing project structures, defining features, exploring implementation choices, testing interactions, and refining code iteratively.</p>
-                    </article>
-                    <article>
-                        <h3>Tools & Workflow</h3>
-                        <p>VS Code, Git, GitHub, Node.js, Vite, and Python tooling. Version control, terminal workflows, dependency management, documentation, and troubleshooting.</p>
-                    </article>
+                <div class="resume-capabilities-inner">
+
+                    <header class="resume-capabilities-header">
+                        <h2 id="resume-capabilities-title"
+                            class="resume-section-title"
+                        >capabilities
+                        </h2>
+                    </header>
+
+                    <div class="resume-capabilities-grid">
+
+                        <!-- AI & Intelligent Systems -->
+                        <article class="resume-capability">
+                            <div class="resume-capability-symbol" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <path d="M11 8a5 5 0 0 0-5 5v1a4 4 0 0 0 0 8h2"/>
+                                    <path d="M21 8a5 5 0 0 1 5 5v1a4 4 0 0 1 0 8h-2"/>
+                                    <rect x="10" y="6" width="12" height="20" rx="5"/>
+                                    <path d="M13 12h6M13 16h6M13 20h6M16 3v3M16 26v3"/>
+                                </svg>
+                            </div>
+
+                            <h3>AI &amp; Intelligent Systems</h3>
+
+                            <ul>
+                                <li><details><summary>Sign Language Recognition</summary><p>Exploring computer vision for sign language understanding.</p></details></li>
+                                <li><details><summary>Deep Learning Models</summary><p>Experimenting with neural network architectures.</p></details></li>
+                                <li><details><summary>CTC &amp; Sequence Learning</summary><p>Exploring sequence recognition and alignment.</p></details></li>
+                                <li><details><summary>LSTM Attention</summary><p>Investigating attention-based sequence modelling.</p></details></li>
+                                <li><details><summary>Transformer Architectures</summary><p>Exploring Transformer-based translation approaches.</p></details></li>
+                                <li><details><summary>AI Assistant Development</summary><p>Developing ENOVA as a portfolio-focused AI assistant.</p></details></li>
+                            </ul>
+                        </article>
+
+                        <!-- Data & Model Engineering -->
+                        <article class="resume-capability">
+                            <div class="resume-capability-symbol" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <ellipse cx="16" cy="8" rx="10" ry="4"/>
+                                    <path d="M6 8v7c0 2.2 4.5 4 10 4s10-1.8 10-4V8"/>
+                                    <path d="M6 15v7c0 2.2 4.5 4 10 4 2 0 3.8-.3 5.5-.8"/>
+                                    <path d="M26 19v5M23.5 21.5h5"/>
+                                </svg>
+                            </div>
+
+                            <h3>Data &amp; Model Engineering</h3>
+
+                            <ul>
+                                <li><details><summary>Dataset Preparation</summary><p>Organizing datasets for machine learning workflows.</p></details></li>
+                                <li><details><summary>Keypoint Processing</summary><p>Working with structured landmark data for recognition.</p></details></li>
+                                <li><details><summary>Data Preprocessing</summary><p>Preparing input data for consistent model experiments.</p></details></li>
+                                <li><details><summary>Vocabulary Preparation</summary><p>Preparing token mappings for sequence tasks.</p></details></li>
+                                <li><details><summary>Model Training Experiments</summary><p>Testing model approaches against project requirements.</p></details></li>
+                                <li><details><summary>Evaluation &amp; Validation</summary><p>Checking data quality and model behaviour.</p></details></li>
+                            </ul>
+                        </article>
+
+                        <!-- Web & Software Engineering -->
+                        <article class="resume-capability">
+                            <div class="resume-capability-symbol" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <rect x="4" y="5" width="24" height="22" rx="3"/>
+                                    <path d="M4 11h24M9 8h.01M13 8h.01"/>
+                                    <path d="m12 16-3 3 3 3M20 16l3 3-3 3M18 15l-4 9"/>
+                                </svg>
+                            </div>
+
+                            <h3>Web &amp; Software Engineering</h3>
+
+                            <ul>
+                                <li><details><summary>JavaScript &amp; Python</summary><p>Building web functionality and Python-based workflows.</p></details></li>
+                                <li><details><summary>React &amp; Vite</summary><p>Developing component-based frontend experiences.</p></details></li>
+                                <li><details><summary>HTML &amp; CSS</summary><p>Structuring and styling responsive web interfaces.</p></details></li>
+                                <li><details><summary>Modular Architecture</summary><p>Organizing code into maintainable modules.</p></details></li>
+                                <li><details><summary>API Integration</summary><p>Connecting frontend experiences to backend services.</p></details></li>
+                                <li><details><summary>Git &amp; GitHub</summary><p>Tracking changes and managing project repositories.</p></details></li>
+                            </ul>
+                        </article>
+
+                        <!-- Product & Interface Design -->
+                        <article class="resume-capability">
+                            <div class="resume-capability-symbol" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <rect x="4" y="4" width="24" height="24" rx="3"/>
+                                    <path d="M4 11h24M11 11v17M16 16h11M16 21h7"/>
+                                    <circle cx="7.5" cy="7.5" r=".7"/>
+                                    <circle cx="10" cy="7.5" r=".7"/>
+                                </svg>
+                            </div>
+
+                            <h3>Product &amp; Interface Design</h3>
+
+                            <ul>
+                                <li><details><summary>Information Hierarchy</summary><p>Organizing content for clarity and easy navigation.</p></details></li>
+                                <li><details><summary>Responsive Layouts</summary><p>Adapting interfaces across screen sizes.</p></details></li>
+                                <li><details><summary>Design Systems</summary><p>Reusing consistent design patterns and visual tokens.</p></details></li>
+                                <li><details><summary>Theme Architecture</summary><p>Supporting cohesive light and dark themes.</p></details></li>
+                                <li><details><summary>Interaction States</summary><p>Designing clear hover, focus and active feedback.</p></details></li>
+                                <li><details><summary>Accessibility Fundamentals</summary><p>Considering keyboard access and readable interfaces.</p></details></li>
+                            </ul>
+                        </article>
+
+                        <!-- Interaction & Creative Technology -->
+                        <article class="resume-capability">
+                            <div class="resume-capability-symbol" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <path d="m16 3 2.8 8.2L27 14l-8.2 2.8L16 25l-2.8-8.2L5 14l8.2-2.8L16 3Z"/>
+                                    <path d="m25 21 1.5 4.5L31 27l-4.5 1.5L25 33"/>
+                                    <path d="M7 3v5M4.5 5.5h5"/>
+                                </svg>
+                            </div>
+
+                            <h3>Interaction &amp; Creative Technology</h3>
+
+                            <ul>
+                                <li><details><summary>UI Animation</summary><p>Adding purposeful movement to interface elements.</p></details></li>
+                                <li><details><summary>Motion &amp; Transitions</summary><p>Creating smooth transitions between interface states.</p></details></li>
+                                <li><details><summary>Interactive Web Experiments</summary><p>Exploring expressive interactions for the web.</p></details></li>
+                                <li><details><summary>3D Portfolio Concepts</summary><p>Exploring spatial scenes and 3D presentation.</p></details></li>
+                                <li><details><summary>Visual Storytelling</summary><p>Using visual structure to communicate ideas.</p></details></li>
+                                <li><details><summary>Spatial Interface Exploration</summary><p>Investigating interfaces beyond conventional layouts.</p></details></li>
+                            </ul>
+                        </article>
+
+                        <!-- Engineering & Problem Solving -->
+                        <article class="resume-capability">
+                            <div class="resume-capability-symbol" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <rect x="4" y="4" width="10" height="10" rx="2"/>
+                                    <rect x="18" y="18" width="10" height="10" rx="2"/>
+                                    <path d="M14 9h4a4 4 0 0 1 4 4v5M18 23h-4a4 4 0 0 1-4-4v-5"/>
+                                    <path d="m15 12 3-3-3-3M17 20l-3 3 3 3"/>
+                                </svg>
+                            </div>
+
+                            <h3>Engineering &amp; Problem Solving</h3>
+
+                            <ul>
+                                <li><details><summary>Debugging &amp; Troubleshooting</summary><p>Investigating errors and resolving implementation issues.</p></details></li>
+                                <li><details><summary>Code Organization</summary><p>Keeping files and responsibilities clearly structured.</p></details></li>
+                                <li><details><summary>Component Reusability</summary><p>Building reusable interface components and patterns.</p></details></li>
+                                <li><details><summary>Development Workflows</summary><p>Following iterative build and version-control workflows.</p></details></li>
+                                <li><details><summary>Technical Documentation</summary><p>Recording architecture, decisions and implementation details.</p></details></li>
+                                <li><details><summary>Testing &amp; Iteration</summary><p>Refining implementations through repeated checks.</p></details></li>
+                            </ul>
+                        </article>
+
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section 
-        id="resume-impact" class="resume-section resume-impact-section" aria-labelledby="resume-impact-title">
-            <div class="resume-page-content">
-                <h2 id="resume-impact-title">Impact</h2>
-                <div class="resume-impact-layout">
-                    <article class="resume-impact-block">
-                        <h3>Impact</h3>
-                        <p>I value progress that can be demonstrated through working prototypes, understandable code, technical documentation, and continuous improvement.</p>
-                        <ul>
-                            <li>HandLex — sign-language recognition and translation research</li>
-                            <li>EasternNova — personal portfolio and digital identity</li>
-                            <li>MiniArcade — browser-based arcade concept</li>
-                            <li>CubeLab — experimental 3D web experience</li>
-                            <li>Continued development of software and AI/ML foundations</li>
-                        </ul>
-                    </article>
-                    <article class="resume-impact-block">
-                        <h3>Domains</h3>
-                        <p>The technical and creative fields I am exploring through academic learning, independent development, and hands-on projects.</p>
-                        <ul>
-                            <li>Software Engineering</li>
-                            <li>Artificial Intelligence & Machine Learning</li>
-                            <li>Frontend & Interactive Development</li>
-                            <li>Creative Coding & 3D Web Experiences</li>
-                            <li>Product Design & Digital Systems</li>
-                            <li>Data Structures & Algorithms</li>
-                        </ul>
-                    </article>
-                </div>
-                <section class="resume-achievements" data-inverse-theme="dark" aria-labelledby="resume-achievements-title">
-                    <h3 id="resume-achievements-title">Achievements</h3>
-                    <div class="resume-achievement-grid">
-                        <article>
-                            <span>CERTIFICATIONS</span>
-                            <h4>To Be Added</h4>
-                            <p>Verified certifications and completed credentials will be added here.</p>
-                        </article>
-                        <article>
-                            <span>ACHIEVEMENTS</span>
-                            <h4>Building in Progress</h4>
-                            <p>Academic, technical, project, competition, and other verified achievements will be added when confirmed.</p>
-                        </article>
-                        <article>
-                            <span>ONGOING</span>
-                            <h4>Continuous Growth</h4>
-                            <p>Developing projects, strengthening technical foundations, exploring AI/ML, and preparing for future opportunities.</p>
-                        </article>
-                    </div>
-                </section>
-            </div>
-        </section>
-
-        <section 
-            id="resume-contact" class="resume-section resume-contact-section" aria-labelledby="resume-contact-title">
-            <div class="resume-page-content">
-                <h2 id="resume-contact-title">Let's connect.</h2>
-                <div class="resume-contact-layout">
-                    <div class="resume-contact-copy">
-                        <p>I am interested in opportunities where I can contribute, learn from practical engineering challenges, and continue developing my skills in software development, AI/ML, and interactive technology.</p>
-                        <p>I welcome conversations around internships, freelance work, collaborations, and projects that turn thoughtful ideas into useful digital experiences.</p>
-                    </div>
-                    <div class="resume-contact-links">
-                        <a href="#">
-                            <span>EMAIL</span>
-                            <strong>Your Email</strong>
-                        </a>
-                        <a href="#">
-                            <span>GITHUB</span>
-                            <strong>EasternNova</strong>
-                        </a>
-                        <a href="#">
-                            <span>LINKEDIN</span>
-                            <strong>LinkedIn</strong>
-                        </a>
-                        <a href="#">
-                            <span>PORTFOLIO</span>
-                            <strong>EasternNova</strong>
-                        </a>
-                    </div>
-                </div>
-                <div class="resume-contact-download-wrap">
-                    <a href="./Rassets/PrachiShawResumeLight.pdf" class="resume-contact-download" download="PrachiShawResumeLight.pdf" aria-label="Download CV">
-                        <span>Download CV</span>
-                        <span class="resume-download-arrow" aria-hidden="true">⭳</span>
-                    </a>
-                </div>
-            </div>
-        </section>
         
+        <!-- Domains | Impact -->
+        <section class="resume-section" id="resume-impact">
+            <div class="resume-section-inner">
+                <div class="resume-domains-impact-layout">
+
+                    <section class="resume-domains">
+                        <h2 class="resume-section-title">domains</h2>
+
+                        <p class="resume-content-intro">
+                            Exploring technology, understanding real-world needs,
+                            and building skills for the next opportunity.
+                        </p>
+
+                        <ol class="resume-domain-list">
+                            <li><span>01</span><h3>Software Development</h3></li>
+                            <li><span>02</span><h3>Artificial Intelligence &amp; Machine Learning</h3></li>
+                            <li><span>03</span><h3>Web &amp; Frontend Development</h3></li>
+                            <li><span>04</span><h3>Data Science &amp; Computer Vision</h3></li>
+                            <li><span>05</span><h3>UI/UX &amp; Creative Technology</h3></li>
+                            <li><span>06</span><h3>Cloud, APIs &amp; Emerging Tech</h3></li>
+                        </ol>
+                    </section>
+
+                    <section class="resume-impact">
+                        <h2 class="resume-section-title">impact</h2>
+
+                        <div class="resume-impact-metrics">
+
+                            <article class="resume-impact-item">
+                                <span class="resume-impact-value">05</span>
+                                <h3>Projects</h3>
+                            </article>
+
+                            <article class="resume-impact-item">
+                                <span class="resume-impact-value">&nbsp;</span>
+                                <h3></h3>
+                            </article>
+
+                            <article class="resume-impact-item">
+                                <span class="resume-impact-value">&nbsp;</span>
+                                <h3></h3>
+                            </article>
+
+                            <article class="resume-impact-item">
+                                <span class="resume-impact-value">&nbsp;</span>
+                                <h3></h3>
+                            </article>
+
+                            <article class="resume-impact-item">
+                                <span class="resume-impact-value">&nbsp;</span>
+                                <h3></h3>
+                            </article>
+
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Achievements -->
+        <section class="resume-section" id="resume-achievements">
+            <div class="resume-section-inner">
+                <div class="resume-achievements">
+                    <h2 class="resume-section-title">achievements</h2>
+                    <div class="resume-achievements-grid">
+                        <article class="resume-achievement">
+                            <h3>AI &amp; Machine Learning</h3>
+                            <p>Exploring deep learning architectures, sequence modeling, keypoint processing, and sign-language recognition.</p>
+                        </article>
+                        <article class="resume-achievement">
+                            <h3>Frontend Engineering</h3>
+                            <p>Developing responsive interfaces, interactive experiences, reusable components, and custom animation systems.</p>
+                        </article>
+                        <article class="resume-achievement">
+                            <h3>Software Development</h3>
+                            <p>Building modular applications, integrating APIs, organizing codebases, and exploring full-stack development.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Awards & Certificates -->
+        <section class="resume-section" id="resume-awards">
+            <div class="resume-section-inner">
+                <div class="resume-awards">
+
+                    <h2 class="resume-section-title">
+                        awards &amp; certificates
+                    </h2>
+
+                    <p class="resume-content-intro">
+                        Learning, credentials &amp; professional development
+                    </p>
+
+                    <div class="resume-awards-list">
+
+                        <article class="resume-award">
+                            <div class="resume-award-info">
+                                <h3>Machine Learning Specialization</h3>
+                                <p>DeepLearning.AI · Stanford Online</p>
+                            </div>
+                            <div class="resume-award-meta">
+                                <span>Planned</span>
+                                <span>AI &amp; Machine Learning</span>
+                            </div>
+                        </article>
+
+                        <article class="resume-award">
+                            <div class="resume-award-info">
+                                <h3>CS50’s Introduction to Computer Science</h3>
+                                <p>Harvard University · HarvardX</p>
+                            </div>
+                            <div class="resume-award-meta">
+                                <span>Planned</span>
+                                <span>Computer Science</span>
+                            </div>
+                        </article>
+
+                        <article class="resume-award">
+                            <div class="resume-award-info">
+                                <h3>GitHub Foundations</h3>
+                                <p>GitHub</p>
+                            </div>
+                            <div class="resume-award-meta">
+                                <span>Planned</span>
+                                <span>Developer Tools</span>
+                            </div>
+                        </article>
+
+                        <article class="resume-award">
+                            <div class="resume-award-info">
+                                <h3>Google Cloud Digital Leader</h3>
+                                <p>Google Cloud</p>
+                            </div>
+                            <div class="resume-award-meta">
+                                <span>Planned</span>
+                                <span>Cloud Computing</span>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+  
+        <!-- Let's Connect -->
+        <section class="resume-section" id="resume-contact">
+            <div class="resume-section-inner">
+                <div class="resume-contact">
+
+                    <div class="resume-contact-heading">
+                        <h2 class="resume-section-title">let's connect.</h2>
+                        <p class="resume-contact-intro">
+                            Open to freelance and work opportunities.
+                        </p>
+                    </div>
+
+                    <div class="resume-contact-bottom">
+                        <div class="resume-contact-links">
+
+                            <a href="mailto:prachi1602@gmail.com"
+                            aria-label="Email Prachi">
+                                <span class="contact-icon" aria-hidden="true">✉</span>
+                                <span class="contact-label">Email</span>
+                                <span class="contact-arrow" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a href="https://github.com/EasternNova"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub">
+                                <span 
+                                    class="contact-icon contact-github" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.73 2.04 3.63 1.55.1-.72.39-1.22.7-1.5-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.23-5.11 5.51.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+                                </svg>
+                            </span>
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-arrow" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a href="https://www.linkedin.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn">
+                                <span class="contact-icon contact-linkedin" aria-hidden="true">in</span>
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-arrow" aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+
+                        <a class="resume-contact-download"
+                        href="/resume/assets/Prachi-Shaw-CV.pdf"
+                        download>
+                            Download CV
+                            <span aria-hidden="true">↓</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </div>
 
 </main>
-<script type="module" src="./resume.js" ></script>
+    <script type="module" src="./resume.js"></script>
 </body>
 </html>

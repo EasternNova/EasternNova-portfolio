@@ -63,15 +63,19 @@ async function initializeResumeBridge() {
         }
     }
 
+    let previousFocus = null;
+
     function openResume() {
+        previousFocus = document.activeElement;
         loadResume();
         panel.hidden = false;
 
         requestAnimationFrame(() => {
             panel.classList.add("is-open");
             panel.setAttribute("aria-hidden", "false");
-            document.body.dataset.resumeOpen = "false";
-            document.body.style.overflow = "";
+            document.body.dataset.resumeOpen = "true";
+            document.body.style.overflow = "hidden";
+            mobilePanelClose.focus({ preventScroll: true });
             sendTheme();
         });
     }
@@ -81,6 +85,9 @@ async function initializeResumeBridge() {
         panel.setAttribute("aria-hidden", "true");
         document.body.dataset.resumeOpen = "false";
         document.body.style.overflow = "";
+        if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+        }
 
         window.setTimeout(() => {
             if (!panel.classList.contains("is-open")) {

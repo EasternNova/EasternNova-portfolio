@@ -1,0 +1,33 @@
+/* Shared resume/panel color tokens. Theme state is owned by the portfolio or resume document. */
+:root {
+    color-scheme: light;
+    --resume-bg: #FFF9FB;
+    --resume-surface: #FFFFFF;
+    --resume-text: #171014;
+    --resume-muted: #746870;
+    --resume-subtle: #A99BA2;
+    --resume-border: #EADCE2;
+    --resume-border-strong: #DCC7CF;
+    --resume-accent: #E7A0B7;
+    --resume-accent-soft: #F6DCE5;
+    --resume-accent-dark: #B85F7D;
+    --resume-rail: #120C10;
+    --resume-rail-text: #ffeff4;
+}
+
+:root[data-resume-theme="dark"],
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --resume-bg: #120C10;
+    --resume-surface: #191115;
+    --resume-text: #FFF3F6;
+    --resume-muted: #C3B1B8;
+    --resume-subtle: #907D85;
+    --resume-border: #33252C;
+    --resume-border-strong: #49343D;
+    --resume-accent: #E7A0B7;
+    --resume-accent-soft: #3B252E;
+    --resume-accent-dark: #F0AFC1;
+    --resume-rail: #080508;
+    --resume-rail-text: #FFF3F6;
+}

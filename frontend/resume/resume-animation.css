@@ -1,53 +1,3 @@
-:root {
-    --resume-heading-size: 4rem;
-    --resume-heading-weight: 600;
-    --resume-heading-letter-spacing: -0.025em;
-    --resume-heading-underline: var(--resume-accent);
-}
-
-/* Shared heading typography */
-.resume-page-content > h2,
-.resume-about-column-title,
-.resume-subheading,
-.resume-projects > h3,
-.resume-achievements > h3,
-.resume-impact-block > h3,
-.resume-contact-section h2 {
-    position: relative;
-    display: table;
-    width: fit-content;
-    max-width: 100%;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.45rem;
-    font-family: var(--resume-sans);
-    font-size: var(--resume-heading-size);
-    font-weight: var(--resume-heading-weight);
-    letter-spacing: var(--resume-heading-letter-spacing);
-    line-height: 1.3;
-    text-transform: lowercase;
-    border: 0;
-    opacity: 1;
-}
-
-/* Heading underline */
-.resume-page-content > h2::after,
-.resume-about-column-title::after,
-.resume-projects > h3::after,
-.resume-achievements > h3::after,
-.resume-impact-block > h3::after,
-.resume-contact-section h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    margin: 0;
-    background: var(--resume-heading-underline);
-    transform: none;
-    animation: none;
-}
-
 /* Navigation and interaction transitions */
 .resume-nav-link::after {
     transition: transform 180ms cubic-bezier(.16, 1, .3, 1);
@@ -63,8 +13,7 @@
 }
 
 .resume-download,
-.resume-contact-links a,
-.resume-final-download {
+.resume-contact-links a {
     transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease;
 }
 
@@ -72,8 +21,7 @@
 .resume-header,
 .resume-navigation,
 .resume-section,
-.resume-page-content,
-.resume-final-download {
+.resume-page-content {
     transition: background-color 420ms ease, color 420ms ease, border-color 420ms ease;
 }
 
@@ -108,24 +56,6 @@
     }
 }
 
-@keyframes resumeHeadingLine {
-    from {
-        transform: scaleX(0);
-    }
-    to {
-        transform: scaleX(1);
-    }
-}
-
-@keyframes resumeSubheadingLine {
-    from {
-        transform: scaleX(0);
-    }
-    to {
-        transform: scaleX(1);
-    }
-}
-
 @keyframes resumeCue {
     0%, 100% {
         transform: scaleX(0.35);
@@ -141,22 +71,13 @@
 .resume-scroll-reveal {
     opacity: 0;
     transform: translateY(22px);
-    transition: opacity 650ms cubic-bezier(.16, 1, .3, 1), transform 650ms cubic-bezier(.16, 1, .3, 1);
+    transition: opacity 700ms cubic-bezier(.16, 1, .3, 1), transform 750ms cubic-bezier(.16, 1, .3, 1);
     will-change: opacity, transform;
 }
 
 .resume-scroll-reveal.is-scroll-visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Keep the original section content visible unless it is being revealed */
-.resume-section:not(.resume-home) .resume-page-content {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    clip-path: none;
-    animation: none;
 }
 
 /* Home entrance: exclamation mark */
@@ -236,18 +157,6 @@
 }
 
 /* Home tagline: phrase-by-phrase entrance */
-.resume-home-role {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.45rem 1.1rem;
-    margin: 2rem 0 0;
-    color: var(--resume-muted);
-    font-family: var(--resume-sans);
-    font-size: clamp(0.85rem, 1.15vw, 1rem);
-    font-weight: 400;
-    line-height: 1.6;
-}
 
 .resume-home-role > span {
     display: inline-block;
@@ -261,11 +170,20 @@
 }
 
 .resume-home-role > span:not(:last-child)::after {
-    content: "----";
+    content: "";
     display: inline-block;
+    width: 2.5rem;
+    height: 1px;
     margin-left: 1.1rem;
-    color: var(--resume-accent);
-    letter-spacing: 0.04em;
+    background: var(--resume-accent);
+    vertical-align: middle;
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+.resume-page.resume-ready .resume-home-role > span:not(:last-child)::after {
+    animation: resumeTaglineLine 500ms cubic-bezier(.16, 1, .3, 1) both;
+    animation-delay: calc(2350ms + var(--role-index, 0) * 180ms);
 }
 
 @keyframes resumeTaglineCharacter {
@@ -279,16 +197,9 @@
     }
 }
 
-/* Mobile: animate phrases without separators */
-@media (max-width: 700px) {
-    .resume-home-role {
-        gap: 0.35rem 0.75rem;
-        margin-top: 1.5rem;
-        font-size: 0.9rem;
-    }
-
-    .resume-home-role > span:not(:last-child)::after {
-        content: none;
+@keyframes resumeTaglineLine {
+    to {
+        transform: scaleX(1);
     }
 }
 
@@ -322,7 +233,6 @@
     .resume-navigation,
     .resume-section,
     .resume-page-content,
-    .resume-final-download,
     .resume-nav-link,
     .resume-theme,
     .resume-download,
@@ -361,8 +271,12 @@
         visibility: visible;
     }
 
-    .resume-page-content > h2::after,
-    .resume-subheading::after {
+    .resume-page-content > h2::after {
         animation: none;
     }
+
+    .resume-home-role > span::after {
+    animation: none !important;
+    transform: none;
+}
 }

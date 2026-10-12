@@ -1,9 +1,34 @@
 const RESUME_THEME_KEY = "easternnova-resume-theme";
+const THEME_MESSAGE_TYPE = "easternnova-portfolio-theme";
 
-/* Theme management */
+const SELECTORS = {
+    page: "#resume-page",
+    frame: "#resume-content-frame",
+    themeButton: "#resume-theme",
+    nav: ".resume-navigation",
+    navLinks: ".resume-nav-link",
+    mobileMenu: "#resume-mobile-menu",
+    sections: ".resume-section",
+    progress: ".resume-scroll-progress",
+    statusRail: ".resume-status-rail",
+    statusStates: ".resume-status-state",
+    nameLines: ".resume-name-line",
+    taglinePhrases: ".resume-home-role > span",
+};
+
+/* =========================================================
+   Theme
+   ========================================================= */
+
 function getStoredResumeTheme() {
-    const stored = localStorage.getItem(RESUME_THEME_KEY);
-    return stored === "dark" || stored === "light" ? stored : "light";
+    try {
+        const storedTheme = localStorage.getItem(RESUME_THEME_KEY);
+        return storedTheme === "dark" || storedTheme === "light"
+            ? storedTheme
+            : "light";
+    } catch {
+        return "light";
+    }
 }
 
 function applyResumeTheme(theme, persist = true) {
@@ -11,74 +36,132 @@ function applyResumeTheme(theme, persist = true) {
     document.documentElement.dataset.resumeTheme = safeTheme;
 
     if (persist) {
-        localStorage.setItem(RESUME_THEME_KEY, safeTheme);
+        try {
+            localStorage.setItem(RESUME_THEME_KEY, safeTheme);
+        } catch {
+            // The theme still works when storage is unavailable.
+        }
     }
 
-    const button = document.querySelector("#resume-theme");
+    const button = document.querySelector(SELECTORS.themeButton);
     if (!button) return;
 
     button.textContent = safeTheme === "dark" ? "◐" : "◑";
-    button.setAttribute("aria-label", safeTheme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    button.setAttribute(
+        "aria-label",
+        safeTheme === "dark" ? "Switch to light theme" : "Switch to dark theme",
+    );
     button.setAttribute("aria-pressed", String(safeTheme === "dark"));
 }
 
 function initializeResumeTheme() {
     applyResumeTheme(getStoredResumeTheme(), false);
 
-    const button = document.querySelector("#resume-theme");
-    if (!button) return;
+    const button = document.querySelector(SELECTORS.themeButton);
+    button?.addEventListener("click", () => {
+        const currentTheme =
+            document.documentElement.dataset.resumeTheme || "light";
 
-    button.addEventListener("click", () => {
-        const current = document.documentElement.dataset.resumeTheme || "light";
-        applyResumeTheme(current === "dark" ? "light" : "dark");
+        applyResumeTheme(currentTheme === "dark" ? "light" : "dark");
+    });
+
+    window.addEventListener("message", (event) => {
+        if (event.origin !== window.location.origin) return;
+        if (event.data?.type !== THEME_MESSAGE_TYPE) return;
+        if (!["light", "dark"].includes(event.data.theme)) return;
+
+        applyResumeTheme(event.data.theme, false);
     });
 }
 
-window.addEventListener("message", (event) => {
-    if (event.origin !== window.location.origin) return;
-    if (!event.data || event.data.type !== "easternnova-portfolio-theme") return;
-    if (event.data.theme !== "light" && event.data.theme !== "dark") return;
+/* =========================================================
+   Downloads
+   ========================================================= */
 
-    applyResumeTheme(event.data.theme, false);
-});
+function initializeResumeDownloads() {
+    const downloadLinks = document.querySelectorAll(
+        ".resume-download, .resume-contact-download",
+    );
 
-/* Navigation and active section */
+    if (!downloadLinks.length) return;
+
+    function updateDownloadLinks() {
+        const theme = document.documentElement.dataset.resumeTheme || "light";
+        const isDark = theme === "dark";
+        const file = isDark
+            ? "./Rassets/PrachiShawResumeDark.pdf"
+            : "./Rassets/PrachiShawResumeLight.pdf";
+        const filename = isDark
+            ? "PrachiShawResumeDark.pdf"
+            : "PrachiShawResumeLight.pdf";
+
+        downloadLinks.forEach((link) => {
+            link.href = file;
+            link.download = filename;
+        });
+    }
+
+    updateDownloadLinks();
+
+    const observer = new MutationObserver(updateDownloadLinks);
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-resume-theme"],
+    });
+}
+
+/* =========================================================
+   Navigation and mobile menu
+   ========================================================= */
+
+
 function initializeResumeNavigation() {
-    const frame = document.querySelector("#resume-content-frame");
-    const links = document.querySelectorAll(".resume-nav-link");
-    const sections = document.querySelectorAll(".resume-section");
+    const frame = document.querySelector(SELECTORS.frame);
+    const links = [...document.querySelectorAll(SELECTORS.navLinks)];
+    const sections = [...document.querySelectorAll(SELECTORS.sections)];
 
     if (!links.length || !sections.length) return;
 
     function setActiveSection(sectionId) {
+        const matchingLink = links.find(
+            (link) => link.getAttribute("href") === `#${sectionId}`,
+        );
+
+        // Some content sections intentionally have no top-level nav link.
+        if (!matchingLink) return;
+
         links.forEach((link) => {
-            link.classList.toggle("is-active", link.getAttribute("href") === `#${sectionId}`);
+            link.classList.toggle("is-active", link === matchingLink);
         });
     }
 
     function updateActiveSection() {
-        const scrollTop = frame ? frame.scrollTop : window.scrollY;
-        const viewportHeight = frame ? frame.clientHeight : window.innerHeight;
-        let activeSection = sections[0];
-        let closestDistance = Infinity;
+        const frameTop = frame?.getBoundingClientRect().top ?? 0;
+        const activationLine =
+            frameTop + (frame?.clientHeight ?? window.innerHeight) * 0.28;
+
+        let currentSection = null;
+        let closestDistance = Number.POSITIVE_INFINITY;
 
         sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const distance = Math.abs(sectionTop - scrollTop - viewportHeight * 0.12);
+            const rect = section.getBoundingClientRect();
+            if (rect.top > activationLine) return;
 
-            if (sectionTop <= scrollTop + viewportHeight * 0.35 && distance < closestDistance) {
+            const distance = Math.abs(activationLine - rect.top);
+
+            if (distance < closestDistance) {
                 closestDistance = distance;
-                activeSection = section;
+                currentSection = section;
             }
         });
 
-        setActiveSection(activeSection.id);
+        if (currentSection) setActiveSection(currentSection.id);
     }
 
     links.forEach((link) => {
         link.addEventListener("click", (event) => {
             const targetId = link.getAttribute("href");
-            if (!targetId || !targetId.startsWith("#")) return;
+            if (!targetId?.startsWith("#")) return;
 
             const target = document.querySelector(targetId);
             if (!target) return;
@@ -86,9 +169,24 @@ function initializeResumeNavigation() {
             event.preventDefault();
 
             if (frame) {
-                frame.scrollTo({ top: target.offsetTop, behavior: "smooth" });
+                const frameRect = frame.getBoundingClientRect();
+                const targetRect = target.getBoundingClientRect();
+
+                const targetTop =
+                    frame.scrollTop + targetRect.top - frameRect.top;
+
+                const isHome = target.id === "resume-home";
+                const navigationOffset = isHome ? 0 : 32;
+
+                frame.scrollTo({
+                    top: Math.max(0, targetTop - navigationOffset),
+                    behavior: "smooth",
+                });
             } else {
-                target.scrollIntoView({ behavior: "smooth", block: "start" });
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
             }
 
             setActiveSection(target.id);
@@ -96,168 +194,33 @@ function initializeResumeNavigation() {
     });
 
     const scroller = frame || window;
-    let ticking = false;
+    let frameRequested = false;
 
-    scroller.addEventListener("scroll", () => {
-        if (ticking) return;
-        ticking = true;
+    scroller.addEventListener(
+        "scroll",
+        () => {
+            if (frameRequested) return;
+            frameRequested = true;
 
-        requestAnimationFrame(() => {
-            updateActiveSection();
-            ticking = false;
-        });
-    }, { passive: true });
-
-    updateActiveSection();
-
-    window.matchMedia("(max-width: 800px)").addEventListener("change", () => {
-        window.location.reload();
-    });
-}
-
-/* Scroll progress indicator */
-function initializeScrollProgress() {
-    const frame = document.querySelector("#resume-content-frame");
-    const progress = document.querySelector(".resume-scroll-progress");
-
-    if (!progress) return;
-
-    function updateProgress() {
-        const scrollTop = frame ? frame.scrollTop : window.scrollY;
-        const maxScroll = frame
-            ? frame.scrollHeight - frame.clientHeight
-            : document.documentElement.scrollHeight - window.innerHeight;
-        const amount = maxScroll > 0 ? scrollTop / maxScroll : 0;
-
-        progress.style.transform = `scaleX(${Math.min(1, Math.max(0, amount))})`;
-    }
-
-    (frame || window).addEventListener("scroll", updateProgress, { passive: true });
-    updateProgress();
-    requestAnimationFrame(updateProgress);
-}
-/* Prepare the name for letter-by-letter animation */
-function initializeNameCharacterReveal() {
-    const nameLines = document.querySelectorAll(
-        ".resume-name-line"
+            requestAnimationFrame(() => {
+                updateActiveSection();
+                frameRequested = false;
+            });
+        },
+        { passive: true },
     );
 
-    let characterIndex = 0;
-
-    nameLines.forEach((line) => {
-        line.querySelectorAll(
-            ":scope > span:not(.resume-name-exclamation)"
-        ).forEach((character) => {
-            character.style.setProperty(
-                "--name-char-index",
-                characterIndex
-            );
-
-            characterIndex++;
-        });
+    window.addEventListener("resize", updateActiveSection, {
+        passive: true,
     });
+
+    updateActiveSection();
 }
 
-/* Prepare tagline phrases for staggered entrance */
-function initializeTaglineReveal() {
-    document.querySelectorAll(".resume-home-role > span").forEach((phrase, index) => {
-        phrase.style.setProperty("--role-index", index);
-    });
-}
-
-/* Home entrance sequence */
-function initializeOpeningAnimation() {
-    const page = document.querySelector("#resume-page");
-
-    if (!page) {
-        return;
-    }
-
-    initializeNameCharacterReveal();
-
-    requestAnimationFrame(() => {
-        page.classList.add("resume-ready");
-    });
-}
-
-/* Status ticker */
-function initializeStatusTicker() {
-    const rail = document.querySelector(".resume-status-rail");
-    const states = document.querySelectorAll(".resume-status-state");
-    const frame = document.querySelector("#resume-content-frame");
-
-    if (!rail || states.length < 2) return;
-
-    let isOpen = false;
-
-    function updateStatus() {
-        const shouldOpen = (frame ? frame.scrollTop : window.scrollY) > 24;
-        if (shouldOpen === isOpen) return;
-
-        isOpen = shouldOpen;
-        rail.classList.toggle("is-open", isOpen);
-    }
-
-    (frame || window).addEventListener("scroll", updateStatus, { passive: true });
-    updateStatus();
-}
-
-/* Inverse theme sections */
-function initializeInverseSections() {
-    const achievements = document.querySelector(".resume-achievements");
-    const finalDownload = document.querySelector(".resume-final-download");
-
-    function updateInverseTheme() {
-        const theme = document.documentElement.dataset.resumeTheme || "light";
-        const inverse = theme === "dark" ? "light" : "dark";
-
-        if (achievements) achievements.dataset.inverseTheme = inverse;
-        if (finalDownload) finalDownload.dataset.inverseTheme = inverse;
-    }
-
-    updateInverseTheme();
-
-    const observer = new MutationObserver(updateInverseTheme);
-    observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["data-resume-theme"]
-    });
-}
-
-/* Theme-aware resume downloads */
-function initializeResumeDownloads() {
-    const downloads = document.querySelectorAll(".resume-download, .resume-contact-download");
-    if (!downloads.length) return;
-
-    function updateDownloads() {
-        const theme = document.documentElement.dataset.resumeTheme || "light";
-        const file = theme === "dark"
-            ? "./Rassets/PrachiShawResumeDark.pdf"
-            : "./Rassets/PrachiShawResumeLight.pdf";
-        const filename = theme === "dark"
-            ? "PrachiShawResumeDark.pdf"
-            : "PrachiShawResumeLight.pdf";
-
-        downloads.forEach((download) => {
-            download.href = file;
-            download.download = filename;
-        });
-    }
-
-    updateDownloads();
-
-    const observer = new MutationObserver(updateDownloads);
-    observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["data-resume-theme"]
-    });
-}
-
-/* Mobile navigation */
 function initializeMobileNavigation() {
-    const navigation = document.querySelector(".resume-navigation");
-    const button = document.querySelector("#resume-mobile-menu");
-    const links = document.querySelectorAll(".resume-nav-link");
+    const navigation = document.querySelector(SELECTORS.nav);
+    const button = document.querySelector(SELECTORS.mobileMenu);
+    const links = document.querySelectorAll(SELECTORS.navLinks);
 
     if (!navigation || !button) return;
 
@@ -268,30 +231,97 @@ function initializeMobileNavigation() {
         button.setAttribute("aria-expanded", "false");
     }
 
-    function toggleMenu() {
+    button.addEventListener("click", () => {
         const isOpen = navigation.classList.toggle("is-menu-open");
-        button.textContent = isOpen ? ">" : "=";
-        button.setAttribute("aria-label", isOpen ? "Close resume navigation" : "Open resume navigation");
-        button.setAttribute("aria-expanded", String(isOpen));
-    }
 
-    button.addEventListener("click", toggleMenu);
+        button.textContent = isOpen ? ">" : "=";
+        button.setAttribute(
+            "aria-label",
+            isOpen ? "Close resume navigation" : "Open resume navigation",
+        );
+        button.setAttribute("aria-expanded", String(isOpen));
+    });
+
     links.forEach((link) => link.addEventListener("click", closeMenu));
 
-    window.addEventListener("resize", () => {
-        if (window.innerWidth > 700) closeMenu();
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+    });
+
+    window.addEventListener(
+        "resize",
+        () => {
+            if (window.innerWidth > 700) closeMenu();
+        },
+        { passive: true },
+    );
+}
+
+/* =========================================================
+   Scroll progress
+   ========================================================= */
+
+function initializeScrollProgress() {
+    const frame = document.querySelector(SELECTORS.frame);
+    const progress = document.querySelector(SELECTORS.progress);
+
+    if (!progress) return;
+
+    function updateProgress() {
+        const scrollTop = frame ? frame.scrollTop : window.scrollY;
+        const maxScroll = frame
+            ? frame.scrollHeight - frame.clientHeight
+            : document.documentElement.scrollHeight - window.innerHeight;
+
+        const amount =
+            maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+
+        progress.style.transform = `scaleX(${amount})`;
+    }
+
+    (frame || window).addEventListener("scroll", updateProgress, {
+        passive: true,
+    });
+    window.addEventListener("resize", updateProgress, { passive: true });
+
+    updateProgress();
+    requestAnimationFrame(updateProgress);
+}
+
+/* =========================================================
+   Entrance animation preparation
+   ========================================================= */
+
+function initializeNameCharacterReveal() {
+    let characterIndex = 0;
+
+    document.querySelectorAll(SELECTORS.nameLines).forEach((line) => {
+        line
+            .querySelectorAll(":scope > span:not(.resume-name-exclamation)")
+            .forEach((character) => {
+                character.style.setProperty(
+                    "--name-char-index",
+                    characterIndex,
+                );
+                characterIndex += 1;
+            });
     });
 }
 
-/* Prepare status text for the existing Home animation */
+function initializeTaglineReveal() {
+    document.querySelectorAll(SELECTORS.taglinePhrases).forEach((phrase, index) => {
+        phrase.style.setProperty("--role-index", index);
+    });
+}
+
 function initializeStatusCharacterReveal() {
-    document.querySelectorAll(".resume-status-state").forEach((state) => {
+    document.querySelectorAll(SELECTORS.statusStates).forEach((state) => {
         if (state.dataset.charactersPrepared === "true") return;
 
-        const text = state.textContent;
+        const originalText = state.textContent.trim();
         const fragment = document.createDocumentFragment();
 
-        [...text].forEach((character, index) => {
+        [...originalText].forEach((character, index) => {
             const span = document.createElement("span");
             span.textContent = character === " " ? "\u00A0" : character;
             span.style.setProperty("--char-index", index);
@@ -299,55 +329,90 @@ function initializeStatusCharacterReveal() {
             fragment.appendChild(span);
         });
 
-        state.textContent = "";
-        state.appendChild(fragment);
-        state.setAttribute("aria-label", text.trim());
+        state.replaceChildren(fragment);
+        state.setAttribute("aria-label", originalText);
         state.dataset.charactersPrepared = "true";
     });
 }
 
-/* Stage 6: reveal content blocks as they enter the viewport */
+function initializeOpeningAnimation() {
+    const page = document.querySelector(SELECTORS.page);
+    if (!page) return;
+
+    initializeNameCharacterReveal();
+
+    requestAnimationFrame(() => {
+        page.classList.add("resume-ready");
+    });
+}
+
+/* =========================================================
+   Status rail
+   ========================================================= */
+
+function initializeStatusTicker() {
+    const rail = document.querySelector(SELECTORS.statusRail);
+    const states = document.querySelectorAll(SELECTORS.statusStates);
+    const frame = document.querySelector(SELECTORS.frame);
+
+    if (!rail || states.length < 2) return;
+
+    function updateStatus() {
+        const scrollTop = frame ? frame.scrollTop : window.scrollY;
+        rail.classList.toggle("is-open", scrollTop > 24);
+    }
+
+    (frame || window).addEventListener("scroll", updateStatus, {
+        passive: true,
+    });
+    updateStatus();
+}
+
+/* =========================================================
+   Scroll reveal
+   ========================================================= */
+
 function initializeScrollReveal() {
-    const targets = document.querySelectorAll([
+    const selectors = [
         ".resume-section:not(.resume-home) .resume-page-content > h2",
+        ".resume-section:not(.resume-home) .resume-about-column-title",
         ".resume-section:not(.resume-home) .resume-content-block",
         ".resume-section:not(.resume-home) .resume-side-block",
         ".resume-section:not(.resume-home) .resume-experience-item",
-        ".resume-section:not(.resume-home) .resume-project-item",
-        ".resume-section:not(.resume-home) .resume-capability-grid article",
-        ".resume-section:not(.resume-home) .resume-education-item",
-        ".resume-section:not(.resume-home) .resume-skill-group",
-        ".resume-section:not(.resume-home) .resume-achievement-grid article",
-        ".resume-section:not(.resume-home) .resume-impact-list > div",
-        ".resume-section:not(.resume-home) .resume-impact-block",
-        ".resume-section:not(.resume-home) .resume-contact-layout",
-        ".resume-section:not(.resume-home) .resume-contact-copy",
-        ".resume-section:not(.resume-home) .resume-contact-links",
-        ".resume-section:not(.resume-home) .resume-final-download-wrap"
-    ].join(","));
+        ".resume-section:not(.resume-home) .resume-capability",
+        ".resume-section:not(.resume-home) .resume-domain-list > li",
+        ".resume-section:not(.resume-home) .resume-impact-item",
+        ".resume-section:not(.resume-home) .resume-achievement",
+        ".resume-section:not(.resume-home) .resume-award",
+        ".resume-section:not(.resume-home) .resume-contact-heading",
+        ".resume-section:not(.resume-home) .resume-contact-bottom",
+    ];
 
+    const targets = document.querySelectorAll(selectors.join(","));
     if (!targets.length) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-    if (reducedMotion) {
-        targets.forEach((element) => element.classList.add("is-scroll-visible"));
-        return;
-    }
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
 
-    const frame = document.querySelector("#resume-content-frame");
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
+    const frame = document.querySelector(SELECTORS.frame);
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
 
-            entry.target.classList.add("is-scroll-visible");
-            observer.unobserve(entry.target);
-        });
-    }, {
-        root: frame || null,
-        threshold: 0.08,
-        rootMargin: "0px 0px -4% 0px"
-    });
+                entry.target.classList.add("is-scroll-visible");
+                observer.unobserve(entry.target);
+            });
+        },
+        {
+            root: frame || null,
+            threshold: 0.08,
+            rootMargin: "0px 0px -4% 0px",
+        },
+    );
 
     targets.forEach((element) => {
         element.classList.add("resume-scroll-reveal");
@@ -355,24 +420,27 @@ function initializeScrollReveal() {
     });
 }
 
-/* Initialize resume features once */
+/* =========================================================
+   Initialize once
+   ========================================================= */
+
 function initializeResume() {
     initializeResumeTheme();
     initializeResumeDownloads();
     initializeResumeNavigation();
+    initializeMobileNavigation();
     initializeScrollProgress();
     initializeStatusCharacterReveal();
-    initializeNameCharacterReveal()
     initializeOpeningAnimation();
     initializeStatusTicker();
-    initializeInverseSections();
-    initializeMobileNavigation();
     initializeScrollReveal();
     initializeTaglineReveal();
 }
 
 if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeResume);
+    document.addEventListener("DOMContentLoaded", initializeResume, {
+        once: true,
+    });
 } else {
     initializeResume();
 }

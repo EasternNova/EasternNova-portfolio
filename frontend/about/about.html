@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EasternNova — Avatar Test</title>
+
+    <link rel="stylesheet" href="./about.css">
+
+    <style>
+        .about-avatar-test {
+            width: min(100% - 32px, 900px);
+            margin-inline: auto;
+            padding-block: 32px;
+        }
+
+        .about-avatar-test h1 {
+            margin: 0 0 24px;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+        }
+
+        .about-avatar {
+            width: min(100%, 460px);
+            margin-inline: auto;
+        }
+
+        .about-avatar__stage {
+            position: relative;
+            width: 100%;
+            height: min(68vh, 650px);
+            min-height: 300px;
+        }
+
+        .about-avatar__canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .about-avatar__status {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="about-avatar-test">
+        <h1>360° Avatar Test</h1>
+
+        <div class="about-avatar" data-about-avatar>
+            <div class="about-avatar__stage">
+                <canvas
+                    class="about-avatar__canvas"
+                    data-about-avatar-canvas
+                    aria-label="Interactive avatar. Drag horizontally to rotate."
+                    role="img"
+                ></canvas>
+            </div>
+
+            <p
+                class="about-avatar__status"
+                data-about-avatar-status
+                aria-live="polite"
+            >
+                Preparing avatar…
+            </p>
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeAboutAvatarTest } from "./about.js";
+
+        initializeAboutAvatarTest();
+    </script>
+</body>
+</html>
